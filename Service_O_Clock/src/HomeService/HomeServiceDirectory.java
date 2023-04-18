@@ -46,14 +46,14 @@ public class HomeServiceDirectory {
         org.setHomeServiceEmail(email);
     }
     
-    public Service addServiceTypes(HomeService org, String name, String desc, String type){
+    public Service addServiceTypes(HomeService company, String name, String desc, String type){
         service = new Service(name, desc, type);
-        org.addServices(service);
+        company.addHomeServices(service);
         return service;
     }
     
-    public void DeleteServices(HomeService res, Service service){
-        res.removeServices(service); 
+    public void DeleteServices(HomeService company, Service service){
+        company.removeHomeServices(service); 
     }
     
 }

@@ -4,7 +4,7 @@
  */
 package Customer;
 
-import WorkQueue.FeedbackWorkRequest;
+import WorkQueue.StoreServiceWorkRequest;
 import WorkQueue.HomePaintingWorkRequest;
 import WorkQueue.HomeServicesWorkRequest;
 import WorkQueue.PestControlWorkRequest;
@@ -21,23 +21,23 @@ public class Customer {
     private String username;
     private ArrayList<HomeServicesWorkRequest> homeServiceWorkRequestList;
     private ArrayList<SalonWorkRequest> salonWorkRequestList;
-    private ArrayList<FeedbackWorkRequest> feedbackWorkRequestList;
+    private ArrayList<StoreServiceWorkRequest> feedbackWorkRequestList;
     private ArrayList<HomePaintingWorkRequest> homePaintingWorkRequestList;
     private ArrayList<PestControlWorkRequest> pestControlWorkRequestList;
-    private String memAddress;
-    private String memPhNum;
-    int id = 1;
-    int leafid = 1;
-    int donationid = 1;
-    int orderid = 1;
-    int emgid = 1;
+    private String custAddress;
+    private String custContact;
+    int homeServiceId = 1;
+    int salonServiceId = 1;
+    int feedbackiId = 1;
+    int paintignId = 1;
+    int pestServiceId = 1;
 
     public Customer(String username) {
         this.username = username;
         
         homeServiceWorkRequestList = new ArrayList<HomeServicesWorkRequest>();
         salonWorkRequestList = new ArrayList<SalonWorkRequest>();
-        feedbackWorkRequestList = new ArrayList<FeedbackWorkRequest>();
+        feedbackWorkRequestList = new ArrayList<StoreServiceWorkRequest>();
         homePaintingWorkRequestList = new ArrayList<HomePaintingWorkRequest>();
         pestControlWorkRequestList = new ArrayList<PestControlWorkRequest>();
     }
@@ -74,11 +74,11 @@ public class Customer {
         this.salonWorkRequestList = salonWorkRequestList;
     }
 
-    public ArrayList<FeedbackWorkRequest> getFeedbackWorkRequestList() {
+    public ArrayList<StoreServiceWorkRequest> getFeedbackWorkRequestList() {
         return feedbackWorkRequestList;
     }
 
-    public void setFeedbackWorkRequestList(ArrayList<FeedbackWorkRequest> feedbackWorkRequestList) {
+    public void setFeedbackWorkRequestList(ArrayList<StoreServiceWorkRequest> feedbackWorkRequestList) {
         this.feedbackWorkRequestList = feedbackWorkRequestList;
     }
 
@@ -98,61 +98,62 @@ public class Customer {
         this.pestControlWorkRequestList = pestControlWorkRequestList;
     }
 
-    public String getMemAddress() {
-        return memAddress;
+    public String getCustAddress() {
+        return custAddress;
     }
 
-    public void setMemAddress(String memAddress) {
-        this.memAddress = memAddress;
+    public void setCustAddress(String custAddress) {
+        this.custAddress = custAddress;
     }
 
-    public String getMemPhNum() {
-        return memPhNum;
+    public String getCustContact() {
+        return custContact;
     }
 
-    public void setMemPhNum(String memPhNum) {
-        this.memPhNum = memPhNum;
+    public void setCustContact(String custContact) {
+        this.custContact = custContact;
     }
 
-    public int getId() {
-        return id;
+    public int getHomeServiceId() {
+        return homeServiceId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setHomeServiceId(int homeServiceId) {
+        this.homeServiceId = homeServiceId;
     }
 
-    public int getLeafid() {
-        return leafid;
+    public int getSalonServiceId() {
+        return salonServiceId;
     }
 
-    public void setLeafid(int leafid) {
-        this.leafid = leafid;
+    public void setSalonServiceId(int salonServiceId) {
+        this.salonServiceId = salonServiceId;
     }
 
-    public int getDonationid() {
-        return donationid;
+    public int getFeedbackiId() {
+        return feedbackiId;
     }
 
-    public void setDonationid(int donationid) {
-        this.donationid = donationid;
+    public void setFeedbackiId(int feedbackiId) {
+        this.feedbackiId = feedbackiId;
     }
 
-    public int getOrderid() {
-        return orderid;
+    public int getPaintignId() {
+        return paintignId;
     }
 
-    public void setOrderid(int orderid) {
-        this.orderid = orderid;
+    public void setPaintignId(int paintignId) {
+        this.paintignId = paintignId;
     }
 
-    public int getEmgid() {
-        return emgid;
+    public int getPestServiceId() {
+        return pestServiceId;
     }
 
-    public void setEmgid(int emgid) {
-        this.emgid = emgid;
+    public void setPestServiceId(int pestServiceId) {
+        this.pestServiceId = pestServiceId;
     }
+
     
     
     

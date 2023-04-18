@@ -4,6 +4,7 @@
  */
 package HomeService;
 
+import WorkQueue.HomeServicesWorkRequest;
 import java.util.ArrayList;
 
 /**
@@ -13,9 +14,9 @@ import java.util.ArrayList;
 public class HomeService {
     
     private String userName;
-    int id = 1;
+    int serviceId = 1;
     private ArrayList<Service> serviceList;
-//    private ArrayList<HomeSeriveWorkRequest> homeServiceRequestList;
+    private ArrayList<HomeServicesWorkRequest> homeServiceRequestList;
     private String homeServiceName;
     private String homeServiceAddress;
     private String homeServicePhNum;
@@ -24,7 +25,7 @@ public class HomeService {
     public HomeService(String name) {
         this.userName = name;
         serviceList = new ArrayList<>();
-//        homeServiceRequestList = new ArrayList<>();
+        homeServiceRequestList = new ArrayList<>();
     }
 
     public String getUserName() {
@@ -35,13 +36,23 @@ public class HomeService {
         this.userName = userName;
     }
 
-    public int getId() {
-        return id;
+    public int getServiceId() {
+        return serviceId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setServiceId(int serviceId) {
+        this.serviceId = serviceId;
     }
+
+    public ArrayList<HomeServicesWorkRequest> getHomeServiceRequestList() {
+        return homeServiceRequestList;
+    }
+
+    public void setHomeServiceRequestList(ArrayList<HomeServicesWorkRequest> homeServiceRequestList) {
+        this.homeServiceRequestList = homeServiceRequestList;
+    }
+
+
 
     public ArrayList<Service> getServiceList() {
         return serviceList;
@@ -85,27 +96,27 @@ public class HomeService {
     
     
     
-    public void addServices(Service dish){
+    public void addHomeServices(Service dish){
         serviceList.add(dish);
     }
     
-    public void removeServices(Service dish){
+    public void removeHomeServices(Service dish){
         serviceList.remove(dish);
     }
     
-//    public void newRequest(String homeServiceOrgName, String memName, String fieldWorker, ArrayList<Service> request, String serviceAddress, String instructions) {
-//        HomeSeriveWorkRequest newWork = new HomeSeriveWorkRequest();
-//        newWork.setLeafRequestId(String.valueOf(id));
-//        newWork.setMemName(memName);
-//        newWork.setLeafOrgName(leafOrgName);
-//        newWork.setFieldWorkerName(fieldWorker);
-//        newWork.setLeafRequest(request);
-//        newWork.setServiceAddress(serviceAddress);
-//        newWork.setMessage(instructions);
-//        newWork.setStatus("New Request");
-//        leafRequestList.add(newWork);
-//        id++;
-//    }
+    public void newRequest(String homeServiceCompanyName, String custName, String homeServiceTech, ArrayList<Service> request, String serviceAddress, String instructions) {
+        HomeServicesWorkRequest homeWork = new HomeServicesWorkRequest();
+        homeWork.setHomeServiceRequestId(String.valueOf(serviceId));
+        homeWork.setCustName(custName);
+        homeWork.setHomeServiceCompanyName(homeServiceCompanyName);
+        homeWork.setHomeServTechnicianName(homeServiceTech);
+        homeWork.setHomeServiceRequest(request);
+        homeWork.setServiceAddress(serviceAddress);
+        homeWork.setMessage(instructions);
+        homeWork.setStatus("New Request");
+        homeServiceRequestList.add(homeWork);
+        serviceId++;
+    }
     
     
     @Override

@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Business.Painter;
+package Painter;
 
+import WorkQueue.HomePaintingWorkRequest;
 import java.util.ArrayList;
 
 /**
@@ -11,50 +12,60 @@ import java.util.ArrayList;
  * @author tanujkodali
  */
 public class Painter {
-       private String PainterName;
-    private String PainterUsername;
-   // private ArrayList<SoupWorkRequest> soupRequestList;
-    private String PainterAddress;
-    private String PainterPhNum;
+    private String painterName;
+    private String painterUsername;
+    private ArrayList<HomePaintingWorkRequest> homePaintingRequestList;
+    private String painterAddress;
+    private String painterContact;
     private Boolean availability = true;
     
     public Painter(String name, String userName){
-        this.PainterName = name;
-        this.PainterUsername = userName;
-        //soupRequestList = new ArrayList<SoupWorkRequest>();
+        this.painterName = name;
+        this.painterUsername = userName;
+        homePaintingRequestList = new ArrayList<HomePaintingWorkRequest>();
     }
 
     public String getPainterName() {
-        return PainterName;
+        return painterName;
     }
 
-    public void setPainterName(String PainterName) {
-        this.PainterName = PainterName;
+    public void setPainterName(String painterName) {
+        this.painterName = painterName;
     }
 
     public String getPainterUsername() {
-        return PainterUsername;
+        return painterUsername;
     }
 
-    public void setPainterUsername(String PainterUsername) {
-        this.PainterUsername = PainterUsername;
+    public void setPainterUsername(String painterUsername) {
+        this.painterUsername = painterUsername;
+    }
+
+    public ArrayList<HomePaintingWorkRequest> getHomePaintingRequestList() {
+        return homePaintingRequestList;
+    }
+
+    public void setHomePaintingRequestList(ArrayList<HomePaintingWorkRequest> homePaintingRequestList) {
+        this.homePaintingRequestList = homePaintingRequestList;
     }
 
     public String getPainterAddress() {
-        return PainterAddress;
+        return painterAddress;
     }
 
-    public void setPainterAddress(String PainterAddress) {
-        this.PainterAddress = PainterAddress;
+    public void setPainterAddress(String painterAddress) {
+        this.painterAddress = painterAddress;
     }
 
-    public String getPainterPhNum() {
-        return PainterPhNum;
+    public String getPainterContact() {
+        return painterContact;
     }
 
-    public void setPainterPhNum(String PainterPhNum) {
-        this.PainterPhNum = PainterPhNum;
+    public void setPainterContact(String painterContact) {
+        this.painterContact = painterContact;
     }
+    
+    
 
     public Boolean getAvailability() {
         return availability;

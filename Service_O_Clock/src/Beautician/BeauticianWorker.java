@@ -4,6 +4,7 @@
  */
 package Beautician;
 
+import WorkQueue.SalonWorkRequest;
 import java.util.ArrayList;
 
 /**
@@ -12,36 +13,25 @@ import java.util.ArrayList;
  */
 public class BeauticianWorker {
     
-    
-//    private String fieldWorkerName;
-//    private String fieldWorkerUsername;
-//    private ArrayList<WorkRequest> requestList;
-//    private ArrayList<LeafWorkRequest> leafRequestList;
-//    private String fieldWorkerAddress;
-//    private String fieldWorkerPhNum;
-//    private Boolean availability = true;
-    
     private String beauticianName;
     private String beauticianUsrnme;
-//    private ArrayList<WorkRequest> requestList;
-//    private ArrayList<LeafWorkRequest> leafRequestList;
+    private ArrayList<SalonWorkRequest> beauticianRequestList;
     private String beauticianAddress;
     private String beauticianPhoneNumber;
     private Boolean availability = true;
-//    private ArrayList<WorkRequest> beauticianWorkRequestList;
-    
-//    public FieldWorker(String name, String userName){
-//        this.fieldWorkerName = name;
-//        this.fieldWorkerUsername = userName;
-//        requestList = new ArrayList<WorkRequest>();
-//        leafRequestList = new ArrayList<LeafWorkRequest>();
-//    }
 
     public BeauticianWorker(String beauticianName, String beauticianUsrnme) {
         this.beauticianName = beauticianName;
         this.beauticianUsrnme = beauticianUsrnme;
-//        requestList = new ArrayList<WorkRequest>();
-//        leafRequestList = new ArrayList<LeafWorkRequest>();
+        beauticianRequestList = new ArrayList<SalonWorkRequest>();
+    }
+
+    public ArrayList<SalonWorkRequest> getBeauticianRequestList() {
+        return beauticianRequestList;
+    }
+
+    public void setBeauticianRequestList(ArrayList<SalonWorkRequest> beauticianRequestList) {
+        this.beauticianRequestList = beauticianRequestList;
     }
 
     public String getBeauticianName() {

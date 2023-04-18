@@ -4,6 +4,10 @@
  */
 package HomeServiceTechnician;
 
+import HomeService.Service;
+import WorkQueue.HomeServicesWorkRequest;
+import java.util.ArrayList;
+
 /**
  *
  * @author 91730
@@ -12,25 +16,15 @@ public class Technician {
     
     private String technicianName;
     private String technicianUsrnme;
-//    private ArrayList<WorkRequest> requestList;
-//    private ArrayList<LeafWorkRequest> leafRequestList;
+    private ArrayList<HomeServicesWorkRequest> homeServiceRequestList;
     private String technicianAddress;
     private String technicianPhoneNumber;
     private Boolean availability = true;
-//    private ArrayList<WorkRequest> beauticianWorkRequestList;
     
-//    public FieldWorker(String name, String userName){
-//        this.fieldWorkerName = name;
-//        this.fieldWorkerUsername = userName;
-//        requestList = new ArrayList<WorkRequest>();
-//        leafRequestList = new ArrayList<LeafWorkRequest>();
-//    }
-
     public Technician(String technicianName, String technicianUsrnme) {
         this.technicianName = technicianName;
         this.technicianUsrnme = technicianUsrnme;
-//        requestList = new ArrayList<WorkRequest>();
-//        leafRequestList = new ArrayList<LeafWorkRequest>();
+        homeServiceRequestList = new ArrayList<HomeServicesWorkRequest>();
     }
 
     public String getTechnicianName() {
@@ -73,18 +67,18 @@ public class Technician {
         this.availability = availability;
     }
     
-    //   public void addTechnicianRequest(String technicianOrgName, String memName, String technicianWorkerName, ArrayList<Service> request, String cost, String technicianAddress) {
-//       WorkRequest requirement = new WorkRequest();
-//     
-//       requirement.setTechnicianName(technicianName);
-//       requirement.setTechnicianOrgName(technicianOrgName);
-//       requirement.setMemName(memName);
-//       requirement.setRequest(request);
-//       requirement.setType(cost);
-//       requirement.setServiceAddress(fieldWorkerAddress);
-//       requirement.setStatus("New Request");
-//       beauticianWorkRequestList.add(requirement);
-//    }
+    public void newRequest(String homeServiceCompanyName, String custName, String homeServiceTech, ArrayList<Service> request, String cost, String technicianAddress) {
+       HomeServicesWorkRequest homeWork = new HomeServicesWorkRequest();
+     
+       homeWork.setHomeServTechnicianName(homeServiceTech);
+       homeWork.setHomeServiceCompanyName(homeServiceCompanyName);
+       homeWork.setCustName(custName);
+       homeWork.setHomeServiceRequest(request);
+       homeWork.setType(cost);
+       homeWork.setServiceAddress(technicianAddress);
+       homeWork.setStatus("New Request");
+       homeServiceRequestList.add(homeWork);
+    }
     
     
     @Override

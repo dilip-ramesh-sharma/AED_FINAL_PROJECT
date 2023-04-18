@@ -4,6 +4,7 @@
  */
 package UserAccounts;
 
+import Employee.Employee;
 import Role.Role;
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ public class UserAccountDirectory {
         return null;
     }
     
-    public UserAccounts createUser(String name, String username, String password, /*Employee employee,*/ Role role){
+    public UserAccounts createUser(String name, String username, String password, Employee employee, Role role){
         UserAccounts userAccount = new UserAccounts();
         userAccount.setName(name);
         userAccount.setUsername(username);

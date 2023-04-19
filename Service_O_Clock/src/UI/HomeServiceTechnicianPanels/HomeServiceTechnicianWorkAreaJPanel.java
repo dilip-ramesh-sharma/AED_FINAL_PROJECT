@@ -4,6 +4,10 @@
  */
 package UI.HomeServiceTechnicianPanels;
 
+import Business.Ecosystem;
+import UserAccounts.UserAccounts;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 91730
@@ -13,8 +17,20 @@ public class HomeServiceTechnicianWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form HomeServiceTechnicianWorkAreaJPanel
      */
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    
     public HomeServiceTechnicianWorkAreaJPanel() {
         initComponents();
+    }
+    
+    public HomeServiceTechnicianWorkAreaJPanel(JPanel workAreaContainer, UserAccounts userAccount, Ecosystem ecosystem) {
+        initComponents();
+        
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
     }
 
     /**

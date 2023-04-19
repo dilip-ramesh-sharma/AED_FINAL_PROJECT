@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package UI.PestControlTechnician;
+package UI.SalonServiceAdmin;
 
 import Business.Ecosystem;
 import UserAccounts.UserAccounts;
@@ -10,24 +10,23 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author 91730
+ * @author hi
  */
-public class TechnicianAreaJPanel extends javax.swing.JPanel {
+public class SalonAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form TechnicianAreaJPanel
+     * Creates new form SalonAdminWorkAreaJPanel
      */
     
-        private JPanel workAreaContainer;
+    private JPanel workAreaContainer;
     private Ecosystem ecosystem;
     private UserAccounts userAccount;
     
-    
-    public TechnicianAreaJPanel() {
+    public SalonAdminWorkAreaJPanel() {
         initComponents();
     }
     
-    public TechnicianAreaJPanel(JPanel workAreaContainer, UserAccounts userAccount, Ecosystem ecosystem) {
+    public SalonAdminWorkAreaJPanel(JPanel workAreaContainer, UserAccounts userAccount, Ecosystem ecosystem) {
         initComponents();
         
         this.workAreaContainer = workAreaContainer;
@@ -44,19 +43,32 @@ public class TechnicianAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(153, 0, 153));
+
+        jLabel1.setText("Salon Admin");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(305, 305, 305)
+                .addComponent(jLabel1)
+                .addContainerGap(298, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(138, 138, 138)
+                .addComponent(jLabel1)
+                .addContainerGap(278, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

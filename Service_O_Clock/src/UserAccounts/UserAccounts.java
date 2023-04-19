@@ -4,6 +4,7 @@
  */
 package UserAccounts;
 
+import Employee.Employee;
 import Role.Role;
 import WorkQueue.SalonWorkQueue;
 
@@ -15,7 +16,7 @@ public class UserAccounts {
     private String name;
     private String username;
     private String password;
-    //private Employee employee;
+    private Employee employee;
     private Role role;
     private SalonWorkQueue salonWorkQueue;
     
@@ -62,6 +63,15 @@ public class UserAccounts {
     public void setSalonWorkQueue(SalonWorkQueue salonWorkQueue) {
         this.salonWorkQueue = salonWorkQueue;
     }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+    
     
     @Override
     public String toString() {

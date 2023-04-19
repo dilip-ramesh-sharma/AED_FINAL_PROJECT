@@ -4,15 +4,20 @@
  */
 package Role;
 
+import Business.Ecosystem;
+import UI.BeauticianPanels.BeauticianWorkAreaJPanel;
+import UserAccounts.UserAccounts;
+import javax.swing.JPanel;
+
 /**
  *
  * @author hi
  */
 public class BeauticianRole extends Role{
-    /*
+    
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccounts userAccounts, EcoSystem ecosystem) {
-        return new BeauticianWorkAreaJPanel(userProcessContainer, userAccounts, ecosystem);
+    public JPanel createWorkArea(JPanel workAreaContainer, UserAccounts userAccounts, Ecosystem ecosystem) {
+        return new BeauticianWorkAreaJPanel(workAreaContainer, userAccounts, ecosystem);
     }
-    */
+    
 }

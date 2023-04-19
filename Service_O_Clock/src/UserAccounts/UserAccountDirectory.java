@@ -40,7 +40,7 @@ public class UserAccountDirectory {
         userAccount.setName(name);
         userAccount.setUsername(username);
         userAccount.setPassword(password);
-        //userAccount.setEmployee(employee);
+        userAccount.setEmployee(employee);
         userAccount.setRole(role);
         userAccountDirectory.add(userAccount);
         return userAccount;

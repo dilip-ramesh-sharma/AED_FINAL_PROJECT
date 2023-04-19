@@ -4,6 +4,10 @@
  */
 package UI.Painter;
 
+import Business.Ecosystem;
+import UserAccounts.UserAccounts;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 91730
@@ -13,10 +17,23 @@ public class PainterAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form PainterAreaJPanel
      */
+    
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    
     public PainterAreaJPanel() {
         initComponents();
     }
 
+    
+    public PainterAreaJPanel(JPanel workAreaContainer, UserAccounts userAccount, Ecosystem ecosystem) {
+        initComponents();
+        
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

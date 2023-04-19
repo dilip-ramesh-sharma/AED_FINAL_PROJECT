@@ -4,6 +4,13 @@
  */
 package UI;
 
+import Business.Ecosystem;
+import DB4Outil.DB4Outil;
+import UserAccounts.UserAccounts;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 91730
@@ -13,8 +20,14 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
+    
+    private Ecosystem system;
+    private DB4Outil dB4OUtil = DB4Outil.getInstance();
+    
     public MainJFrame() {
         initComponents();
+        system = dB4OUtil.retrieveSystem();
+        this.setSize(1680, 1050);
     }
 
     /**
@@ -26,21 +39,145 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSplitPane1 = new javax.swing.JSplitPane();
+        loginPanel = new javax.swing.JPanel();
+        fieldUsername = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        signInBtn = new javax.swing.JButton();
+        signOutBtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        fieldPassword = new javax.swing.JPasswordField();
+        workAreaContainer = new javax.swing.JPanel();
+        workPanel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        loginPanel.setBackground(new java.awt.Color(255, 255, 255));
+        loginPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        loginPanel.add(fieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 111, -1));
+
+        jLabel1.setText("Username:");
+        loginPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 59, -1, -1));
+
+        jLabel2.setText("Pasword:");
+        loginPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, -1, -1));
+
+        signInBtn.setText("Sign In");
+        signInBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signInBtnActionPerformed(evt);
+            }
+        });
+        loginPanel.add(signInBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, -1, -1));
+
+        signOutBtn.setText("Sign Out");
+        signOutBtn.setEnabled(false);
+        signOutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signOutBtnActionPerformed(evt);
+            }
+        });
+        loginPanel.add(signOutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("PMingLiU-ExtB", 1, 18)); // NOI18N
+        jLabel3.setText("Login Here....");
+        loginPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, -1, -1));
+        loginPanel.add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 122, -1));
+
+        jSplitPane1.setTopComponent(loginPanel);
+
+        workAreaContainer.setLayout(new java.awt.CardLayout());
+
+        workPanel.setBackground(new java.awt.Color(255, 255, 255));
+        workPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setFont(new java.awt.Font("Segoe Print", 1, 48)); // NOI18N
+        jLabel4.setText("Service O' Clock");
+        workPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe Script", 1, 14)); // NOI18N
+        jLabel5.setText("....Service Round the Clock!!");
+        workPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
+
+        workAreaContainer.add(workPanel, "card2");
+
+        jSplitPane1.setRightComponent(workAreaContainer);
+
+        getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInBtnActionPerformed
+        // TODO add your handling code here:
+        String username = fieldUsername.getText();
+        String password = fieldPassword.getText();
+        
+        UserAccounts userAccounts = system.getUserAccountDirectory().authenticateUser(username, password);
+        try {
+           if(userAccounts==null){
+                 
+                JOptionPane.showMessageDialog(null," Please Enter the Correct USername or Password");
+                fieldUsername.setText("");
+                fieldPassword.setText("");    
+            }
+        } catch(Exception e){
+            return;
+        }
+        
+        CardLayout cardLayout = (CardLayout) workAreaContainer.getLayout();
+        workAreaContainer.add(userAccounts.getRole().createWorkArea(workAreaContainer, userAccounts, system));
+        cardLayout.next(workAreaContainer);
+        
+        
+        signOutBtn.setEnabled(true);
+        signInBtn.setEnabled(false);
+        fieldUsername.setEnabled(false);
+        fieldPassword.setEnabled(false);
+        
+    }//GEN-LAST:event_signInBtnActionPerformed
+
+    private void signOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signOutBtnActionPerformed
+        // TODO add your handling code here:
+        
+        /*
+         logoutJButton.setEnabled(false);
+        userNameJTextField.setEnabled(true);
+        passwordField.setEnabled(true);
+        loginJButton.setEnabled(true);
+
+        userNameJTextField.setText("");
+        passwordField.setText("");
+
+        container.removeAll();
+        JPanel blankJP = new JPanel();
+        blankJP.setBackground(new java.awt.Color(206,255,255));
+        blankJP.setLayout(new java.awt.CardLayout());
+        container.add("blank", blankJP);
+        CardLayout crdLyt = (CardLayout) container.getLayout();
+        crdLyt.next(container);
+        dB4OUtil.storeSystem(system);
+        */
+        
+        signOutBtn.setEnabled(false);
+        fieldUsername.setEnabled(true);
+        fieldPassword.setEnabled(true);
+        signInBtn.setEnabled(true);
+
+        fieldUsername.setText("");
+        fieldPassword.setText("");
+
+        workAreaContainer.removeAll();
+        CardLayout cl = (CardLayout) workAreaContainer.getLayout();
+        workAreaContainer.add("serviceoclock", workPanel);
+        cl.next(workAreaContainer);
+        dB4OUtil.storeSystem(system);
+    }//GEN-LAST:event_signOutBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +215,18 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField fieldPassword;
+    private javax.swing.JTextField fieldUsername;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JPanel loginPanel;
+    private javax.swing.JButton signInBtn;
+    private javax.swing.JButton signOutBtn;
+    private javax.swing.JPanel workAreaContainer;
+    private javax.swing.JPanel workPanel;
     // End of variables declaration//GEN-END:variables
 }

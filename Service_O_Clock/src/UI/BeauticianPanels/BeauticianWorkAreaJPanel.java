@@ -4,6 +4,10 @@
  */
 package UI.BeauticianPanels;
 
+import Business.Ecosystem;
+import UserAccounts.UserAccounts;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 91730
@@ -13,8 +17,20 @@ public class BeauticianWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BeauticianWorkAreaJPanel
      */
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    
     public BeauticianWorkAreaJPanel() {
         initComponents();
+    }
+    
+    public BeauticianWorkAreaJPanel(JPanel workAreaContainer, UserAccounts userAccount, Ecosystem ecosystem) {
+        initComponents();
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+
     }
 
     /**

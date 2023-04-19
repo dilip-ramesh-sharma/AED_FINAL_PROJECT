@@ -4,15 +4,20 @@
  */
 package Role;
 
+import Business.Ecosystem;
+import UI.HomeServiceAdmin.HomeServiceAdminWorkAreaJPanel;
+import UserAccounts.UserAccounts;
+import javax.swing.JPanel;
+
 /**
  *
  * @author hi
  */
 public class HomeServicesAdminRole extends Role{
-    /*
+    
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccounts userAccounts, EcoSystem ecosystem) {
-        return new HomeServicesAdminWorkAreaJPanel(userProcessContainer, userAccounts, ecosystem);
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccounts userAccounts, Ecosystem ecosystem) {
+        return new HomeServiceAdminWorkAreaJPanel(userProcessContainer, userAccounts, ecosystem);
     }
-    */
+    
 }

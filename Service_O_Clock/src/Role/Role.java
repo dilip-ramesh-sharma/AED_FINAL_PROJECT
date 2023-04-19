@@ -4,21 +4,26 @@
  */
 package Role;
 
+import Business.Ecosystem;
+import UserAccounts.UserAccounts;
+import javax.swing.JPanel;
+
 /**
  *
  * @author hi
  */
 public abstract class Role {
+    
     public enum RoleType{
-        SalonServicesOrg("SalonServicesOrg"),
-        HomeServicesOrg("HomeServicesOrg"),
-        Marketing("Marketing"),
-        HomePaintingOrg("HomePaintingOrg"),
-        PestControlOrg("PestControlOrg"),
-        Customer("Customer"),
-        Beautician("Beautician"),
-        PestControlTechnician("PestControlTechnician"),
-        Painter("Painter"),
+        SalonServicesAdminRole("SalonServicesAdminRole"),
+        HomeServicesAdminRole("HomeServicesAdminRole"),
+        StoreAdminRole("StoreAdminRole"),
+        HomePaintingAdminRole("HomePaintingAdminRole"),
+        PestControlAdminRole("PestControlAdminRole"),
+        CustomerRole("CustomerRole"),
+        BeauticianRole("BeauticianRole"),
+        PestControlTechnicianRole("PestControlTechnicianRole"),
+        PainterRole("PainterRole"),
         SysAdmin("Sysadmin");
         
         private String roleValue;
@@ -40,5 +45,12 @@ public abstract class Role {
         public String toString() {
             return roleValue;
         }
+    }
+    
+    public abstract JPanel createWorkArea(JPanel userProcessContainer, UserAccounts userAccounts,  Ecosystem ecosystem);
+
+    @Override
+    public String toString() {
+        return this.getClass().getName();
     }
 }

@@ -7,7 +7,7 @@ package Business;
 import Beautician.BeauticianWorkerDirectory;
 
 
-import Business.PestControlTechnician.PestControlTechnicianDirectory;
+import PestControlTechnician.PestControlTechnicianDirectory;
 import Customer.CustomerDirectory;
 import HomePainting.HomePaintingDirectory;
 import HomeService.HomeServiceDirectory;

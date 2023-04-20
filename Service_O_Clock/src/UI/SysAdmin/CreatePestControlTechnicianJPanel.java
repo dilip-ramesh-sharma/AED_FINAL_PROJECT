@@ -5,8 +5,8 @@
 package UI.SysAdmin;
 
 import Business.Ecosystem;
-import Customer.Customer;
-import Role.CustomerRole;
+import PestControlTechnician.PestControlTechnician;
+import Role.PestControlTechnicianRole;
 import UserAccounts.UserAccounts;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -19,25 +19,24 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author hi
  */
-public class CreateCustomerJPanel extends javax.swing.JPanel {
+public class CreatePestControlTechnicianJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form CreateCustomerJPanel
+     * Creates new form CreatePestControlTechnicianJPanel
      */
     private JPanel workAreaContainer;
     private Ecosystem system;
     UserAccounts userAccounts;
     
-    public CreateCustomerJPanel() {
-        initComponents();
-    }
-    
-    public CreateCustomerJPanel(JPanel workAreaContainer, Ecosystem system) {
+    public CreatePestControlTechnicianJPanel(JPanel workAreaContainer, Ecosystem system) {
         initComponents();
         this.workAreaContainer = workAreaContainer;
         this.system = system;
         populateTable();
-        updateBtn.setEnabled(false);
+    }
+    
+    public CreatePestControlTechnicianJPanel() {
+        initComponents();
     }
 
     /**
@@ -64,32 +63,21 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
         orgTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
-        jLabel1.setText("CUSTOMER");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 85, 327, -1));
+        jLabel1.setText("PEST CONTROL TECHNICIAN");
 
         viewBtn.setText("View");
-        add(viewBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(465, 401, -1, -1));
 
         updateBtn.setText("Update");
-        add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 401, -1, -1));
 
-        jLabel2.setText("Customer Name:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 191, -1, -1));
+        jLabel2.setText(" Name:");
 
         deleteBtn.setText("Delete");
-        add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(705, 401, -1, -1));
-        add(fieldAdminName, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 191, 127, -1));
 
         jLabel3.setText("Username:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 244, -1, -1));
-        add(fieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 241, 127, -1));
 
         jLabel4.setText("Password:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 294, 69, -1));
-        add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 291, 127, -1));
 
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +85,6 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
                 saveBtnActionPerformed(evt);
             }
         });
-        add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 361, -1, -1));
 
         orgTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -120,17 +107,87 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(orgTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 370, 230));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(75, 75, 75)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fieldAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addComponent(saveBtn)))
+                        .addGap(117, 117, 117)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(461, 461, 461)
+                        .addComponent(viewBtn)
+                        .addGap(63, 63, 63)
+                        .addComponent(updateBtn)
+                        .addGap(49, 49, 49)
+                        .addComponent(deleteBtn)))
+                .addContainerGap(43, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(245, 245, 245))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(jLabel1)
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addComponent(jLabel3)
+                                .addGap(34, 34, 34)
+                                .addComponent(jLabel4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(fieldAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))
+                                .addGap(28, 28, 28)
+                                .addComponent(fieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(fieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
+                                .addComponent(saveBtn)))))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(viewBtn)
+                    .addComponent(updateBtn)
+                    .addComponent(deleteBtn))
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
-    
     private void populateTable() {
         DefaultTableModel orgTableModel = (DefaultTableModel) orgTable.getModel();
         orgTableModel.setRowCount(0);
 
         for (UserAccounts user : system.getUserAccountDirectory().getUserAccountDirectory()) {
 
-            if ("Role.CustomerRole".equals(user.getRole().getClass().getName())) {
+            if ("Role.PestControlTechnicianRole".equals(user.getRole().getClass().getName())) {
                 Object[] row = new Object[3]; 
                 row[0] = user.getName();
                 row[1] = user.getUsername();
@@ -141,6 +198,7 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
             
         }
     }
+    
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
         String adminName = fieldAdminName.getText();
@@ -188,8 +246,8 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null,"Username Already Exists");
         }else{
 
-            UserAccounts userAccounts = system.getUserAccountDirectory().createUser(adminName, username, password, null, new CustomerRole());
-            Customer cust = system.getCustomerDirectory().createCustomer(username);
+            UserAccounts userAccounts = system.getUserAccountDirectory().createUser(adminName, username, password, null, new PestControlTechnicianRole());
+            PestControlTechnician pestTech = system.getPestControlTechnicianDirectory().createPestControlTechnician(adminName,username);
 
             populateTable();
 

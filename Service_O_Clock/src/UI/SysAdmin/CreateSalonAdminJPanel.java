@@ -53,7 +53,6 @@ public class CreateSalonAdminJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        backBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         fieldAdminName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -71,13 +70,6 @@ public class CreateSalonAdminJPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
         jLabel1.setText("SALON ADMIN ORGANIZATION");
-
-        backBtn.setText("Back");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Admin Name:");
 
@@ -126,13 +118,8 @@ public class CreateSalonAdminJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
-                        .addComponent(jLabel1)))
+                .addGap(241, 241, 241)
+                .addComponent(jLabel1)
                 .addContainerGap(253, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,12 +152,10 @@ public class CreateSalonAdminJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(89, 89, 89)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(backBtn)
-                        .addGap(39, 39, 39)
                         .addComponent(jLabel1)
                         .addGap(67, 67, 67)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -213,16 +198,6 @@ public class CreateSalonAdminJPanel extends javax.swing.JPanel {
         }
         System.out.println("b");
     }
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
-        workAreaContainer.remove(this);
-        Component[] componentArray = workAreaContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        SystemAdminWorkAreaJPanel sysAdmin = (SystemAdminWorkAreaJPanel) component;
-        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
-        layout.previous(workAreaContainer);
-    }//GEN-LAST:event_backBtnActionPerformed
-
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
         
@@ -285,7 +260,6 @@ public class CreateSalonAdminJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backBtn;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JTextField fieldAdminName;
     private javax.swing.JTextField fieldPassword;

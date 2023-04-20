@@ -35,5 +35,17 @@ public class PainterDirectory {
         this.painter = painter;
     }
     
-
+    public Painter createPainter(String name, String username){
+        painter = new Painter(name, username);
+        painterList.add(painter);
+        return painter;
+    }
+    
+    public void deletePainter(String username){
+         for(int i=0; i < painterList.size(); i++){
+            if(painterList.get(i).getPainterName().equals(username)){
+                painterList.remove(i);
+            }
+        }
+    }
 }

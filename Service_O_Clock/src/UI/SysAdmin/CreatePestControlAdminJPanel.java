@@ -49,7 +49,6 @@ public class CreatePestControlAdminJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        backBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         viewBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
@@ -66,14 +65,6 @@ public class CreatePestControlAdminJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        backBtn.setText("Back");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
-            }
-        });
-        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 27, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
         jLabel1.setText("PEST CONTROL ADMIN ORGANIZATION");
@@ -146,16 +137,6 @@ public class CreatePestControlAdminJPanel extends javax.swing.JPanel {
             
         }
     }
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
-        workAreaContainer.remove(this);
-        Component[] componentArray = workAreaContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        SystemAdminWorkAreaJPanel sysAdmin = (SystemAdminWorkAreaJPanel) component;
-        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
-        layout.previous(workAreaContainer);
-    }//GEN-LAST:event_backBtnActionPerformed
-
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
         String adminName = fieldAdminName.getText();
@@ -217,7 +198,6 @@ public class CreatePestControlAdminJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backBtn;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JTextField fieldAdminName;
     private javax.swing.JTextField fieldPassword;

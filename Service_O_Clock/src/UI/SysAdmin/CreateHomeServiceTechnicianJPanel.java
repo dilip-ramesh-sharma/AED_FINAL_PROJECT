@@ -5,8 +5,8 @@
 package UI.SysAdmin;
 
 import Business.Ecosystem;
-import Role.StoreAdminRole;
-import StoreServices.Store;
+import HomeServiceTechnician.Technician;
+import Role.HomeServiceTechnicianRole;
 import UserAccounts.UserAccounts;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -19,26 +19,25 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author hi
  */
-public class CreateStoreAdminJPanel extends javax.swing.JPanel {
+public class CreateHomeServiceTechnicianJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form CreateStoreAdminJPanel
+     * Creates new form CreateHomeServiceTechnicianJPanel
      */
     
     private JPanel workAreaContainer;
     private Ecosystem system;
     UserAccounts userAccounts;
     
-    public CreateStoreAdminJPanel() {
-        initComponents();
-    }
-    
-    public CreateStoreAdminJPanel(JPanel workAreaContainer, Ecosystem system) {
+    public CreateHomeServiceTechnicianJPanel(JPanel workAreaContainer, Ecosystem system) {
         initComponents();
         this.workAreaContainer = workAreaContainer;
         this.system = system;
         populateTable();
-        updateBtn.setEnabled(false);
+    }
+    
+    public CreateHomeServiceTechnicianJPanel() {
+        initComponents();
     }
 
     /**
@@ -50,26 +49,42 @@ public class CreateStoreAdminJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        orgTable = new javax.swing.JTable();
-        viewBtn = new javax.swing.JButton();
-        updateBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        deleteBtn = new javax.swing.JButton();
-        fieldAdminName = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        fieldUsername = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        fieldPassword = new javax.swing.JTextField();
-        saveBtn = new javax.swing.JButton();
+        updateBtn = new javax.swing.JButton();
+        viewBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        orgTable = new javax.swing.JTable();
+        saveBtn = new javax.swing.JButton();
+        fieldPassword = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        fieldUsername = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        fieldAdminName = new javax.swing.JTextField();
+        deleteBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setText("Name:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, -1));
+
+        updateBtn.setText("Update");
+        add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 401, -1, -1));
+
+        viewBtn.setText("View");
+        add(viewBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(465, 401, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        jLabel1.setText("HOME REPAIR SERVICE TECHNICIAN");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 370, -1));
+
         orgTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
                 "Name", "Username", "Password"
@@ -83,30 +98,9 @@ public class CreateStoreAdminJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(orgTable);
+        jScrollPane2.setViewportView(orgTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 378, 203));
-
-        viewBtn.setText("View");
-        add(viewBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, -1, -1));
-
-        updateBtn.setText("Update");
-        add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 390, -1, -1));
-
-        jLabel2.setText("Admin Name:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
-
-        deleteBtn.setText("Delete");
-        add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 390, -1, -1));
-        add(fieldAdminName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 127, -1));
-
-        jLabel3.setText("Username:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
-        add(fieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 127, -1));
-
-        jLabel4.setText("Password:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, -1, -1));
-        add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 127, -1));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 370, 230));
 
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -114,20 +108,28 @@ public class CreateStoreAdminJPanel extends javax.swing.JPanel {
                 saveBtnActionPerformed(evt);
             }
         });
-        add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, -1, -1));
+        add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 361, -1, -1));
+        add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 291, 127, -1));
 
-        jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
-        jLabel1.setText("SHOPPING STORE ADMIN ORGANIZATION");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, -1));
+        jLabel4.setText("Password:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 294, 69, -1));
+        add(fieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 241, 127, -1));
+
+        jLabel3.setText("Username:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 244, -1, -1));
+        add(fieldAdminName, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 191, 127, -1));
+
+        deleteBtn.setText("Delete");
+        add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(705, 401, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-        private void populateTable() {
+    private void populateTable() {
         DefaultTableModel orgTableModel = (DefaultTableModel) orgTable.getModel();
         orgTableModel.setRowCount(0);
 
         for (UserAccounts user : system.getUserAccountDirectory().getUserAccountDirectory()) {
 
-            if ("Role.StoreAdminRole".equals(user.getRole().getClass().getName())) {
+            if ("Role.HomeServicesTechnicianRole".equals(user.getRole().getClass().getName())) {
                 Object[] row = new Object[3]; 
                 row[0] = user.getName();
                 row[1] = user.getUsername();
@@ -138,17 +140,18 @@ public class CreateStoreAdminJPanel extends javax.swing.JPanel {
             
         }
     }
+    
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
         String adminName = fieldAdminName.getText();
         String username = fieldUsername.getText();
         String password = fieldPassword.getText();
-              
+
         try {
             if(adminName == null || adminName.isEmpty()){
-                throw new NullPointerException("Please Enter Admin Name");   
+                throw new NullPointerException("Please Enter Admin Name");
             }else if(Pattern.matches("^[A-Za-z ]+$", adminName) == false){
-                throw new Exception("Please Enter A Valid Name");    
+                throw new Exception("Please Enter A Valid Name");
             }
         } catch(NullPointerException e){
             JOptionPane.showMessageDialog(null, "Please Enter Admin Name");
@@ -157,17 +160,17 @@ public class CreateStoreAdminJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please Enter A Valid Name");
             return;
         }
-        
+
         try {
             if(username == null || username.isEmpty()){
-               throw new NullPointerException("Please Enter Username");
+                throw new NullPointerException("Please Enter Username");
             }
         } catch(NullPointerException e){
             JOptionPane.showMessageDialog(null, "Please Enter Username");
-            return;  
+            return;
         }
-        
-        try { 
+
+        try {
             if(password == null || password.isEmpty()){
                 throw new NullPointerException("Please Enter a Password");
             }else if(Pattern.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$", password) == false){
@@ -180,20 +183,19 @@ public class CreateStoreAdminJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Password is weak");
             return;
         }
-         
+
         if (system.getUserAccountDirectory().checkIsUnique(username) == false) {
             JOptionPane.showMessageDialog(null,"Username Already Exists");
         }else{
-            
 
-        UserAccounts userAccounts = system.getUserAccountDirectory().createUser(adminName, username, password, null, new StoreAdminRole());
-        Store store = system.getStoreDirectory().createStore(username);
+            UserAccounts userAccounts = system.getUserAccountDirectory().createUser(adminName, username, password, null, new HomeServiceTechnicianRole());
+            Technician tech = system.getHomeServiceTechnicianDirectory().createTechnician(adminName,username);
 
-        populateTable();
-        
-        fieldAdminName.setText("");
-        fieldUsername.setText("");
-        fieldPassword.setText("");
+            populateTable();
+
+            fieldAdminName.setText("");
+            fieldUsername.setText("");
+            fieldPassword.setText("");
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 
@@ -207,7 +209,7 @@ public class CreateStoreAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable orgTable;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton updateBtn;

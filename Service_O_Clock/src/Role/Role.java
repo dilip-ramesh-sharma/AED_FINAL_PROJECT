@@ -17,6 +17,7 @@ public abstract class Role {
     public enum RoleType{
         SalonServicesAdminRole("SalonServicesAdminRole"),
         HomeServicesAdminRole("HomeServicesAdminRole"),
+        HomeServicesTechnicianRole("HomeServicesTechnicianRole"),
         StoreAdminRole("StoreAdminRole"),
         HomePaintingAdminRole("HomePaintingAdminRole"),
         PestControlAdminRole("PestControlAdminRole"),

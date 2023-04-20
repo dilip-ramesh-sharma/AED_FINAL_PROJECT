@@ -117,32 +117,32 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void salonBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salonBtnActionPerformed
         // TODO add your handling code here:
-        CreateSalonAdminJPanel salonAdminJPanel=new CreateSalonAdminJPanel(workAreaContainer, ecosystem);
-        workAreaContainer.add("Create Salon Admin",salonAdminJPanel);
+        SalonOrganisationJPanel salonOrgJPanel=new SalonOrganisationJPanel(workAreaContainer, ecosystem);
+        workAreaContainer.add("Open Salon Organisation",salonOrgJPanel);
         CardLayout lay = (CardLayout)workAreaContainer.getLayout();
         lay.next(workAreaContainer);
     }//GEN-LAST:event_salonBtnActionPerformed
 
     private void homeServicesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeServicesBtnActionPerformed
         // TODO add your handling code here:
-        CreateHomeServiceAdminJPanel homeServiceAdminJPanel=new CreateHomeServiceAdminJPanel(workAreaContainer, ecosystem);
-        workAreaContainer.add("Create Home Service Admin",homeServiceAdminJPanel);
+        HomeServicesOrganisationJPanel servicesOrgJPanel=new HomeServicesOrganisationJPanel(workAreaContainer, ecosystem);
+        workAreaContainer.add("Open Salon Organisation",servicesOrgJPanel);
         CardLayout lay = (CardLayout)workAreaContainer.getLayout();
         lay.next(workAreaContainer);
     }//GEN-LAST:event_homeServicesBtnActionPerformed
 
     private void pestControlBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pestControlBtnActionPerformed
         // TODO add your handling code here:
-        CreatePestControlAdminJPanel pestCoontrolAdminJPanel=new CreatePestControlAdminJPanel(workAreaContainer, ecosystem);
-        workAreaContainer.add("Create Pest Control Admin",pestCoontrolAdminJPanel);
+        PestControlOrganisationJPanel pestOrgJPanel=new PestControlOrganisationJPanel(workAreaContainer, ecosystem);
+        workAreaContainer.add("Open Salon Organisation",pestOrgJPanel);
         CardLayout lay = (CardLayout)workAreaContainer.getLayout();
         lay.next(workAreaContainer);
     }//GEN-LAST:event_pestControlBtnActionPerformed
 
     private void paintingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paintingBtnActionPerformed
         // TODO add your handling code here:
-        CreatePaintingAdminJPanel paintingAdminJPanel=new CreatePaintingAdminJPanel(workAreaContainer, ecosystem);
-        workAreaContainer.add("Create Painting Org Admin",paintingAdminJPanel);
+        PaintingOrganisationJPanel paintOrgJPanel=new PaintingOrganisationJPanel(workAreaContainer, ecosystem);
+        workAreaContainer.add("Open Painting Organisation",paintOrgJPanel);
         CardLayout lay = (CardLayout)workAreaContainer.getLayout();
         lay.next(workAreaContainer);
     }//GEN-LAST:event_paintingBtnActionPerformed

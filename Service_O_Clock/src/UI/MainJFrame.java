@@ -122,7 +122,7 @@ public class MainJFrame extends javax.swing.JFrame {
         try {
            if(userAccounts==null){
                  
-                JOptionPane.showMessageDialog(null," Please Enter the Correct USername or Password");
+                JOptionPane.showMessageDialog(null," Please Enter the Correct Username or Password");
                 fieldUsername.setText("");
                 fieldPassword.setText("");    
             }

@@ -108,10 +108,25 @@ public class CreateSalonAdminJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(orgTable);
 
         viewBtn.setText("View");
+        viewBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewBtnActionPerformed(evt);
+            }
+        });
 
         updateBtn.setText("Update");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setText("Delete");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -257,6 +272,113 @@ public class CreateSalonAdminJPanel extends javax.swing.JPanel {
         fieldPassword.setText("");
         }
     }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = orgTable.getSelectedRow();
+
+        if(selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "No Selections Made");
+            return;
+        }
+
+        else{
+            String username = (String) orgTable.getValueAt(selectedRow, 1);
+            String password = (String) orgTable.getValueAt(selectedRow, 2);
+            userAccounts = system.getUserAccountDirectory().authenticateUser(username, password);
+
+            fieldAdminName.setText(userAccounts.getName()+"");
+            fieldUsername.setText(userAccounts.getUsername()+"");
+            fieldPassword.setText(userAccounts.getPassword()+"");
+
+        }
+
+        saveBtn.setEnabled(false);
+        deleteBtn.setEnabled(false);
+        viewBtn.setEnabled(false);
+        updateBtn.setEnabled(true);
+    }//GEN-LAST:event_viewBtnActionPerformed
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        // TODO add your handling code here:
+        String adminName = fieldAdminName.getText();
+        String username = fieldUsername.getText();
+        String password = fieldPassword.getText();
+
+        try {
+            if(adminName == null || adminName.isEmpty()){
+                throw new NullPointerException("Name Field Cannot be Empty !!!");
+            }else if(Pattern.matches("^[A-Za-z ]+$", adminName) == false){
+                throw new Exception("Please Enter a valid Name !!!");
+            }
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Name Field Cannot be Empty !!!");
+            return;
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Please Enter a valid Name !!!");
+            return;
+        }
+
+        try {
+            if(username == null || username.isEmpty()){
+                throw new NullPointerException("Username Field Cannot be Empty !!!");
+            }
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Username Field Cannot be Empty !!!");
+            return;
+        }
+
+        try {
+            if(password == null || password.isEmpty()){
+                throw new NullPointerException("Password Field Cannot be Empty !!!");
+            }else if(Pattern.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$", password) == false){
+                throw new Exception("Password is too weak !!!");
+            }
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Password Field Cannot be Empty !!!");
+            return;
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Password is too weak !!!");
+            return;
+        }
+
+        system.getUserAccountDirectory().updateUserAccount(userAccounts, adminName, username, password);
+        populateTable();
+        saveBtn.setEnabled(true);
+        deleteBtn.setEnabled(true);
+        viewBtn.setEnabled(true);
+        updateBtn.setEnabled(false);
+        fieldAdminName.setText("");
+        fieldUsername.setText("");
+        fieldPassword.setText("");
+                                           
+
+    }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+         int selectedRow = orgTable.getSelectedRow();
+
+        if(selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "No Selections Made");
+            return;
+        }
+        else {
+            int selBtn = JOptionPane.YES_NO_OPTION;
+            int selResult = JOptionPane.showConfirmDialog(null, "Confirm Deletion?", "Warning", selBtn);
+            if(selResult == JOptionPane.YES_OPTION){
+                String username = (String) orgTable.getValueAt(selectedRow, 1);
+                String pwd = (String) orgTable.getValueAt(selectedRow, 2);
+
+                UserAccounts user = system.getUserAccountDirectory().authenticateUser(username, pwd);
+                system.getUserAccountDirectory().deleteUser(user);
+
+                system.getSalonDirectory().deleteSalon(username);
+                populateTable();
+
+            }
+        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

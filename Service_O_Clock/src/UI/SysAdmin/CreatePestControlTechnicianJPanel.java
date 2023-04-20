@@ -68,6 +68,11 @@ public class CreatePestControlTechnicianJPanel extends javax.swing.JPanel {
         jLabel1.setText("PEST CONTROL TECHNICIAN");
 
         viewBtn.setText("View");
+        viewBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewBtnActionPerformed(evt);
+            }
+        });
 
         updateBtn.setText("Update");
 
@@ -256,6 +261,10 @@ public class CreatePestControlTechnicianJPanel extends javax.swing.JPanel {
             fieldPassword.setText("");
         }
     }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

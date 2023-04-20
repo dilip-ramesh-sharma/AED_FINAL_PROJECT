@@ -4,6 +4,16 @@
  */
 package UI.PaitingAdmin;
 
+import Business.Ecosystem;
+import Customer.Customer;
+import Painter.Painter;
+import UserAccounts.UserAccounts;
+import WorkQueue.HomePaintingWorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 91730
@@ -13,6 +23,22 @@ public class AssignPainterJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AssignPainterJPanel
      */
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    private HomePaintingWorkRequest request;
+    
+   
+    public AssignPainterJPanel(JPanel workAreaContainer, UserAccounts userAccount, HomePaintingWorkRequest request,Ecosystem ecosystem) {
+        initComponents();
+        
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+        this.request = request;
+        populate();
+    }
+    
     public AssignPainterJPanel() {
         initComponents();
     }
@@ -29,7 +55,7 @@ public class AssignPainterJPanel extends javax.swing.JPanel {
         backButton = new javax.swing.JButton();
         assignJLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        painterNameJtable = new javax.swing.JTable();
+        painterNameTable = new javax.swing.JTable();
         assignPainterButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -50,8 +76,8 @@ public class AssignPainterJPanel extends javax.swing.JPanel {
         assignJLabel.setText("Assign Painter");
         add(assignJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 333, -1));
 
-        painterNameJtable.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
-        painterNameJtable.setModel(new javax.swing.table.DefaultTableModel(
+        painterNameTable.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
+        painterNameTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -74,7 +100,7 @@ public class AssignPainterJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(painterNameJtable);
+        jScrollPane1.setViewportView(painterNameTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 410, 110));
 
@@ -91,41 +117,54 @@ public class AssignPainterJPanel extends javax.swing.JPanel {
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 90, 310, 410));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void populate() {
+        DefaultTableModel model = (DefaultTableModel) painterNameTable.getModel();
+        model.setRowCount(0);
+        
+        for(Painter painter:ecosystem.getPainterDirectory().getPainterList()){
+            if(painter.getAvailability()==true){
+               Object[] row = new Object[1];           
+                row[0] = painter;
+                model.addRow(row);
+            }
+            }
+    }
+    
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-//        userProcessContainer.remove(this);
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.previous(userProcessContainer);
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void assignPainterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignPainterButtonActionPerformed
-//        // TODO add your handling code here:
-//        int selectedRow = VolunteerJTable.getSelectedRow();
-//        if(selectedRow<0){
-//            JOptionPane.showMessageDialog(null,"Please select a row from the table to view details","Warning",JOptionPane.WARNING_MESSAGE);
-//        }
-//        else
-//        {
-//
-//            DeliveryVolunteer volunteer  = (DeliveryVolunteer)VolunteerJTable.getValueAt(selectedRow, 0);
-//            volunteer.getSoupRequestList().add(request);
-//            volunteer.setAvailability(false);
-//            request.setStatus("Assigned Volunteer");
-//
-//            for(Member member:system.getMemberDirectory().getMemberList()){
-//                if(request.getMemName().equals(member.getMemUsername())){
-//                    for(SoupWorkRequest request : member.getSoupRequestList()){
-//                        if(request.getStatus().equals("In Progress")){
-//                            request.setStatus("Assigned Volunteer");
-//                        }
-//                    }
-//                }
-//            }
-//            userProcessContainer.remove(this);
-//            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//            layout.previous(userProcessContainer);
-//
-//        }
+        // TODO add your handling code here:
+        int selectedRow = painterNameTable.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null,"Please select a row from the table to view details","Warning",JOptionPane.WARNING_MESSAGE);
+        }
+        else
+        {
+
+            Painter painter  = (Painter)painterNameTable.getValueAt(selectedRow, 0);
+            painter.getHomePaintingRequestList().add(request);
+            painter.setAvailability(false);
+            request.setStatus("Assigned Painter");
+
+            for(Customer customer:ecosystem.getCustomerDirectory().getCustomerList()){
+                if(request.getCustName().equals(customer.getUsername())){
+                    for(HomePaintingWorkRequest request : customer.getHomePaintingWorkRequestList()){
+                        if(request.getStatus().equals("In Progress")){
+                            request.setStatus("Assigned Painter");
+                        }
+                    }
+                }
+            }
+            workAreaContainer.remove(this);
+            CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+            layout.previous(workAreaContainer);
+
+        }
     }//GEN-LAST:event_assignPainterButtonActionPerformed
 
 
@@ -135,6 +174,6 @@ public class AssignPainterJPanel extends javax.swing.JPanel {
     private javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable painterNameJtable;
+    private javax.swing.JTable painterNameTable;
     // End of variables declaration//GEN-END:variables
 }

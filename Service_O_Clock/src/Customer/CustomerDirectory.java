@@ -11,20 +11,22 @@ import java.util.ArrayList;
  * @author hi
  */
 public class CustomerDirectory {
-    ArrayList<Customer> customerDirectory;
+    ArrayList<Customer> customerList;
     Customer customer;
     
     public CustomerDirectory(){
-        this.customerDirectory = new ArrayList<Customer>();
+        this.customerList = new ArrayList<Customer>();
     }
 
-    public ArrayList<Customer> getCustomerDirectory() {
-        return customerDirectory;
+    public ArrayList<Customer> getCustomerList() {
+        return customerList;
     }
 
-    public void setCustomerDirectory(ArrayList<Customer> customerDirectory) {
-        this.customerDirectory = customerDirectory;
+    public void setCustomerList(ArrayList<Customer> customerList) {
+        this.customerList = customerList;
     }
+
+    
 
     public Customer getCustomer() {
         return customer;
@@ -36,14 +38,14 @@ public class CustomerDirectory {
     
     public Customer createCustomer(String username){
         customer = new Customer(username);
-        customerDirectory.add(customer);
+        customerList.add(customer);
         return customer;
     }
     
     public void deleteCustomer(String username){
-        for(int i=0;i<customerDirectory.size();i++){
-            if(customerDirectory.get(i).getUsername().equals(username)){
-                customerDirectory.remove(i);
+        for(int i=0;i<customerList.size();i++){
+            if(customerList.get(i).getUsername().equals(username)){
+                customerList.remove(i);
             }
         }
     }

@@ -4,6 +4,13 @@
  */
 package UI.PaitingAdmin;
 
+import Business.Ecosystem;
+import UserAccounts.UserAccounts;
+import WorkQueue.HomePaintingWorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 91730
@@ -13,8 +20,21 @@ public class ManagePaintingRequestsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManagePaintingRequestsJPanel
      */
+    
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    
     public ManagePaintingRequestsJPanel() {
         initComponents();
+    }
+    
+    public ManagePaintingRequestsJPanel(JPanel workAreaContainer, UserAccounts userAccount, Ecosystem ecosystem) {
+        initComponents();
+        
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
     }
 
     /**
@@ -79,13 +99,13 @@ public class ManagePaintingRequestsJPanel extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 580, 90));
 
         viewRequestButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
-        viewRequestButton.setText("View Requests");
+        viewRequestButton.setText("Accept/Reject Request");
         viewRequestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewRequestButtonActionPerformed(evt);
             }
         });
-        add(viewRequestButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 127, 30));
+        add(viewRequestButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 170, 30));
 
         assignPainterButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
         assignPainterButton.setText("Assign Painter");
@@ -102,64 +122,64 @@ public class ManagePaintingRequestsJPanel extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-//        userProcessContainer.remove(this);
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.previous(userProcessContainer);
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void viewRequestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRequestButtonActionPerformed
         // TODO add your handling code here:
-//        int selectedRow = paintRequestTable.getSelectedRow();
-//        if(selectedRow<0){
-//            JOptionPane.showMessageDialog(null,"Please select a row from the table to view details", "Warning",JOptionPane.WARNING_MESSAGE);
-//        }
-//        else{
-//            SoupWorkRequest request  = (SoupWorkRequest)paintRequestTable.getValueAt(selectedRow, 0);
-//            if(request.getStatus().equals("In Progress")){
-//                JOptionPane.showMessageDialog(null, "Order Accepted Already !!!", "Warning", JOptionPane.WARNING_MESSAGE);
-//            }
-//            else if(request.getStatus().equals("Order Cancelled")){
-//                JOptionPane.showMessageDialog(null,"Order Cancelled !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
-//            }
-//            else if(request.getStatus().equals("Delivered")){
-//                JOptionPane.showMessageDialog(null,"Order Completed Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
-//            }
-//            else{
-//                ViewSoupRequestJPanel viewRequest=new ViewSoupRequestJPanel(userProcessContainer, account, request, system);
-//                userProcessContainer.add("View Soup Request", viewRequest);
-//                CardLayout layout=(CardLayout)userProcessContainer.getLayout();
-//                layout.next(userProcessContainer);
-//            }
-//        }
+        int selectedRow = paintRequestTable.getSelectedRow();
+        
+        if(selectedRow < 0) {
+            JOptionPane.showMessageDialog(null,"Please select a row from the table to view details", "Warning",JOptionPane.WARNING_MESSAGE);
+        } else {
+            HomePaintingWorkRequest request  = (HomePaintingWorkRequest)paintRequestTable.getValueAt(selectedRow, 0);
+            if(request.getStatus().equals("In Progress")){
+                JOptionPane.showMessageDialog(null, "Painting Request Accepted Already !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else if(request.getStatus().equals("Request Cancelled")){
+                JOptionPane.showMessageDialog(null,"Request Cancelled !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else if(request.getStatus().equals("Completed Service")){
+                JOptionPane.showMessageDialog(null,"Service Completed Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                ViewPaintingRequestOrderJPanel viewRequest=new ViewPaintingRequestOrderJPanel(workAreaContainer, userAccount, request, ecosystem);
+                workAreaContainer.add("View Painting Request", viewRequest);
+                CardLayout layout=(CardLayout)workAreaContainer.getLayout();
+                layout.next(workAreaContainer);
+            }
+        }
     }//GEN-LAST:event_viewRequestButtonActionPerformed
 
     private void assignPainterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignPainterButtonActionPerformed
         // TODO add your handling code here:
-//        int selectedRow = paintRequestTable.getSelectedRow();
-//        if(selectedRow<0){
-//            JOptionPane.showMessageDialog(null, "Please select a row from the table to view details", "Warning",JOptionPane.WARNING_MESSAGE);
-//        }
-//        else{
-//            SoupWorkRequest request  = (SoupWorkRequest)paintRequestTable.getValueAt(selectedRow, 0);
-//            if(request.getStatus().equals("New Order")){
-//                JOptionPane.showMessageDialog(null,"Accept the Order First", "Warning", JOptionPane.WARNING_MESSAGE);
-//            }
-//            else if(request.getStatus().equals("Order Cancelled")){
-//                JOptionPane.showMessageDialog(null,"Request Cancelled !!! Cannot Assign.", "Warning", JOptionPane.WARNING_MESSAGE);
-//            }
-//            else if(request.getStatus().equals("Delivered")){
-//                JOptionPane.showMessageDialog(null,"Order Delivered Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
-//            }
-//            else if(request.getStatus().equals("Assigned Volunteer")){
-//                JOptionPane.showMessageDialog(null,"Already Assigned Field Worker !!!", "Warning", JOptionPane.WARNING_MESSAGE);
-//            }
-//            else{
-//                DeliveryRequestJPanel assignDelivery = new DeliveryRequestJPanel(userProcessContainer, account, request, system);
-//                userProcessContainer.add("Assign Delivery Volunteer", assignDelivery);
-//                CardLayout layout=(CardLayout)userProcessContainer.getLayout();
-//                layout.next(userProcessContainer);
-//            }
-//        }
+        int selectedRow = paintRequestTable.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select a row from the table to view details", "Warning",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            HomePaintingWorkRequest request  = (HomePaintingWorkRequest)paintRequestTable.getValueAt(selectedRow, 0);
+            if(request.getStatus().equals("New Request")){
+                JOptionPane.showMessageDialog(null,"Accept the Request First", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else if(request.getStatus().equals("Request Cancelled")){
+                JOptionPane.showMessageDialog(null,"Request Cancelled !!! Cannot Assign.", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else if(request.getStatus().equals("Service Completed")){
+                JOptionPane.showMessageDialog(null,"Request COmpleted Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else if(request.getStatus().equals("Assigned Painter")){
+                JOptionPane.showMessageDialog(null,"Already Assigned Painter !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                AssignPainterJPanel assignPainter = new AssignPainterJPanel(workAreaContainer, userAccount, request, ecosystem);
+                workAreaContainer.add("Assign Painter", assignPainter);
+                CardLayout layout=(CardLayout)workAreaContainer.getLayout();
+                layout.next(workAreaContainer);
+            }
+        }
     }//GEN-LAST:event_assignPainterButtonActionPerformed
 
 

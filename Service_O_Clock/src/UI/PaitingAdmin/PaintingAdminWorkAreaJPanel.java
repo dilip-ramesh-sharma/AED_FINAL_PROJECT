@@ -10,15 +10,14 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author hi
+ * @author 91730
  */
 public class PaintingAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form PaintingAdminWorkAreaJPanel
      */
-    
-    private JPanel workAreaContainer;
+     private JPanel workAreaContainer;
     private Ecosystem ecosystem;
     private UserAccounts userAccount;
     
@@ -43,32 +42,84 @@ public class PaintingAdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        paitingEnterpriseAdminTitle = new javax.swing.JLabel();
+        paitingEnterpriseLabel = new javax.swing.JLabel();
+        manageRequestButton = new javax.swing.JButton();
+        manageServicesButton = new javax.swing.JButton();
+        managePaintingOrgButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(51, 255, 102));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Painting Admin");
+        paitingEnterpriseAdminTitle.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        paitingEnterpriseAdminTitle.setText("Painting Admin Work Area");
+        add(paitingEnterpriseAdminTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(157, 157, 157)
-                .addComponent(jLabel1)
-                .addContainerGap(162, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addComponent(jLabel1)
-                .addContainerGap(181, Short.MAX_VALUE))
-        );
+        paitingEnterpriseLabel.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
+        paitingEnterpriseLabel.setText("Painting Enterprise");
+        add(paitingEnterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, -1, -1));
+
+        manageRequestButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        manageRequestButton.setText("Manage Requests");
+        manageRequestButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageRequestButtonActionPerformed(evt);
+            }
+        });
+        add(manageRequestButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, 200, 40));
+
+        manageServicesButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        manageServicesButton.setText("Manage Services");
+        manageServicesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageServicesButtonActionPerformed(evt);
+            }
+        });
+        add(manageServicesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, 200, 40));
+
+        managePaintingOrgButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        managePaintingOrgButton.setText("Manage Painting Organization Info");
+        managePaintingOrgButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                managePaintingOrgButtonActionPerformed(evt);
+            }
+        });
+        add(managePaintingOrgButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 420, 280, 40));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/PaitingAdmin/painter1.jpeg"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 350));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void manageRequestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageRequestButtonActionPerformed
+//        ManageSoupKitchenRequestsJPanel manageRequest = new ManageSoupKitchenRequestsJPanel(userProcessContainer, ua, system);
+//        userProcessContainer.add("Manage Requests", manageRequest);
+//        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+//        layout.next(userProcessContainer);
+    }//GEN-LAST:event_manageRequestButtonActionPerformed
+
+    private void manageServicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageServicesButtonActionPerformed
+//        ManageSoupKitchenServiceJPanel manageServices = new ManageSoupKitchenServiceJPanel(userProcessContainer, ua, system);
+//        userProcessContainer.add("Manage Services",manageServices);
+//        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+//        layout.next(userProcessContainer);
+    }//GEN-LAST:event_manageServicesButtonActionPerformed
+
+    private void managePaintingOrgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managePaintingOrgButtonActionPerformed
+        // TODO add your handling code here:
+//        ManageSoupKitchenInfoJPanel manageInfo = new ManageSoupKitchenInfoJPanel(userProcessContainer, ua, system);
+//        userProcessContainer.add("Manage Soup kitchen Organization Info",manageInfo);
+//        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+//        layout.next(userProcessContainer);
+    }//GEN-LAST:event_managePaintingOrgButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton managePaintingOrgButton;
+    private javax.swing.JButton manageRequestButton;
+    private javax.swing.JButton manageServicesButton;
+    private javax.swing.JLabel paitingEnterpriseAdminTitle;
+    private javax.swing.JLabel paitingEnterpriseLabel;
     // End of variables declaration//GEN-END:variables
 }

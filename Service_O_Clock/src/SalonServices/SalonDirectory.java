@@ -49,7 +49,7 @@ public class SalonDirectory {
         return salon;
     }
     
-    public void deleteSnowClearingOrg(String username){
+    public void deleteSalon(String username){
         for(int i=0;i<salonsList.size();i++){
             if(salonsList.get(i).getUsername().equals(username)){
                 salonsList.remove(i);
@@ -57,7 +57,7 @@ public class SalonDirectory {
         }
     }
     
-    public void updateSnowClearingOrgInfo(Salon salon, String name, String number, String address, String email){
+    public void updateSalonInfo(Salon salon, String name, String number, String address, String email){
         salon.setSalonName(name);
         salon.setSalonEmail(address);
         salon.setSalonContact(number);

@@ -4,35 +4,17 @@
  */
 package UI.PestControlTechnician;
 
-import Business.Ecosystem;
-import UserAccounts.UserAccounts;
-import javax.swing.JPanel;
-
 /**
  *
  * @author 91730
  */
-public class TechnicianAreaJPanel extends javax.swing.JPanel {
+public class ProcessTechnicianServiceJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form TechnicianAreaJPanel
+     * Creates new form ProcessTechnicianServiceJPanel
      */
-    
-        private JPanel workAreaContainer;
-    private Ecosystem ecosystem;
-    private UserAccounts userAccount;
-    
-    
-    public TechnicianAreaJPanel() {
+    public ProcessTechnicianServiceJPanel() {
         initComponents();
-    }
-    
-    public TechnicianAreaJPanel(JPanel workAreaContainer, UserAccounts userAccount, Ecosystem ecosystem) {
-        initComponents();
-        
-        this.workAreaContainer = workAreaContainer;
-        this.userAccount = userAccount;
-        this.ecosystem = ecosystem;
     }
 
     /**

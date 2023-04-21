@@ -4,6 +4,15 @@
  */
 package UI.PaitingAdmin;
 
+import Business.Ecosystem;
+import HomePainting.HomePainting;
+import HomePainting.PaintingPackages;
+import UserAccounts.UserAccounts;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 91730
@@ -13,6 +22,21 @@ public class ManagePaintingServicesJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManagePaintingServicesJPanel
      */
+    
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    
+    
+    public ManagePaintingServicesJPanel(JPanel workAreaContainer, UserAccounts userAccount, Ecosystem ecosystem) {
+        initComponents();
+        
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+        populateTable();
+    }
+    
     public ManagePaintingServicesJPanel() {
         initComponents();
     }
@@ -30,7 +54,7 @@ public class ManagePaintingServicesJPanel extends javax.swing.JPanel {
         serviceTypeField = new javax.swing.JTextField();
         servicetype = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        paitingServiceTable = new javax.swing.JTable();
+        paintTable = new javax.swing.JTable();
         materialTypeField = new javax.swing.JTextField();
         serviceDescription = new javax.swing.JLabel();
         btnAddService = new javax.swing.JButton();
@@ -43,7 +67,7 @@ public class ManagePaintingServicesJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         materialType.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        materialType.setText("Material Type");
+        materialType.setText("Paint Color");
         add(materialType, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, -1, -1));
 
         serviceTypeField.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
@@ -54,12 +78,12 @@ public class ManagePaintingServicesJPanel extends javax.swing.JPanel {
         servicetype.setText("Painting Service Type");
         add(servicetype, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, -1, -1));
 
-        paitingServiceTable.setModel(new javax.swing.table.DefaultTableModel(
+        paintTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Painting Service Type", "Description", "Material Type"
+                "Painting Service Type", "Description", "Paint Color"
             }
         ) {
             Class[] types = new Class [] {
@@ -77,7 +101,7 @@ public class ManagePaintingServicesJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(paitingServiceTable);
+        jScrollPane1.setViewportView(paintTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 607, 122));
 
@@ -96,7 +120,7 @@ public class ManagePaintingServicesJPanel extends javax.swing.JPanel {
                 btnAddServiceActionPerformed(evt);
             }
         });
-        add(btnAddService, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 510, 140, -1));
+        add(btnAddService, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 510, 180, -1));
 
         descriptionField.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         descriptionField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -120,59 +144,77 @@ public class ManagePaintingServicesJPanel extends javax.swing.JPanel {
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 270, 270));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) paintTable.getModel();
+        model.setRowCount(0);
+
+        for (HomePainting hp:ecosystem.getHomePaintingDirectory().getHomePaintingList()) {
+            if (hp.getUsername().equals(userAccount.getUsername())) {
+               for(PaintingPackages paint: hp.getPaintingPackageList()){
+                Object[] row = new Object[3];
+                row[0] = paint.getPaintPackageType();
+                row[1] = paint.getPaintDesc();
+                row[2] = paint.getColor();
+                model.addRow(row);
+               } 
+            } 
+        }
+    }
+
+        
     private void btnAddServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddServiceActionPerformed
-//        // TODO add your handling code here:
-//        String name = serviceTypeField.getText();
-//        String desc = descriptionField.getText();
-//        String beverage = materialTypeField.getText();
-//
-//        try {
-//            if(name == null || name.isEmpty()){
-//                throw new NullPointerException("Service Name field cannot be Empty !!!");
-//            }
-//        } catch(NullPointerException e){
-//            JOptionPane.showMessageDialog(null, "Service Name field cannot be Empty !!!");
-//            return;
-//        }
-//
-//        try {
-//            if(desc==null || desc.isEmpty()){
-//                throw new NullPointerException("Description field cannot be Empty !!!");
-//            }
-//        } catch(NullPointerException e){
-//            JOptionPane.showMessageDialog(null, "Description field cannot be Empty !!!");
-//            return;
-//        }
-//
-//        try {
-//            if(beverage==null || beverage.isEmpty()){
-//                throw new NullPointerException("Beverage Field cannot be empty !!!");
-//            }
-//        }  catch(NullPointerException e){
-//            JOptionPane.showMessageDialog(null, "Beverage Field cannot be empty !!!");
-//            return;
-//        }catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Invalid Beverage !!!");
-//            return;
-//        }
-//
-//        for(SoupKitchenOrg org:system.getSoupKitchenOrgDirectory().getSoupKitchenList()){
-//            if(org.getUserName().equals(ua.getUsername())){
-//                meal = system.getSoupKitchenOrgDirectory().addSoupMeal(org, name, desc, beverage);
-//            }
-//        }
-//
-//        serviceTypeField.setText("");
-//        descriptionField.setText("");
-//        materialTypeField.setText("");
-//        populateTable();
+        // TODO add your handling code here:
+        String name = serviceTypeField.getText();
+        String desc = descriptionField.getText();
+        String color = materialTypeField.getText();
+
+        try {
+            if(name == null || name.isEmpty()){
+                throw new NullPointerException("Service Name field cannot be Empty !!!");
+            }
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Service Name field cannot be Empty !!!");
+            return;
+        }
+
+        try {
+            if(desc==null || desc.isEmpty()){
+                throw new NullPointerException("Description field cannot be Empty !!!");
+            }
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Description field cannot be Empty !!!");
+            return;
+        }
+
+        try {
+            if(color==null || color.isEmpty()){
+                throw new NullPointerException("Color Field cannot be empty !!!");
+            }
+        }  catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Color Field cannot be empty !!!");
+            return;
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Invalid Color !!!");
+            return;
+        }
+
+        for(HomePainting hp:ecosystem.getHomePaintingDirectory().getHomePaintingList()){
+            if(hp.getUsername().equals(userAccount.getUsername())){
+                ecosystem.getHomePaintingDirectory().addPaintPackage(hp, name, desc, color);
+            }
+        }
+
+        serviceTypeField.setText("");
+        descriptionField.setText("");
+        materialTypeField.setText("");
+        populateTable();
     }//GEN-LAST:event_btnAddServiceActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-//        userProcessContainer.remove(this);
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.previous(userProcessContainer);
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
     }//GEN-LAST:event_backButtonActionPerformed
 
 
@@ -184,8 +226,8 @@ public class ManagePaintingServicesJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel materialType;
     private javax.swing.JTextField materialTypeField;
+    private javax.swing.JTable paintTable;
     private javax.swing.JLabel paintingServiceTitle;
-    private javax.swing.JTable paitingServiceTable;
     private javax.swing.JLabel serviceDescription;
     private javax.swing.JTextField serviceTypeField;
     private javax.swing.JLabel servicetype;

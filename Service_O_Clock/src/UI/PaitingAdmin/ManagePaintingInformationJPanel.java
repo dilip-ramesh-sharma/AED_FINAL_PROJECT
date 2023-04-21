@@ -4,6 +4,14 @@
  */
 package UI.PaitingAdmin;
 
+import Business.Ecosystem;
+import HomePainting.HomePainting;
+import UserAccounts.UserAccounts;
+import java.awt.CardLayout;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 91730
@@ -13,6 +21,20 @@ public class ManagePaintingInformationJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManagePaintingInformationJPanel
      */
+    
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    
+
+    public ManagePaintingInformationJPanel(JPanel workAreaContainer, UserAccounts userAccount, Ecosystem ecosystem) {
+        initComponents();
+        
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+    }
+    
     public ManagePaintingInformationJPanel() {
         initComponents();
     }
@@ -120,56 +142,55 @@ public class ManagePaintingInformationJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_updateInfoBtnActionPerformed
 
     private void saveInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInfoBtnActionPerformed
-//        // TODO add your handling code here:
-//        String name = paintingNameField.getText();
-//        String address = paintingAddressField.getText();
-//        String number = paintingContactField.getText();
-//
-//        try {
-//            if(name==null || name.isEmpty()){
-//                throw new NullPointerException("SnowClearingOrg Name Field cannot be Empty !!!");
-//
-//            }
-//        } catch(NullPointerException e){
-//            JOptionPane.showMessageDialog(null, "SnowClearing Organizations Name Field cannot be Empty !!!");
-//            return;
-//        }
-//
-//        try {
-//            if(address==null || address.isEmpty()){
-//                throw new NullPointerException("SnowClearing Organization Field cannot be Empty !!!");
-//            }
-//        } catch(NullPointerException e){
-//            JOptionPane.showMessageDialog(null, "SnowClearing Organization Field cannot be Empty !!!");
-//            return;
-//        }
-//
-//        try {
-//
-//            if(number==null || number.isEmpty()){
-//                throw new NullPointerException("SnowClearingOrg Phone Number Field cannot be Empty !!!");
-//            }else if(Pattern.matches("^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$", number) == false){
-//                throw new Exception("Enter a Valid Phone number !!!");
-//            }
-//        }  catch(NullPointerException e){
-//            JOptionPane.showMessageDialog(null, "SnowClearingOrg Phone Number Field cannot be Empty !!!");
-//            return;
-//        }catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Enter a Valid Phone number !!!");
-//            return;
-//        }
-//
-//        for(SoupKitchenOrg org:system.getSoupKitchenOrgDirectory().getSoupKitchenList()){
-//            if(org.getUserName().equals(account.getUsername())){
-//                system.getSoupKitchenOrgDirectory().updateSoupInfo(org, name, number, address);
-//            }
-//        }
-//
-//        paintingNameField.setEnabled(false);
-//        paintingAddressField.setEnabled(false);
-//        paintingContactField.setEnabled(false);
-//        saveInfoBtn.setEnabled(false);
-//        updateInfoBtn.setEnabled(true);
+        // TODO add your handling code here:
+        String name = paintingNameField.getText();
+        String address = paintingAddressField.getText();
+        String number = paintingContactField.getText();
+
+        try {
+            if(name==null || name.isEmpty()){
+                throw new NullPointerException("Please Enter All Fields");
+
+            }
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Please Enter All Fields");
+            return;
+        }
+        try {
+            if(address==null || address.isEmpty()){
+                throw new NullPointerException("Please Enter All Fields");
+            }
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Please Enter All Fields");
+            return;
+        }
+
+        try {
+
+            if(number==null || number.isEmpty()){
+                throw new NullPointerException("Please Enter Phone Number");
+            }else if(Pattern.matches("^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$", number) == false){
+                throw new Exception("Enter a Valid Phone number !!!");
+            }
+        }  catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Please Enter Phone Number");
+            return;
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Enter a Valid Phone number !!!");
+            return;
+        }
+
+        for(HomePainting hp:ecosystem.getHomePaintingDirectory().getHomePaintingList()){
+            if(hp.getUsername().equals(userAccount.getUsername())){
+                ecosystem.getHomePaintingDirectory().updatePaintCompanyInfo(hp, name, number, address);
+            }
+        }
+
+        paintingNameField.setEnabled(false);
+        paintingAddressField.setEnabled(false);
+        paintingContactField.setEnabled(false);
+        saveInfoBtn.setEnabled(false);
+        updateInfoBtn.setEnabled(true);
     }//GEN-LAST:event_saveInfoBtnActionPerformed
 
     private void paintingContactFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paintingContactFieldActionPerformed
@@ -178,10 +199,10 @@ public class ManagePaintingInformationJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-//        userProcessContainer.remove(this);
-//
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.previous(userProcessContainer);
+        workAreaContainer.remove(this);
+
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
 

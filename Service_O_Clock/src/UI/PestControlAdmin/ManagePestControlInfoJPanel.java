@@ -26,19 +26,138 @@ public class ManagePestControlInfoJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtOrgName = new javax.swing.JTextField();
+        txtOrgAddress = new javax.swing.JTextField();
+        txtOrgPhNum = new javax.swing.JTextField();
+        btnSave = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        lblEmail = new javax.swing.JLabel();
+        txtOrgEmail = new javax.swing.JTextField();
+        lblSnowClearningName = new javax.swing.JLabel();
+        lblAddress = new javax.swing.JLabel();
+        lblPhone = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel1.setText("Manage PestControl Organisation Info");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(476, 6, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/PestControlAdmin/manage2.png"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 74, -1, 378));
+
+        txtOrgName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        add(txtOrgName, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 230, 230, -1));
+
+        txtOrgAddress.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        add(txtOrgAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 270, 230, -1));
+
+        txtOrgPhNum.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        txtOrgPhNum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtOrgPhNumActionPerformed(evt);
+            }
+        });
+        add(txtOrgPhNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 300, 230, -1));
+
+        btnSave.setBackground(new java.awt.Color(255, 255, 255));
+        btnSave.setFont(new java.awt.Font(".AppleSystemUIFont", 1, 12)); // NOI18N
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 380, -1, -1));
+
+        btnUpdate.setBackground(new java.awt.Color(255, 255, 255));
+        btnUpdate.setFont(new java.awt.Font(".AppleSystemUIFont", 1, 12)); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 380, -1, -1));
+
+        lblEmail.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
+        lblEmail.setText("Email:");
+        add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 350, -1, -1));
+
+        txtOrgEmail.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        txtOrgEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtOrgEmailActionPerformed(evt);
+            }
+        });
+        add(txtOrgEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 340, 230, -1));
+
+        lblSnowClearningName.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
+        lblSnowClearningName.setText("PestControl Org Name :");
+        add(lblSnowClearningName, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, -1, -1));
+
+        lblAddress.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
+        lblAddress.setText("Location:");
+        add(lblAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 270, -1, -1));
+
+        lblPhone.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
+        lblPhone.setText("Phone Number :");
+        add(lblPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 310, -1, -1));
+
+        backButton.setBackground(new java.awt.Color(133, 211, 255));
+        backButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtOrgPhNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrgPhNumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtOrgPhNumActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+   
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void txtOrgEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrgEmailActionPerformed
+      
+    }//GEN-LAST:event_txtOrgEmailActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+        //        userProcessContainer.remove(this);
+        //        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        //        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblAddress;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblPhone;
+    private javax.swing.JLabel lblSnowClearningName;
+    private javax.swing.JTextField txtOrgAddress;
+    private javax.swing.JTextField txtOrgEmail;
+    private javax.swing.JTextField txtOrgName;
+    private javax.swing.JTextField txtOrgPhNum;
     // End of variables declaration//GEN-END:variables
 }

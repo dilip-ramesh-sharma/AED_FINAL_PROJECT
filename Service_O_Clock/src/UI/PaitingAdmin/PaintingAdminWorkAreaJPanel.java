@@ -6,6 +6,7 @@ package UI.PaitingAdmin;
 
 import Business.Ecosystem;
 import UserAccounts.UserAccounts;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -17,7 +18,7 @@ public class PaintingAdminWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form PaintingAdminWorkAreaJPanel
      */
-     private JPanel workAreaContainer;
+    private JPanel workAreaContainer;
     private Ecosystem ecosystem;
     private UserAccounts userAccount;
     
@@ -67,7 +68,7 @@ public class PaintingAdminWorkAreaJPanel extends javax.swing.JPanel {
                 manageRequestButtonActionPerformed(evt);
             }
         });
-        add(manageRequestButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, 200, 40));
+        add(manageRequestButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, 200, 40));
 
         manageServicesButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         manageServicesButton.setText("Manage Services");
@@ -76,7 +77,7 @@ public class PaintingAdminWorkAreaJPanel extends javax.swing.JPanel {
                 manageServicesButtonActionPerformed(evt);
             }
         });
-        add(manageServicesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, 200, 40));
+        add(manageServicesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 420, 200, 40));
 
         managePaintingOrgButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         managePaintingOrgButton.setText("Manage Painting Organization Info");
@@ -85,32 +86,32 @@ public class PaintingAdminWorkAreaJPanel extends javax.swing.JPanel {
                 managePaintingOrgButtonActionPerformed(evt);
             }
         });
-        add(managePaintingOrgButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 420, 280, 40));
+        add(managePaintingOrgButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, 280, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/PaitingAdmin/painter1.jpeg"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 350));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageRequestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageRequestButtonActionPerformed
-//        ManageSoupKitchenRequestsJPanel manageRequest = new ManageSoupKitchenRequestsJPanel(userProcessContainer, ua, system);
-//        userProcessContainer.add("Manage Requests", manageRequest);
-//        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
+        ManagePaintingRequestsJPanel requests = new ManagePaintingRequestsJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Manage Painting Requests", requests);
+        CardLayout layout = (CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
     }//GEN-LAST:event_manageRequestButtonActionPerformed
 
     private void manageServicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageServicesButtonActionPerformed
-//        ManageSoupKitchenServiceJPanel manageServices = new ManageSoupKitchenServiceJPanel(userProcessContainer, ua, system);
-//        userProcessContainer.add("Manage Services",manageServices);
-//        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
+        ManagePaintingServicesJPanel services = new ManagePaintingServicesJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Manage Painting Services", services);
+        CardLayout layout = (CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
     }//GEN-LAST:event_manageServicesButtonActionPerformed
 
     private void managePaintingOrgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managePaintingOrgButtonActionPerformed
         // TODO add your handling code here:
-//        ManageSoupKitchenInfoJPanel manageInfo = new ManageSoupKitchenInfoJPanel(userProcessContainer, ua, system);
-//        userProcessContainer.add("Manage Soup kitchen Organization Info",manageInfo);
-//        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
+        ManagePaintingInformationJPanel info = new ManagePaintingInformationJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Manage Painting Or Info", info);
+        CardLayout layout = (CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
     }//GEN-LAST:event_managePaintingOrgButtonActionPerformed
 
 

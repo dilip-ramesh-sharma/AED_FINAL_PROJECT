@@ -4,6 +4,14 @@
  */
 package UI.PaitingAdmin;
 
+import Business.Ecosystem;
+import Customer.Customer;
+import UserAccounts.UserAccounts;
+import WorkQueue.HomePaintingWorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 91730
@@ -13,6 +21,21 @@ public class ViewPaintingRequestOrderJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewPaintingRequestOrderJPanel
      */
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    private HomePaintingWorkRequest request;
+   
+    
+    public ViewPaintingRequestOrderJPanel(JPanel workAreaContainer, UserAccounts userAccount, HomePaintingWorkRequest request,Ecosystem ecosystem) {
+        initComponents();
+        
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+        this.request = request;
+    }
+    
     public ViewPaintingRequestOrderJPanel() {
         initComponents();
     }
@@ -123,61 +146,61 @@ public class ViewPaintingRequestOrderJPanel extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-//        userProcessContainer.remove(this);
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.previous(userProcessContainer);
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         // TODO add your handling code here:
-//        if(request.getStatus().equals("In Progress")) {
-//            JOptionPane.showMessageDialog(null, "Already Accepted", "Warning", JOptionPane.WARNING_MESSAGE);
-//        }
-//        else if(request.getStatus().equals("Assigned Volunteer")) {
-//            JOptionPane.showMessageDialog(null, "Already Accepted", "Warning", JOptionPane.WARNING_MESSAGE);
-//        }
-//        else if(request.getStatus().equals("Order Cancelled")) {
-//            JOptionPane.showMessageDialog(null, "Order Cancelled Already", "Warning", JOptionPane.WARNING_MESSAGE);
-//        }
-//        else{
-//            request.setStatus("In Progress");
-//            for(Member mem:system.getMemberDirectory().getMemberList()){
-//                if(request.getMemName().equals(mem.getMemUsername())){
-//                    for(SoupWorkRequest request : mem.getSoupRequestList()){
-//                        if(request.getStatus().equals("New Order")) {
-//                            request.setStatus("In Progress");
-//                        }
-//
-//                    }
-//                }
-//            }
-//            userProcessContainer.remove(this);
-//            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//            layout.previous(userProcessContainer);
-//        }
+        if(request.getStatus().equals("In Progress")) {
+            JOptionPane.showMessageDialog(null, "Already Accepted", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else if(request.getStatus().equals("Assigned Painter")) {
+            JOptionPane.showMessageDialog(null, "Already Accepted", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else if(request.getStatus().equals("Request Cancelled")) {
+            JOptionPane.showMessageDialog(null, "Request Cancelled Already", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            request.setStatus("In Progress");
+            for(Customer cust:ecosystem.getCustomerDirectory().getCustomerList()){
+                if(request.getCustName().equals(cust.getCustomerName())){
+                    for(HomePaintingWorkRequest request : cust.getHomePaintingWorkRequestList()){
+                        if(request.getStatus().equals("New Request")) {
+                            request.setStatus("In Progress");
+                        }
+
+                    }
+                }
+            }
+            workAreaContainer.remove(this);
+            CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+            layout.previous(workAreaContainer);
+        }
     }//GEN-LAST:event_btnAcceptActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-//        if(request.getStatus().equals("New Order")) {
-//            request.setStatus("Order Cancelled");
-//            for(Member mem:system.getMemberDirectory().getMemberList()){
-//                if(request.getMemName().equals(mem.getMemUsername())){
-//                    for(SoupWorkRequest req : mem.getSoupRequestList()){
-//                        if(req.getStatus().equals("New Order")) {
-//                            req.setStatus("Order Cancelled");
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        else{
-//            JOptionPane.showMessageDialog(null, "Order is Accepted already. Cannot cancel Request !!!", "Warning", JOptionPane.WARNING_MESSAGE);
-//        }
-//
-//        userProcessContainer.remove(this);
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.previous(userProcessContainer);
+        if(request.getStatus().equals("New Request")) {
+            request.setStatus("Request Cancelled");
+            for(Customer cust:ecosystem.getCustomerDirectory().getCustomerList()){
+                if(request.getCustName().equals(cust.getUsername())){
+                    for(HomePaintingWorkRequest request : cust.getHomePaintingWorkRequestList()){
+                        if(request.getStatus().equals("New Request")) {
+                            request.setStatus("Request Cancelled");
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Request is Accepted already. Cannot cancel Request !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
     }//GEN-LAST:event_btnCancelActionPerformed
 
 

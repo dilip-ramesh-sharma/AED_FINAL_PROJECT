@@ -17,21 +17,26 @@ public class PestControlAdminWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form PestControlAdminWorkAreaJPanel
      */
-    
     private JPanel workAreaContainer;
     private Ecosystem ecosystem;
     private UserAccounts userAccount;
+
     
-    public PestControlAdminWorkAreaJPanel() {
-        initComponents();
-    }
-    
-    public PestControlAdminWorkAreaJPanel(JPanel workAreaContainer, UserAccounts userAccount, Ecosystem ecosystem) {
+   
+    public PestControlAdminWorkAreaJPanel(JPanel workAreaContainer, UserAccounts userAccount,Ecosystem ecosystem) {
         initComponents();
         
         this.workAreaContainer = workAreaContainer;
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
+        
+        
+    }
+    
+    
+    
+    public PestControlAdminWorkAreaJPanel() {
+        initComponents();
     }
 
     /**
@@ -43,32 +48,50 @@ public class PestControlAdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        heading = new javax.swing.JLabel();
+        orgInfo = new javax.swing.JLabel();
+        orgName = new javax.swing.JLabel();
+        btmManageReq = new javax.swing.JButton();
+        btnManageSer = new javax.swing.JButton();
+        btnPestOrg = new javax.swing.JButton();
+        pic = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(0, 204, 204));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Pest Control Admin");
+        heading.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        heading.setText("             Pest Control Organisation Admin");
+        add(heading, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 671, 32));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(151, 151, 151)
-                .addComponent(jLabel1)
-                .addContainerGap(146, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addComponent(jLabel1)
-                .addContainerGap(203, Short.MAX_VALUE))
-        );
+        orgInfo.setFont(new java.awt.Font("New Peninim MT", 1, 13)); // NOI18N
+        orgInfo.setText("Pest Control Organisation Name:");
+        add(orgInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 93, -1, -1));
+        add(orgName, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 80, 223, 27));
+
+        btmManageReq.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        btmManageReq.setText("Manage Requests");
+        add(btmManageReq, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 179, 233, -1));
+
+        btnManageSer.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        btnManageSer.setText("Manage Services");
+        add(btnManageSer, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 233, -1));
+
+        btnPestOrg.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        btnPestOrg.setText("Manage Pest Organisations ");
+        add(btnPestOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, -1, -1));
+
+        pic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/PestControlAdmin/pestcontrolorg.jpeg"))); // NOI18N
+        add(pic, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 133, 380, 260));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btmManageReq;
+    private javax.swing.JButton btnManageSer;
+    private javax.swing.JButton btnPestOrg;
+    private javax.swing.JLabel heading;
+    private javax.swing.JLabel orgInfo;
+    private javax.swing.JLabel orgName;
+    private javax.swing.JLabel pic;
     // End of variables declaration//GEN-END:variables
 }

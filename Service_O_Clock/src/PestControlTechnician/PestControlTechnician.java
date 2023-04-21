@@ -4,6 +4,7 @@
  */
 package PestControlTechnician;
 
+import WorkQueue.PestControlWorkRequest;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public class PestControlTechnician {
     private String TechnicianName;
     private String TechnicianUsername;
-    //private ArrayList<EmergencyWorkRequest> emgRequestList;
+    private ArrayList<PestControlWorkRequest> technicianRequestList;
     private String TechnicianAddress;
     private String TechnicianPhNum;
     private Boolean availability = true;
@@ -63,6 +64,15 @@ public class PestControlTechnician {
     public void setAvailability(Boolean availability) {
         this.availability = availability;
     }
+
+    public ArrayList<PestControlWorkRequest> getTechnicianRequestList() {
+        return technicianRequestList;
+    }
+
+    public void setTechnicianRequestList(ArrayList<PestControlWorkRequest> technicianRequestList) {
+        this.technicianRequestList = technicianRequestList;
+    }
+    
     
 
 }

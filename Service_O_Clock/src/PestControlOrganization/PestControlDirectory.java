@@ -59,15 +59,15 @@ public class PestControlDirectory {
         }
     }
     
-    public void updatePestControlOrg(PestControl pest, String name, String number, String address, String email){
+    public void updatePestControlOrg(PestControl pest, String name, String address, String number, String email){
         pest.setPestControlOrgName(name);
         pest.setPestControlOrgAddress(address);
         pest.setPestControlOrgPhNum(number);
         pest.setPestControlOrgEmail(email);
     }
     
-    public PestControlServices addServiceTypes(PestControl pest, String name, String desc, String type){
-        pestservice = new PestControlServices(name, desc, type);
+    public PestControlServices addServiceTypes(PestControl pest, String name, String type, String desc){
+        pestservice = new PestControlServices(name, type, desc);
         pest.addPestControlServices(pestservice);
         return pestservice;
     }

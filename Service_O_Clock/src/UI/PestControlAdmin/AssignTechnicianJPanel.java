@@ -4,6 +4,17 @@
  */
 package UI.PestControlAdmin;
 
+import Beautician.BeauticianWorker;
+import Business.Ecosystem;
+import Customer.Customer;
+import PestControlTechnician.PestControlTechnician;
+import UserAccounts.UserAccounts;
+import WorkQueue.HomePaintingWorkRequest;
+import WorkQueue.PestControlWorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 91730
@@ -13,10 +24,23 @@ public class AssignTechnicianJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AssignTechnicianJPanel
      */
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    private PestControlWorkRequest request;
+    
+    
     public AssignTechnicianJPanel() {
         initComponents();
     }
-
+    
+    public AssignTechnicianJPanel(JPanel workAreaContainer, UserAccounts userAccount, PestControlWorkRequest request, Ecosystem ecosystem) {
+        initComponents();
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+        this.request = request;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,10 +51,10 @@ public class AssignTechnicianJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        btnAssign = new javax.swing.JButton();
+        technicianTable = new javax.swing.JTable();
+        assignButton = new javax.swing.JButton();
         pic = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -40,21 +64,18 @@ public class AssignTechnicianJPanel extends javax.swing.JPanel {
         jLabel1.setText("                        Assign Technician's");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 0, 660, 47));
 
-        btnBack.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        btnBack.setText("Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        technicianTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
                 "Technician Name"
@@ -68,29 +89,67 @@ public class AssignTechnicianJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(technicianTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 108, 327, 187));
 
-        btnAssign.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        btnAssign.setText("Assign Request To Selected Technician");
-        add(btnAssign, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 334, 336, -1));
+        assignButton.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        assignButton.setText("Assign Request To Selected Technician");
+        assignButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignButtonActionPerformed(evt);
+            }
+        });
+        add(assignButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 334, 336, -1));
 
         pic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/PestControlAdmin/org1.jpeg"))); // NOI18N
         add(pic, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 89, 212, 274));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnBackActionPerformed
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void assignButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = technicianTable.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null,"Please select a row from the table to view details","Warning",JOptionPane.WARNING_MESSAGE);
+        }
+        else
+        {
+
+            PestControlTechnician technician  = (PestControlTechnician)technicianTable.getValueAt(selectedRow, 0);
+            technician.getTechnicianRequestList().add(request);
+            technician.setAvailability(false);
+            request.setStatus("Assigned Technician");
+
+            for(Customer customer:ecosystem.getCustomerDirectory().getCustomerList()){
+                if(request.getCustName().equals(customer.getUsername())){
+                    for(PestControlWorkRequest request : customer.getPestControlWorkRequestList()){
+                        if(request.getStatus().equals("In Progress")){
+                            request.setStatus("Assigned Technician");
+                        }
+                    }
+                }
+            }
+            workAreaContainer.remove(this);
+            CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+            layout.previous(workAreaContainer);
+
+        }
+    }//GEN-LAST:event_assignButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAssign;
-    private javax.swing.JButton btnBack;
+    private javax.swing.JButton assignButton;
+    private javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel pic;
+    private javax.swing.JTable technicianTable;
     // End of variables declaration//GEN-END:variables
 }

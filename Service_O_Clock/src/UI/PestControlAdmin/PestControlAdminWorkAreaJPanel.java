@@ -5,7 +5,9 @@
 package UI.PestControlAdmin;
 
 import Business.Ecosystem;
+import UI.SalonServiceAdmin.ManageRequestsJPanel;
 import UserAccounts.UserAccounts;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -23,6 +25,10 @@ public class PestControlAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     
    
+    public PestControlAdminWorkAreaJPanel() {
+        initComponents();
+    }
+    
     public PestControlAdminWorkAreaJPanel(JPanel workAreaContainer, UserAccounts userAccount,Ecosystem ecosystem) {
         initComponents();
         
@@ -35,9 +41,7 @@ public class PestControlAdminWorkAreaJPanel extends javax.swing.JPanel {
     
     
     
-    public PestControlAdminWorkAreaJPanel() {
-        initComponents();
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,19 +74,58 @@ public class PestControlAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         btmManageReq.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btmManageReq.setText("Manage Requests");
+        btmManageReq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btmManageReqActionPerformed(evt);
+            }
+        });
         add(btmManageReq, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 179, 233, -1));
 
         btnManageSer.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnManageSer.setText("Manage Services");
+        btnManageSer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageSerActionPerformed(evt);
+            }
+        });
         add(btnManageSer, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 233, -1));
 
         btnPestOrg.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnPestOrg.setText("Manage Pest Organisations ");
+        btnPestOrg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPestOrgActionPerformed(evt);
+            }
+        });
         add(btnPestOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, -1, -1));
 
         pic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/PestControlAdmin/pestcontrolorg.jpeg"))); // NOI18N
         add(pic, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 133, 380, 260));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btmManageReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmManageReqActionPerformed
+        // TODO add your handling code here:
+        ManagePestControlRequestJPanel mpcr = new ManagePestControlRequestJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Manage Requests", mpcr);
+        CardLayout layout = (CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
+    }//GEN-LAST:event_btmManageReqActionPerformed
+
+    private void btnManageSerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageSerActionPerformed
+        // TODO add your handling code here:
+        ManagePestControlServiceJPanel mpcs = new ManagePestControlServiceJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Manage Requests", mpcs);
+        CardLayout layout = (CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
+    }//GEN-LAST:event_btnManageSerActionPerformed
+
+    private void btnPestOrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPestOrgActionPerformed
+        // TODO add your handling code here:
+        ManagePestControlInfoJPanel mpci = new ManagePestControlInfoJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Manage Requests", mpci);
+        CardLayout layout = (CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
+    }//GEN-LAST:event_btnPestOrgActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

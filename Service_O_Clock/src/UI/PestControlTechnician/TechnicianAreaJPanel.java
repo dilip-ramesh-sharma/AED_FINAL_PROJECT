@@ -5,8 +5,13 @@
 package UI.PestControlTechnician;
 
 import Business.Ecosystem;
+import PestControlTechnician.PestControlTechnician;
 import UserAccounts.UserAccounts;
+import WorkQueue.PestControlWorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,7 +26,9 @@ public class TechnicianAreaJPanel extends javax.swing.JPanel {
     private Ecosystem ecosystem;
     private UserAccounts userAccount;
 
-    
+    public TechnicianAreaJPanel() {
+        initComponents();
+    }
    
     public TechnicianAreaJPanel(JPanel workAreaContainer, UserAccounts userAccount,Ecosystem ecosystem) {
         initComponents();
@@ -30,12 +37,7 @@ public class TechnicianAreaJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
         
-        
-    }
-    
-    
-    public TechnicianAreaJPanel() {
-        initComponents();
+        populateTable();
     }
 
     /**
@@ -50,9 +52,8 @@ public class TechnicianAreaJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblRequestDetails = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        inProgress = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -88,22 +89,70 @@ public class TechnicianAreaJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 894, 200));
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton1.setText("In Progress");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 350, 200, -1));
+        inProgress.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        inProgress.setText("In Progress");
+        inProgress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inProgressActionPerformed(evt);
+            }
+        });
+        add(inProgress, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 350, 200, -1));
 
         jLabel1.setFont(new java.awt.Font("Al Nile", 1, 24)); // NOI18N
         jLabel1.setText("Technician Request");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, -1, -1));
-
-        jButton2.setText("Back");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 560, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void inProgressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inProgressActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tblRequestDetails.getSelectedRow();
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row!!!");
+            return;
+        }
+        PestControlWorkRequest pestControl = (PestControlWorkRequest)tblRequestDetails.getValueAt(selectedRow, 0);
+
+        if(pestControl.getStatus().equals("Completed")){
+            JOptionPane.showMessageDialog(null,"Already Completed", "Warning", JOptionPane.WARNING_MESSAGE);
+        }else if(pestControl.getStatus().equals("New Order") || pestControl.getStatus().equals("In Progress")){
+            JOptionPane.showMessageDialog(null,"Request is not yet Assigned", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            TechnicianRequestJPanel processOrderJPanel = new TechnicianRequestJPanel(workAreaContainer, pestControl,ecosystem, userAccount);
+            workAreaContainer.add("processWorkRequestJPanel", processOrderJPanel);
+            CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+            layout.next(workAreaContainer);
+        }
+    }//GEN-LAST:event_inProgressActionPerformed
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblRequestDetails.getModel();
+        model.setRowCount(0);
+        
+        for(PestControlTechnician technician : ecosystem.getPestControlTechnicianDirectory().getPestControlTechnicianList()){
+            try{
+            if(technician.getTechnicianUsername().equals(userAccount.getUsername())){
+                
+                for(PestControlWorkRequest request : technician.getTechnicianRequestList()){
+                Object[] row = new Object[6];
+                
+                row[0] = request;
+                row[1] = request.getPestControlCOmpanyName();
+                row[2] = request.getCustName();
+                row[3] = request.getServiceAddress();
+                row[4] = request.getStatus();
+                row[5] = request.getIssue();
+                model.addRow(row);     
+                }
+            }}catch(NullPointerException e){
+            System.out.println("No request has been placed yet !!!");
+            return;
+        }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton inProgress;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

@@ -5,8 +5,6 @@
 package UI.SalonServiceAdmin;
 
 import Business.Ecosystem;
-import HomePainting.HomePainting;
-import HomePainting.PaintingPackages;
 import SalonServices.Salon;
 import UserAccounts.UserAccounts;
 import java.awt.CardLayout;

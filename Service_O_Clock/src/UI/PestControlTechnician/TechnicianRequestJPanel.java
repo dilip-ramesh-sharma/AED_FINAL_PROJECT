@@ -4,6 +4,14 @@
  */
 package UI.PestControlTechnician;
 
+import Business.Ecosystem;
+import Customer.Customer;
+import PestControlTechnician.PestControlTechnician;
+import UserAccounts.UserAccounts;
+import WorkQueue.PestControlWorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author tanujkodali
@@ -13,8 +21,23 @@ public class TechnicianRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form TechnicianRequestJPanel
      */
+    
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    private PestControlWorkRequest request;
+    
     public TechnicianRequestJPanel() {
         initComponents();
+    }
+    
+    public TechnicianRequestJPanel(JPanel workAreaContainer, PestControlWorkRequest request, Ecosystem ecosystem, UserAccounts userAccount) {
+        initComponents();
+        
+        this.workAreaContainer = workAreaContainer;
+        this.request=request;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
     }
 
     /**
@@ -27,8 +50,7 @@ public class TechnicianRequestJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        workCompleted = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -36,27 +58,43 @@ public class TechnicianRequestJPanel extends javax.swing.JPanel {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/PestControlTechnician/PestcontrolTecnician.jpeg"))); // NOI18N
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, -1));
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton1.setText("Work Completed");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, 200, -1));
-
-        jButton2.setText("Back");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        workCompleted.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        workCompleted.setText("Work Completed");
+        workCompleted.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                workCompletedActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 560, -1, -1));
+        add(workCompleted, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, 200, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void workCompletedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workCompletedActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        request.setStatus("Completed");
+        for(Customer customer:ecosystem.getCustomerDirectory().getCustomerList()){
+            if(request.getCustName().equals(customer.getUsername())){
+                for(PestControlWorkRequest request : customer.getPestControlWorkRequestList()){
+                    if(request.getStatus().equals("Assigned Technician")){
+                        request.setStatus("Compelted");
+                    }
+                }
+            }
+        }
+                     
+        for(PestControlTechnician technician : ecosystem.getPestControlTechnicianDirectory().getPestControlTechnicianList()){
+            if(technician.getTechnicianUsername().equals(userAccount.getUsername())){
+                technician.setAvailability(true);
+            }
+        }
+        
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
+    }//GEN-LAST:event_workCompletedActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton workCompleted;
     // End of variables declaration//GEN-END:variables
 }

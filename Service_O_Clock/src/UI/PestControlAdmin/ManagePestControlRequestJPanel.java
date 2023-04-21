@@ -4,6 +4,16 @@
  */
 package UI.PestControlAdmin;
 
+import Business.Ecosystem;
+import UI.SalonServiceAdmin.AssignBeauticianJPanel;
+import UI.SalonServiceAdmin.RequestDetailsJPanel;
+import UserAccounts.UserAccounts;
+import WorkQueue.PestControlWorkRequest;
+import WorkQueue.SalonWorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 91730
@@ -13,8 +23,24 @@ public class ManagePestControlRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManagePestControlRequestJPanel
      */
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+
+    
+   
     public ManagePestControlRequestJPanel() {
         initComponents();
+    }
+    
+    public ManagePestControlRequestJPanel(JPanel workAreaContainer, UserAccounts userAccount,Ecosystem ecosystem) {
+        initComponents();
+        
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+        
+        
     }
 
     /**
@@ -26,36 +52,35 @@ public class ManagePestControlRequestJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        title = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        pestTable = new javax.swing.JTable();
+        viewRequest = new javax.swing.JButton();
+        assignRequest = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
-        jLabel1.setText("Manage PestControl Requests");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 6, -1, -1));
+        title.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        title.setText("Manage PestControl Requests");
+        add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 6, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton1.setText("Button");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 420, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/PestControlAdmin/PestcontrolTecnician.jpeg"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 48, 414, 577));
 
-        jTable1.setBackground(new java.awt.Color(255, 204, 204));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        pestTable.setBackground(new java.awt.Color(255, 204, 204));
+        pestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -71,35 +96,99 @@ public class ManagePestControlRequestJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(pestTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 77, -1, 200));
 
-        jButton2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton2.setText("View Request");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(493, 309, -1, -1));
+        viewRequest.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        viewRequest.setText("View Request");
+        viewRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewRequestActionPerformed(evt);
+            }
+        });
+        add(viewRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(493, 309, -1, -1));
 
-        jButton3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton3.setText("Assign Request");
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(709, 309, -1, -1));
-
-        jButton4.setText("Back");
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 590, -1, -1));
+        assignRequest.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        assignRequest.setText("Assign Request");
+        assignRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignRequestActionPerformed(evt);
+            }
+        });
+        add(assignRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(709, 309, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void viewRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRequestActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = pestTable.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select a row from the table to view details", "Warning",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            PestControlWorkRequest request  = (PestControlWorkRequest)pestTable.getValueAt(selectedRow, 0);
+            if(request.getStatus().equals("New Request")){
+                JOptionPane.showMessageDialog(null,"Accept the Request First", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else if(request.getStatus().equals("Request Cancelled")){
+                JOptionPane.showMessageDialog(null,"Request Cancelled !!! Cannot Assign.", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else if(request.getStatus().equals("Service Completed")){
+                JOptionPane.showMessageDialog(null,"Request COmpleted Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else if(request.getStatus().equals("Assigned Technician")){
+                JOptionPane.showMessageDialog(null,"Already Assigned Technician !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                ViewPestControlRequestJPanel pcr = new ViewPestControlRequestJPanel(workAreaContainer, userAccount, request, ecosystem);
+                workAreaContainer.add("View Beautician Request", pcr);
+                CardLayout layout=(CardLayout)workAreaContainer.getLayout();
+                layout.next(workAreaContainer);
+            }
+        }
+    }//GEN-LAST:event_viewRequestActionPerformed
+
+    private void assignRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignRequestActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = pestTable.getSelectedRow();
+
+        if(selectedRow < 0) {
+            JOptionPane.showMessageDialog(null,"Please select a row from the table to view details", "Warning",JOptionPane.WARNING_MESSAGE);
+        } else {
+            PestControlWorkRequest request  = (PestControlWorkRequest)pestTable.getValueAt(selectedRow, 0);
+            if(request.getStatus().equals("In Progress")){
+                JOptionPane.showMessageDialog(null, "Technician Request Accepted Already !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else if(request.getStatus().equals("Request Cancelled")){
+                JOptionPane.showMessageDialog(null,"Request Cancelled !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else if(request.getStatus().equals("Completed Service")){
+                JOptionPane.showMessageDialog(null,"Service Completed Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                AssignTechnicianJPanel assignTechnician=new AssignTechnicianJPanel(workAreaContainer, userAccount, request, ecosystem);
+                workAreaContainer.add("Assign Beautician", assignTechnician);
+                CardLayout layout=(CardLayout)workAreaContainer.getLayout();
+                layout.next(workAreaContainer);
+            }
+        }
+    }//GEN-LAST:event_assignRequestActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton assignRequest;
+    private javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable pestTable;
+    private javax.swing.JLabel title;
+    private javax.swing.JButton viewRequest;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,15 @@
  */
 package UI.PestControlAdmin;
 
+import Business.Ecosystem;
+import PestControlOrganization.PestControl;
+import SalonServices.Salon;
+import UserAccounts.UserAccounts;
+import java.awt.CardLayout;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 91730
@@ -13,8 +22,32 @@ public class ManagePestControlInfoJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManagePestControlInfoJPanel
      */
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+
+    
+   
     public ManagePestControlInfoJPanel() {
         initComponents();
+    }
+    
+    public ManagePestControlInfoJPanel(JPanel workAreaContainer, UserAccounts userAccount,Ecosystem ecosystem) {
+        initComponents();
+        
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+        
+        txtOrgName.setEnabled(false);
+        txtOrgAddress.setEnabled(false);
+        txtOrgPhNum.setEnabled(false);
+        txtOrgEmail.setEnabled(false);
+        btnSave.setEnabled(false);
+        btnUpdate.setEnabled(true);
+        
+        populateFields();
+        
     }
 
     /**
@@ -116,7 +149,7 @@ public class ManagePestControlInfoJPanel extends javax.swing.JPanel {
                 backButtonActionPerformed(evt);
             }
         });
-        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, -1, 30));
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 460, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtOrgPhNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrgPhNumActionPerformed
@@ -125,12 +158,81 @@ public class ManagePestControlInfoJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-       
+       String name = txtOrgName.getText();
+        String loc = txtOrgAddress.getText();
+        String number = txtOrgPhNum.getText();
+        String emaill = txtOrgEmail.getText();
+
+        try {
+            if(name==null || name.isEmpty()){
+                throw new NullPointerException("Please Enter All Fields");
+
+            }
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Please Enter All Fields");
+            return;
+        }
+        try {
+            if(loc==null || loc.isEmpty()){
+                throw new NullPointerException("Please Enter All Fields");
+            }
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Please Enter All Fields");
+            return;
+        }
+
+        try {
+
+            if(number==null || number.isEmpty()){
+                throw new NullPointerException("Please Enter Phone Number");
+            }else if(Pattern.matches("^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$", number) == false){
+                throw new Exception("Enter a Valid Phone number !!!");
+            }
+        }  catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Please Enter Phone Number");
+            return;
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Enter a Valid Phone number !!!");
+            return;
+        }
+        
+        try {
+             if(emaill==null || emaill.isEmpty()){
+                throw new NullPointerException("Email Field cannot be Empty !!!");
+
+            }
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Email Field cannot be Empty !!!");        
+            return;   
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Enter a Valid Email !!!");
+            return;
+        }
+
+        for(PestControl pest:ecosystem.getPestControlDirectory().getPestControlOrgList()){
+            if(pest.getUsername().equals(userAccount.getUsername())){
+                ecosystem.getPestControlDirectory().updatePestControlOrg(pest, name, loc, number, emaill);
+            }
+        }
+
+        
+        txtOrgName.setEnabled(false);
+        txtOrgAddress.setEnabled(false);
+        txtOrgPhNum.setEnabled(false);
+        txtOrgEmail.setEnabled(false);
+        btnSave.setEnabled(false);
+        btnUpdate.setEnabled(true);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-   
+        txtOrgName.setEnabled(true);
+        txtOrgAddress.setEnabled(true);
+        txtOrgPhNum.setEnabled(true);
+        txtOrgEmail.setEnabled(true);
+        btnSave.setEnabled(true);
+        btnUpdate.setEnabled(false);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void txtOrgEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrgEmailActionPerformed
@@ -139,11 +241,21 @@ public class ManagePestControlInfoJPanel extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        //        userProcessContainer.remove(this);
-        //        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        //        layout.previous(userProcessContainer);
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
     }//GEN-LAST:event_backButtonActionPerformed
 
+    private void populateFields() {
+        for(PestControl pest:ecosystem.getPestControlDirectory().getPestControlOrgList()){
+           if(pest.getUsername().equals(userAccount.getUsername())){
+                txtOrgName.setText(pest.getPestControlOrgName());
+                txtOrgAddress.setText(pest.getPestControlOrgAddress());
+                txtOrgPhNum.setText(pest.getPestControlOrgPhNum());
+                txtOrgEmail.setText(pest.getPestControlOrgEmail());
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;

@@ -4,6 +4,16 @@
  */
 package UI.PestControlAdmin;
 
+import Business.Ecosystem;
+import PestControlOrganization.PestControl;
+import PestControlOrganization.PestControlServices;
+import SalonServices.Salon;
+import UserAccounts.UserAccounts;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 91730
@@ -13,8 +23,24 @@ public class ManagePestControlServiceJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManagePestControlServiceJPanel
      */
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+
+    
+   
     public ManagePestControlServiceJPanel() {
         initComponents();
+    }
+    
+    public ManagePestControlServiceJPanel(JPanel workAreaContainer, UserAccounts userAccount,Ecosystem ecosystem) {
+        initComponents();
+        
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+        populateTable();
+        
     }
 
     /**
@@ -27,43 +53,38 @@ public class ManagePestControlServiceJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        pestServiceTable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        serviceName = new javax.swing.JTextField();
+        description = new javax.swing.JTextField();
+        serviceType = new javax.swing.JTextField();
+        addServices = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("Manage Emergency Services");
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton1.setText("Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setBackground(new java.awt.Color(255, 255, 255));
+        backButton.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/PestControlAdmin/org1.jpeg"))); // NOI18N
 
-        jTable1.setBackground(new java.awt.Color(255, 204, 204));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        pestServiceTable.setBackground(new java.awt.Color(255, 204, 204));
+        pestServiceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Service Name", "Description", "Type"
@@ -77,7 +98,7 @@ public class ManagePestControlServiceJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(pestServiceTable);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel3.setText("Service Name:");
@@ -88,8 +109,13 @@ public class ManagePestControlServiceJPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel5.setText("Type:");
 
-        jButton2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton2.setText("Add Services");
+        addServices.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        addServices.setText("Add Services");
+        addServices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addServicesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -112,15 +138,15 @@ public class ManagePestControlServiceJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel5))
                                 .addGap(47, 47, 47)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)))
+                                    .addComponent(serviceName)
+                                    .addComponent(description)
+                                    .addComponent(serviceType, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(112, 112, 112)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(addServices, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(backButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(134, 134, 134))))
@@ -130,7 +156,7 @@ public class ManagePestControlServiceJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton1))
+                    .addComponent(backButton))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(59, 59, 59)
@@ -142,38 +168,106 @@ public class ManagePestControlServiceJPanel extends javax.swing.JPanel {
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(serviceName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(serviceType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(40, 40, 40)
-                        .addComponent(jButton2)
+                        .addComponent(addServices)
                         .addContainerGap(59, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void addServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addServicesActionPerformed
+        // TODO add your handling code here:
+        String name = serviceName.getText();
+        String desc = description.getText();
+        String type = serviceType.getText();
+
+        try {
+            if(name == null || name.isEmpty()){
+                throw new NullPointerException("Service Name field cannot be Empty !!!");
+            }
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Service Name field cannot be Empty !!!");
+            return;
+        }
+
+        try {
+            if(desc==null || desc.isEmpty()){
+                throw new NullPointerException("Description field cannot be Empty !!!");
+            }
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Description field cannot be Empty !!!");
+            return;
+        }
+
+        try {
+            if(type==null || type.isEmpty()){
+                throw new NullPointerException("Color Field cannot be empty !!!");
+            }
+        }  catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Color Field cannot be empty !!!");
+            return;
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Invalid Color !!!");
+            return;
+        }
+
+        for(PestControl pest:ecosystem.getPestControlDirectory().getPestControlOrgList()){
+            if(pest.getUsername().equals(userAccount.getUsername())){
+                ecosystem.getPestControlDirectory().addServiceTypes(pest, name, type, desc);
+            }
+        }
+
+        serviceName.setText("");
+        description.setText("");
+        serviceType.setText("");
+        populateTable();
+    }                                                 
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) pestServiceTable.getModel();
+        model.setRowCount(0);
+
+        for (PestControl pest:ecosystem.getPestControlDirectory().getPestControlOrgList()) {
+            if (pest.getUsername().equals(userAccount.getUsername())) {
+               for(PestControlServices services: pest.getPestControlServiceList()){
+                Object[] row = new Object[3];
+                row[0] = services.getServiceName();
+                row[1] = services.getServiceDescription();
+                row[2] = services.getServiceType();
+                model.addRow(row);
+               } 
+            } 
+        }
+    }//GEN-LAST:event_addServicesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton addServices;
+    private javax.swing.JButton backButton;
+    private javax.swing.JTextField description;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable pestServiceTable;
+    private javax.swing.JTextField serviceName;
+    private javax.swing.JTextField serviceType;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,15 @@
  */
 package UI.PestControlAdmin;
 
+import Business.Ecosystem;
+import Customer.Customer;
+import UserAccounts.UserAccounts;
+import WorkQueue.PestControlWorkRequest;
+import WorkQueue.SalonWorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 91730
@@ -13,8 +22,21 @@ public class ViewPestControlRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewPestControlRequestJPanel
      */
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    private PestControlWorkRequest request;
+    
     public ViewPestControlRequestJPanel() {
         initComponents();
+    }
+
+    public ViewPestControlRequestJPanel(JPanel workAreaContainer, UserAccounts userAccount, PestControlWorkRequest request, Ecosystem ecosystem) {
+        initComponents();
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+        this.request = request;
     }
 
     /**
@@ -27,16 +49,16 @@ public class ViewPestControlRequestJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        pestRequestTable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        emergency = new javax.swing.JTextField();
+        Address = new javax.swing.JTextField();
+        acceptRequest = new javax.swing.JButton();
+        rejectRequest = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -46,18 +68,18 @@ public class ViewPestControlRequestJPanel extends javax.swing.JPanel {
         jLabel1.setText("Pest Control Request Details");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 6, -1, -1));
 
-        jButton1.setText("Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/PestControlAdmin/org1.jpeg"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 111, 293, 334));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        pestRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -77,7 +99,7 @@ public class ViewPestControlRequestJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(pestRequestTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 54, -1, 244));
 
@@ -89,61 +111,108 @@ public class ViewPestControlRequestJPanel extends javax.swing.JPanel {
         jLabel4.setText("Customer Address:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 384, -1, -1));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        emergency.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                emergencyActionPerformed(evt);
             }
         });
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 322, 208, -1));
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 379, 208, -1));
+        add(emergency, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 322, 208, -1));
+        add(Address, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 379, 208, -1));
 
-        jButton2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton2.setText("Accept Request");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        acceptRequest.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        acceptRequest.setText("Accept Request");
+        acceptRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                acceptRequestActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 451, -1, -1));
+        add(acceptRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 451, -1, -1));
 
-        jButton3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton3.setText("Reject Request");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        rejectRequest.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        rejectRequest.setText("Reject Request");
+        rejectRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                rejectRequestActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(588, 451, -1, -1));
+        add(rejectRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(588, 451, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
+    }//GEN-LAST:event_backButtonActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void emergencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emergencyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_emergencyActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void acceptRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptRequestActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        if(request.getStatus().equals("In Progress")) {
+            JOptionPane.showMessageDialog(null, "Already Accepted", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else if(request.getStatus().equals("Assigned Technician")) {
+            JOptionPane.showMessageDialog(null, "Already Accepted", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else if(request.getStatus().equals("Request Cancelled")) {
+            JOptionPane.showMessageDialog(null, "Request Cancelled Already", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            request.setStatus("In Progress");
+            for(Customer cust:ecosystem.getCustomerDirectory().getCustomerList()){
+                if(request.getCustName().equals(cust.getCustomerName())){
+                    for(PestControlWorkRequest request : cust.getPestControlWorkRequestList()){
+                        if(request.getStatus().equals("New Request")) {
+                            request.setStatus("In Progress");
+                        }
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+                    }
+                }
+            }
+            workAreaContainer.remove(this);
+            CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+            layout.previous(workAreaContainer);
+        }
+    }//GEN-LAST:event_acceptRequestActionPerformed
+
+    private void rejectRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectRequestActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        if(request.getStatus().equals("New Request")) {
+            request.setStatus("Request Cancelled");
+            for(Customer cust:ecosystem.getCustomerDirectory().getCustomerList()){
+                if(request.getCustName().equals(cust.getUsername())){
+                    for(PestControlWorkRequest request : cust.getPestControlWorkRequestList()){
+                        if(request.getStatus().equals("New Request")) {
+                            request.setStatus("Request Cancelled");
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Request is Accepted already. Cannot cancel Request !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
+    }//GEN-LAST:event_rejectRequestActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JTextField Address;
+    private javax.swing.JButton acceptRequest;
+    private javax.swing.JButton backButton;
+    private javax.swing.JTextField emergency;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable pestRequestTable;
+    private javax.swing.JButton rejectRequest;
     // End of variables declaration//GEN-END:variables
 }

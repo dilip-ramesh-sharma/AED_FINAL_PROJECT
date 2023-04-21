@@ -4,6 +4,14 @@
  */
 package UI.SalonServiceAdmin;
 
+import Business.Ecosystem;
+import SalonServices.Salon;
+import UserAccounts.UserAccounts;
+import java.awt.CardLayout;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author tanujkodali
@@ -13,10 +21,31 @@ public class ManageSalonInfoJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageServiceJPanel
      */
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    
     public ManageSalonInfoJPanel() {
         initComponents();
     }
 
+    public ManageSalonInfoJPanel(JPanel workAreaContainer, UserAccounts userAccount, Ecosystem ecosystem) {
+        initComponents();
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+        
+        salonEntName.setEnabled(false);
+        location.setEnabled(false);
+        phoneNo.setEnabled(false);
+        email.setEnabled(false);
+        saveButton.setEnabled(false);
+        updateButton.setEnabled(true);
+        
+        populateFields();
+    
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,12 +61,12 @@ public class ManageSalonInfoJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        salonEntName = new javax.swing.JTextField();
+        location = new javax.swing.JTextField();
+        phoneNo = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
+        updateButton = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -65,22 +94,38 @@ public class ManageSalonInfoJPanel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel6.setText("Email:");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, -1, -1));
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(598, 131, 126, -1));
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(598, 179, 126, -1));
-        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 232, 144, -1));
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        salonEntName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                salonEntNameActionPerformed(evt);
             }
         });
-        add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 285, 144, -1));
+        add(salonEntName, new org.netbeans.lib.awtextra.AbsoluteConstraints(598, 131, 126, -1));
+        add(location, new org.netbeans.lib.awtextra.AbsoluteConstraints(598, 179, 126, -1));
+        add(phoneNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 232, 144, -1));
 
-        jButton1.setText("Update");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 354, -1, -1));
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
+        add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 285, 144, -1));
 
-        jButton2.setText("Save");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(649, 354, -1, -1));
+        updateButton.setText("Update");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
+        add(updateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 354, -1, -1));
+
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+        add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(649, 354, -1, -1));
 
         backButton.setBackground(new java.awt.Color(133, 211, 255));
         backButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
@@ -93,31 +138,123 @@ public class ManageSalonInfoJPanel extends javax.swing.JPanel {
         add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_emailActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        //        userProcessContainer.remove(this);
-        //        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        //        layout.previous(userProcessContainer);
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
     }//GEN-LAST:event_backButtonActionPerformed
 
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        // TODO add your handling code here:
+        salonEntName.setEnabled(true);
+        location.setEnabled(true);
+        phoneNo.setEnabled(true);
+        email.setEnabled(true);
+        saveButton.setEnabled(true);
+        updateButton.setEnabled(false);
+    }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        // TODO add your handling code here:
+        String name = salonEntName.getText();
+        String loc = location.getText();
+        String number = phoneNo.getText();
+        String emaill = email.getText();
+
+        try {
+            if(name==null || name.isEmpty()){
+                throw new NullPointerException("Please Enter All Fields");
+
+            }
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Please Enter All Fields");
+            return;
+        }
+        try {
+            if(loc==null || loc.isEmpty()){
+                throw new NullPointerException("Please Enter All Fields");
+            }
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Please Enter All Fields");
+            return;
+        }
+
+        try {
+
+            if(number==null || number.isEmpty()){
+                throw new NullPointerException("Please Enter Phone Number");
+            }else if(Pattern.matches("^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$", number) == false){
+                throw new Exception("Enter a Valid Phone number !!!");
+            }
+        }  catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Please Enter Phone Number");
+            return;
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Enter a Valid Phone number !!!");
+            return;
+        }
+        
+        try {
+             if(emaill==null || emaill.isEmpty()){
+                throw new NullPointerException("Email Field cannot be Empty !!!");
+
+            }
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Email Field cannot be Empty !!!");        
+            return;   
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Enter a Valid Email !!!");
+            return;
+        }
+
+        for(Salon ss:ecosystem.getSalonDirectory().getSalonsList()){
+            if(ss.getUsername().equals(userAccount.getUsername())){
+                ecosystem.getSalonDirectory().updateSalonInfo(ss, name, number, loc, emaill);
+            }
+        }
+
+        salonEntName.setEnabled(false);
+        location.setEnabled(false);
+        phoneNo.setEnabled(false);
+        email.setEnabled(false);
+        saveButton.setEnabled(false);
+        updateButton.setEnabled(true);
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void salonEntNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salonEntNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_salonEntNameActionPerformed
+
+    private void populateFields() {
+        for(Salon salon:ecosystem.getSalonDirectory().getSalonsList()){
+           if(salon.getUsername().equals(userAccount.getUsername())){
+                salonEntName.setText(salon.getSalonName());;
+                location.setText(salon.getSalonAddress());;
+                phoneNo.setText(salon.getSalonContact());;
+                email.setText(salon.getSalonEmail());;
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTextField email;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField location;
+    private javax.swing.JTextField phoneNo;
+    private javax.swing.JTextField salonEntName;
+    private javax.swing.JButton saveButton;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }

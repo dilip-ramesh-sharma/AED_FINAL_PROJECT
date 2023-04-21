@@ -6,6 +6,7 @@ package UI.SalonServiceAdmin;
 
 import Business.Ecosystem;
 import UserAccounts.UserAccounts;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -22,6 +23,11 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccounts userAccount;
 
     
+    
+    public AdminWorkAreaJPanel() {
+        initComponents();
+    }
+    
    
     public AdminWorkAreaJPanel(JPanel workAreaContainer, UserAccounts userAccount,Ecosystem ecosystem) {
         initComponents();
@@ -33,10 +39,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         
     }
     
-    
-    public AdminWorkAreaJPanel() {
-        initComponents();
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,16 +67,56 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
         btnManagereq.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnManagereq.setText("Manage Requests");
+        btnManagereq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManagereqActionPerformed(evt);
+            }
+        });
         add(btnManagereq, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 113, 242, -1));
 
         btnManageSer.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnManageSer.setText("Manage Services");
+        btnManageSer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageSerActionPerformed(evt);
+            }
+        });
         add(btnManageSer, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 173, 242, -1));
 
         btnManageEnterInfo.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnManageEnterInfo.setText("Manage Salon Enterprise Info");
+        btnManageEnterInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageEnterInfoActionPerformed(evt);
+            }
+        });
         add(btnManageEnterInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 236, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnManagereqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagereqActionPerformed
+        // TODO add your handling code here:
+        ManageRequestsJPanel mr = new ManageRequestsJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Manage Requests", mr);
+        CardLayout layout = (CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
+
+    }//GEN-LAST:event_btnManagereqActionPerformed
+
+    private void btnManageSerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageSerActionPerformed
+        // TODO add your handling code here:
+        ManageServicesJPanel ms = new ManageServicesJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Manage Services",ms);
+        CardLayout layout = (CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
+    }//GEN-LAST:event_btnManageSerActionPerformed
+
+    private void btnManageEnterInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterInfoActionPerformed
+        // TODO add your handling code here:
+        ManageSalonInfoJPanel info = new ManageSalonInfoJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Manage Salon Organization Info",info);
+        CardLayout layout=(CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
+    }//GEN-LAST:event_btnManageEnterInfoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

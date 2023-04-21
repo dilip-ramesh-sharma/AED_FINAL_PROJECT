@@ -4,6 +4,13 @@
  */
 package UI.SalonServiceAdmin;
 
+import Business.Ecosystem;
+import UserAccounts.UserAccounts;
+import WorkQueue.SalonWorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author tanujkodali
@@ -13,8 +20,21 @@ public class ManageRequestsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageBeauticianJPanel
      */
+    
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    
     public ManageRequestsJPanel() {
         initComponents();
+    }
+
+    public ManageRequestsJPanel(JPanel workAreaContainer, UserAccounts userAccount, Ecosystem ecosystem) {
+        initComponents();
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+    
     }
 
     /**
@@ -29,20 +49,23 @@ public class ManageRequestsJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        salonTable = new javax.swing.JTable();
+        assignRequest = new javax.swing.JButton();
+        viewRequest = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("                                 Manage Request");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 10, 472, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/SalonServiceAdmin/beautysalon.jpeg"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 48, 565, 619));
 
-        jTable1.setBackground(new java.awt.Color(255, 204, 204));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        salonTable.setBackground(new java.awt.Color(255, 204, 204));
+        salonTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -58,13 +81,27 @@ public class ManageRequestsJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(salonTable);
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton1.setText("Assign For Request");
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 158, 477, 211));
 
-        jButton2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton2.setText("View Request");
+        assignRequest.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        assignRequest.setText("Assign For Request");
+        assignRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignRequestActionPerformed(evt);
+            }
+        });
+        add(assignRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(656, 387, -1, -1));
+
+        viewRequest.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        viewRequest.setText("View Request");
+        viewRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewRequestActionPerformed(evt);
+            }
+        });
+        add(viewRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 387, 136, -1));
 
         backButton.setBackground(new java.awt.Color(133, 211, 255));
         backButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
@@ -74,70 +111,79 @@ public class ManageRequestsJPanel extends javax.swing.JPanel {
                 backButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(136, 136, 136)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(jButton1)
-                        .addGap(55, 55, 55)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(backButton)
-                                .addGap(18, 18, 18))))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18))
-        );
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 500, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        //        userProcessContainer.remove(this);
-        //        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        //        layout.previous(userProcessContainer);
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void assignRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignRequestActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = salonTable.getSelectedRow();
+
+        if(selectedRow < 0) {
+            JOptionPane.showMessageDialog(null,"Please select a row from the table to view details", "Warning",JOptionPane.WARNING_MESSAGE);
+        } else {
+            SalonWorkRequest request  = (SalonWorkRequest)salonTable.getValueAt(selectedRow, 0);
+            if(request.getStatus().equals("In Progress")){
+                JOptionPane.showMessageDialog(null, "Beautician Request Accepted Already !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else if(request.getStatus().equals("Request Cancelled")){
+                JOptionPane.showMessageDialog(null,"Request Cancelled !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else if(request.getStatus().equals("Completed Service")){
+                JOptionPane.showMessageDialog(null,"Service Completed Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                AssignBeauticianJPanel assignBeautician=new AssignBeauticianJPanel(workAreaContainer, userAccount, request, ecosystem);
+                workAreaContainer.add("Assign Beautician", assignBeautician);
+                CardLayout layout=(CardLayout)workAreaContainer.getLayout();
+                layout.next(workAreaContainer);
+            }
+        }
+    }//GEN-LAST:event_assignRequestActionPerformed
+
+    private void viewRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRequestActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = salonTable.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select a row from the table to view details", "Warning",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            SalonWorkRequest request  = (SalonWorkRequest)salonTable.getValueAt(selectedRow, 0);
+            if(request.getStatus().equals("New Request")){
+                JOptionPane.showMessageDialog(null,"Accept the Request First", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else if(request.getStatus().equals("Request Cancelled")){
+                JOptionPane.showMessageDialog(null,"Request Cancelled !!! Cannot Assign.", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else if(request.getStatus().equals("Service Completed")){
+                JOptionPane.showMessageDialog(null,"Request COmpleted Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else if(request.getStatus().equals("Assigned Beautician")){
+                JOptionPane.showMessageDialog(null,"Already Assigned Beautician !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                RequestDetailsJPanel rd = new RequestDetailsJPanel(workAreaContainer, userAccount, request, ecosystem);
+                workAreaContainer.add("View Beautician Request", rd);
+                CardLayout layout=(CardLayout)workAreaContainer.getLayout();
+                layout.next(workAreaContainer);
+            }
+        }
+    }//GEN-LAST:event_viewRequestActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton assignRequest;
     private javax.swing.JButton backButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable salonTable;
+    private javax.swing.JButton viewRequest;
     // End of variables declaration//GEN-END:variables
 }

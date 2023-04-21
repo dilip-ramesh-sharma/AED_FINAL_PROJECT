@@ -4,6 +4,11 @@
  */
 package UI.BeauticianPanels;
 
+import Business.Ecosystem;
+import UserAccounts.UserAccounts;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 91730
@@ -13,8 +18,21 @@ public class BeauticianHomeJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BeauticianHomeJPanel
      */
+    
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    
     public BeauticianHomeJPanel() {
         initComponents();
+    }
+
+    public BeauticianHomeJPanel(JPanel workAreaContainer, UserAccounts userAccounts, Ecosystem ecosystem) {
+        initComponents();
+        
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
     }
 
     /**
@@ -28,7 +46,7 @@ public class BeauticianHomeJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        beauticianBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -40,14 +58,27 @@ public class BeauticianHomeJPanel extends javax.swing.JPanel {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/BeauticianPanels/salon2.jpeg"))); // NOI18N
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, 178));
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton1.setText("Salon");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 200, -1));
+        beauticianBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        beauticianBtn.setText("Salon");
+        beauticianBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                beauticianBtnActionPerformed(evt);
+            }
+        });
+        add(beauticianBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 200, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void beauticianBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beauticianBtnActionPerformed
+        // TODO add your handling code here:
+        BeauticianWorkAreaJPanel wr = new BeauticianWorkAreaJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Manage Requests", wr);
+        CardLayout layout = (CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
+    }//GEN-LAST:event_beauticianBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton beauticianBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables

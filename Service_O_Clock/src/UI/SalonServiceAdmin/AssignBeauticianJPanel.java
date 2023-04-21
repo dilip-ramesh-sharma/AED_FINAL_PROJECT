@@ -4,6 +4,19 @@
  */
 package UI.SalonServiceAdmin;
 
+import Beautician.BeauticianWorker;
+import Business.Ecosystem;
+import static Business.Organisation.Type.Beautician;
+import Customer.Customer;
+import Painter.Painter;
+import UserAccounts.UserAccounts;
+import WorkQueue.HomePaintingWorkRequest;
+import WorkQueue.SalonWorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author tanujkodali
@@ -13,6 +26,23 @@ public class AssignBeauticianJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AssignBeauticianJPanel
      */
+    
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    private SalonWorkRequest request;
+    
+   
+    public AssignBeauticianJPanel(JPanel workAreaContainer, UserAccounts userAccount, SalonWorkRequest request,Ecosystem ecosystem) {
+        initComponents();
+        
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+        this.request = request;
+        populate();
+    }
+    
     public AssignBeauticianJPanel() {
         initComponents();
     }
@@ -29,7 +59,7 @@ public class AssignBeauticianJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        bauticianName = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
 
@@ -44,8 +74,8 @@ public class AssignBeauticianJPanel extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/SalonServiceAdmin/salonReq.jpeg"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 75, 299, 302));
 
-        jTable1.setBackground(new java.awt.Color(255, 204, 204));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        bauticianName.setBackground(new java.awt.Color(255, 204, 204));
+        bauticianName.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -53,12 +83,17 @@ public class AssignBeauticianJPanel extends javax.swing.JPanel {
                 "Beautician Name"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(bauticianName);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 75, 365, 153));
 
         jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jButton1.setText("Assign Request To The Selected Beautician");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 263, 365, -1));
 
         backButton.setBackground(new java.awt.Color(133, 211, 255));
@@ -74,18 +109,61 @@ public class AssignBeauticianJPanel extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        //        userProcessContainer.remove(this);
-        //        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        //        layout.previous(userProcessContainer);
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void populate() {
+        DefaultTableModel model = (DefaultTableModel) bauticianName.getModel();
+        model.setRowCount(0);
+        
+        for(BeauticianWorker beautician:ecosystem.getBeauticianDirectory().getBeauticianList()){
+            if(beautician.getAvailability()==true){
+               Object[] row = new Object[1];           
+                row[0] = beautician;
+                model.addRow(row);
+            }
+            }
+    }
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = bauticianName.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null,"Please select a row from the table to view details","Warning",JOptionPane.WARNING_MESSAGE);
+        }
+        else
+        {
+
+            BeauticianWorker beauty  = (BeauticianWorker)bauticianName.getValueAt(selectedRow, 0);
+            beauty.getBeauticianRequestList().add(request);
+            beauty.setAvailability(false);
+            request.setStatus("Assigned Beautician");
+
+            for(Customer customer:ecosystem.getCustomerDirectory().getCustomerList()){
+                if(request.getCustomerName().equals(customer.getUsername())){
+                    for(HomePaintingWorkRequest request : customer.getHomePaintingWorkRequestList()){
+                        if(request.getStatus().equals("In Progress")){
+                            request.setStatus("Assigned Beautician");
+                        }
+                    }
+                }
+            }
+            workAreaContainer.remove(this);
+            CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+            layout.previous(workAreaContainer);
+
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
+    private javax.swing.JTable bauticianName;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

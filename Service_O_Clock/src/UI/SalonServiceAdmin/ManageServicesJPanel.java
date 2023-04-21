@@ -4,6 +4,16 @@
  */
 package UI.SalonServiceAdmin;
 
+import Business.Ecosystem;
+import HomePainting.HomePainting;
+import HomePainting.PaintingPackages;
+import SalonServices.Salon;
+import UserAccounts.UserAccounts;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author tanujkodali
@@ -13,8 +23,20 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageRequestJPanel
      */
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    
     public ManageServicesJPanel() {
         initComponents();
+    }
+
+    public ManageServicesJPanel(JPanel workAreaContainer, UserAccounts userAccount, Ecosystem ecosystem) {
+        initComponents();
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+        populateTable();
     }
 
     /**
@@ -29,14 +51,14 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        salonTable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        serviceName = new javax.swing.JTextField();
+        description = new javax.swing.JTextField();
+        type = new javax.swing.JTextField();
+        addServicesButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -49,8 +71,8 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/SalonServiceAdmin/salon2.jpeg"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 112, 307, 269));
 
-        jTable1.setBackground(new java.awt.Color(255, 204, 204));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        salonTable.setBackground(new java.awt.Color(255, 204, 204));
+        salonTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -66,7 +88,7 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(salonTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(313, 94, -1, 181));
 
@@ -81,13 +103,18 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel5.setText("Type:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 390, -1, -1));
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 298, 139, -1));
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 342, 139, -1));
-        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 385, 139, -1));
+        add(serviceName, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 298, 139, -1));
+        add(description, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 342, 139, -1));
+        add(type, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 385, 139, -1));
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton1.setText("Add Services");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 438, 114, 39));
+        addServicesButton.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        addServicesButton.setText("Add Services");
+        addServicesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addServicesButtonActionPerformed(evt);
+            }
+        });
+        add(addServicesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 438, 114, 39));
 
         backButton.setBackground(new java.awt.Color(133, 211, 255));
         backButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
@@ -102,24 +129,88 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        //        userProcessContainer.remove(this);
-        //        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        //        layout.previous(userProcessContainer);
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
     }//GEN-LAST:event_backButtonActionPerformed
 
+    private void addServicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addServicesButtonActionPerformed
+        // TODO add your handling code here:
+        String name = serviceName.getText();
+        String desc = description.getText();
+        String color = type.getText();
+
+        try {
+            if(name == null || name.isEmpty()){
+                throw new NullPointerException("Service Name field cannot be Empty !!!");
+            }
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Service Name field cannot be Empty !!!");
+            return;
+        }
+
+        try {
+            if(desc==null || desc.isEmpty()){
+                throw new NullPointerException("Description field cannot be Empty !!!");
+            }
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Description field cannot be Empty !!!");
+            return;
+        }
+
+        try {
+            if(color==null || color.isEmpty()){
+                throw new NullPointerException("Color Field cannot be empty !!!");
+            }
+        }  catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Color Field cannot be empty !!!");
+            return;
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Invalid Color !!!");
+            return;
+        }
+
+        for(Salon salon:ecosystem.getSalonDirectory().getSalonsList()){
+            if(salon.getUsername().equals(userAccount.getUsername())){
+                ecosystem.getSalonDirectory().addServiceTypes(salon, name, desc, name);
+            }
+        }
+
+        serviceName.setText("");
+        description.setText("");
+        type.setText("");
+        populateTable();
+    }//GEN-LAST:event_addServicesButtonActionPerformed
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) salonTable.getModel();
+        model.setRowCount(0);
+
+        for (Salon ss:ecosystem.getSalonDirectory().getSalonsList()) {
+            if (ss.getUsername().equals(userAccount.getUsername())) {
+               for(SalonServices.SalonServicesOffered services: ss.getServicesOfferedList()){
+                Object[] row = new Object[3];
+                row[0] = services.getServiceName();
+                row[1] = services.getServiceDescription();
+                row[2] = services.getServiceType();
+                model.addRow(row);
+               } 
+            } 
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addServicesButton;
     private javax.swing.JButton backButton;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField description;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable salonTable;
+    private javax.swing.JTextField serviceName;
+    private javax.swing.JTextField type;
     // End of variables declaration//GEN-END:variables
 }

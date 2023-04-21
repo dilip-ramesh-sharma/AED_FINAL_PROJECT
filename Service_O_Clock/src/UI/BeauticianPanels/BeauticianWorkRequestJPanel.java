@@ -4,6 +4,14 @@
  */
 package UI.BeauticianPanels;
 
+import Beautician.BeauticianWorker;
+import Business.Ecosystem;
+import Customer.Customer;
+import UserAccounts.UserAccounts;
+import WorkQueue.SalonWorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 91730
@@ -13,8 +21,21 @@ public class BeauticianWorkRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BeauticianWorkRequestJPanel
      */
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    SalonWorkRequest request;
+    
     public BeauticianWorkRequestJPanel() {
         initComponents();
+    }
+
+    BeauticianWorkRequestJPanel(JPanel workAreaContainer, SalonWorkRequest request, Ecosystem ecosystem, UserAccounts userAccount) {
+        initComponents();
+        this.workAreaContainer = workAreaContainer;
+        this.request=request;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
     }
 
     /**
@@ -26,15 +47,20 @@ public class BeauticianWorkRequestJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        completeBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton1.setText("Completed");
+        completeBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        completeBtn.setText("Completed");
+        completeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                completeBtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/BeauticianPanels/images.jpeg"))); // NOI18N
 
@@ -60,7 +86,7 @@ public class BeauticianWorkRequestJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(235, 235, 235)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(completeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(225, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
@@ -76,7 +102,7 @@ public class BeauticianWorkRequestJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
-                        .addComponent(jButton1)
+                        .addComponent(completeBtn)
                         .addGap(34, 34, 34)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -88,15 +114,37 @@ public class BeauticianWorkRequestJPanel extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        //        userProcessContainer.remove(this);
-        //        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        //        layout.previous(userProcessContainer);
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void completeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_completeBtnActionPerformed
+        // TODO add your handling code here:
+        request.setStatus("Completed");
+        for(Customer cust:ecosystem.getCustomerDirectory().getCustomerList()){
+            if(request.getCustomerName().equals(cust.getCustomerName())){
+                for(SalonWorkRequest request : cust.getSalonWorkRequestList()){
+                    if(request.getStatus().equals("Assigned Field Worker")) {
+                        request.setStatus("Completed");
+                    }
+                }
+            }
+        }
+        for(BeauticianWorker beautician : ecosystem.getBeauticianDirectory().getBeauticianList()){
+            if(beautician.getBeauticianUsrnme().equals(userAccount.getUsername())){
+                beautician.setAvailability(true);
+            }
+        }
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
+    }//GEN-LAST:event_completeBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton completeBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

@@ -4,6 +4,15 @@
  */
 package UI.SalonServiceAdmin;
 
+import Business.Ecosystem;
+import Customer.Customer;
+import UserAccounts.UserAccounts;
+import WorkQueue.HomePaintingWorkRequest;
+import WorkQueue.SalonWorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author tanujkodali
@@ -13,8 +22,21 @@ public class RequestDetailsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form RequestDetailsJPanel
      */
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    private SalonWorkRequest request;
+    
     public RequestDetailsJPanel() {
         initComponents();
+    }
+
+    public RequestDetailsJPanel(JPanel workAreaContainer, UserAccounts userAccount, SalonWorkRequest request, Ecosystem ecosystem) {
+        initComponents();
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+        this.request = request;
     }
 
     /**
@@ -28,11 +50,11 @@ public class RequestDetailsJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        serviceTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        specialInstruction = new javax.swing.JTextField();
+        acceptButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
 
@@ -43,19 +65,10 @@ public class RequestDetailsJPanel extends javax.swing.JPanel {
         jLabel1.setText("Request Details");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 6, -1, -1));
 
-        jTable1.setBackground(new java.awt.Color(255, 204, 204));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        serviceTable.setBackground(new java.awt.Color(255, 204, 204));
+        serviceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Service Name", "Description", "Type"
@@ -69,22 +82,32 @@ public class RequestDetailsJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(serviceTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, 156));
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setText("Special Instruction:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 280, -1, -1));
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 275, 239, -1));
+        add(specialInstruction, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 275, 239, -1));
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton1.setText("Accept ");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 352, -1, -1));
+        acceptButton.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        acceptButton.setText("Accept ");
+        acceptButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptButtonActionPerformed(evt);
+            }
+        });
+        add(acceptButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 352, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton2.setText("Cancel");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 352, -1, -1));
+        cancelButton.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+        add(cancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 352, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/SalonServiceAdmin/salon6.jpeg"))); // NOI18N
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, -1, 276));
@@ -102,21 +125,73 @@ public class RequestDetailsJPanel extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        //        userProcessContainer.remove(this);
-        //        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        //        layout.previous(userProcessContainer);
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptButtonActionPerformed
+        // TODO add your handling code here:
+        if(request.getStatus().equals("In Progress")) {
+            JOptionPane.showMessageDialog(null, "Already Accepted", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else if(request.getStatus().equals("Assigned Beautician")) {
+            JOptionPane.showMessageDialog(null, "Already Accepted", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else if(request.getStatus().equals("Request Cancelled")) {
+            JOptionPane.showMessageDialog(null, "Request Cancelled Already", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            request.setStatus("In Progress");
+            for(Customer cust:ecosystem.getCustomerDirectory().getCustomerList()){
+                if(request.getCustomerName().equals(cust.getCustomerName())){
+                    for(SalonWorkRequest request : cust.getSalonWorkRequestList()){
+                        if(request.getStatus().equals("New Request")) {
+                            request.setStatus("In Progress");
+                        }
+
+                    }
+                }
+            }
+            workAreaContainer.remove(this);
+            CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+            layout.previous(workAreaContainer);
+        }
+    }//GEN-LAST:event_acceptButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        // TODO add your handling code here:
+        if(request.getStatus().equals("New Request")) {
+            request.setStatus("Request Cancelled");
+            for(Customer cust:ecosystem.getCustomerDirectory().getCustomerList()){
+                if(request.getCustomerName().equals(cust.getUsername())){
+                    for(SalonWorkRequest request : cust.getSalonWorkRequestList()){
+                        if(request.getStatus().equals("New Request")) {
+                            request.setStatus("Request Cancelled");
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Request is Accepted already. Cannot cancel Request !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton acceptButton;
     private javax.swing.JButton backButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable serviceTable;
+    private javax.swing.JTextField specialInstruction;
     // End of variables declaration//GEN-END:variables
 }

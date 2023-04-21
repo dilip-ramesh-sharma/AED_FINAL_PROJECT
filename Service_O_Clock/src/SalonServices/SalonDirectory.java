@@ -59,7 +59,7 @@ public class SalonDirectory {
     
     public void updateSalonInfo(Salon salon, String name, String number, String address, String email){
         salon.setSalonName(name);
-        salon.setSalonEmail(address);
+        salon.setSalonAddress(address);
         salon.setSalonContact(number);
         salon.setSalonEmail(email);
     }

@@ -5,7 +5,7 @@
 package Role;
 
 import Business.Ecosystem;
-import UI.SalonServiceAdmin.SalonAdminWorkAreaJPanel;
+import UI.SalonServiceAdmin.AdminWorkAreaJPanel;
 import UserAccounts.UserAccounts;
 import javax.swing.JPanel;
 
@@ -17,7 +17,7 @@ public class SalonServicesAdminRole extends Role{
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccounts userAccounts, Ecosystem ecosystem) {
-        return new SalonAdminWorkAreaJPanel(userProcessContainer, userAccounts, ecosystem);
+        return new AdminWorkAreaJPanel(userProcessContainer, userAccounts, ecosystem);
     }
     
 }

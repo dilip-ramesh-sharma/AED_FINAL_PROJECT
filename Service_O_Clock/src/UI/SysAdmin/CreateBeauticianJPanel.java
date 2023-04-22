@@ -61,42 +61,50 @@ public class CreateBeauticianJPanel extends javax.swing.JPanel {
         saveBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         orgTable = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
         jLabel1.setText("BEAUTICIAN");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 85, 327, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 327, -1));
 
+        viewBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         viewBtn.setText("View");
         add(viewBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(465, 401, -1, -1));
 
+        updateBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         updateBtn.setText("Update");
-        add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 401, -1, -1));
+        add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 400, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setText("Customer Name:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 191, -1, -1));
 
+        deleteBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         deleteBtn.setText("Delete");
-        add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(705, 401, -1, -1));
+        add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 400, -1, -1));
         add(fieldAdminName, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 191, 127, -1));
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel3.setText("Username:");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 244, -1, -1));
         add(fieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 241, 127, -1));
 
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel4.setText("Password:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 294, 69, -1));
         add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 291, 127, -1));
 
+        saveBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveBtnActionPerformed(evt);
             }
         });
-        add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 361, -1, -1));
+        add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 140, -1));
 
         orgTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -119,7 +127,10 @@ public class CreateBeauticianJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(orgTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 370, 230));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 370, 230));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/SysAdmin/admin3.jpeg"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 0, 1020, 1050));
     }// </editor-fold>//GEN-END:initComponents
 
     private void populateTable() {
@@ -208,6 +219,7 @@ public class CreateBeauticianJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable orgTable;
     private javax.swing.JButton saveBtn;

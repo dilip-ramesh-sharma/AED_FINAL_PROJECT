@@ -49,29 +49,34 @@ public class PestControlOrganisationJPanel extends javax.swing.JPanel {
         pestTechBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         createPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
+        selectPanel.setBackground(new java.awt.Color(255, 255, 255));
         selectPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("Pest Control Organisation");
-        selectPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
+        selectPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
+        pestOrgBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         pestOrgBtn.setText("Create Pest Control Admin");
         pestOrgBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pestOrgBtnActionPerformed(evt);
             }
         });
-        selectPanel.add(pestOrgBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
+        selectPanel.add(pestOrgBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
+        pestTechBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         pestTechBtn.setText("Create Pest Control Technician");
         pestTechBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pestTechBtnActionPerformed(evt);
             }
         });
-        selectPanel.add(pestTechBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
+        selectPanel.add(pestTechBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -79,11 +84,16 @@ public class PestControlOrganisationJPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        selectPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        selectPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, -1));
 
         jSplitPane1.setLeftComponent(selectPanel);
 
+        createPanel.setBackground(new java.awt.Color(255, 255, 255));
         createPanel.setLayout(new java.awt.CardLayout());
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/SysAdmin/pest-control-exterminator-spraying-circle-cartoon-aloysius-patrimonio.jpeg"))); // NOI18N
+        createPanel.add(jLabel2, "card2");
+
         jSplitPane1.setRightComponent(createPanel);
 
         add(jSplitPane1, java.awt.BorderLayout.CENTER);
@@ -120,6 +130,7 @@ public class PestControlOrganisationJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel createPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JButton pestOrgBtn;
     private javax.swing.JButton pestTechBtn;

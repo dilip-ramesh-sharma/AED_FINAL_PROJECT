@@ -55,101 +55,70 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         paintBtn = new javax.swing.JButton();
         shopBtn = new javax.swing.JButton();
         homeRepairBtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
-        jLabel1.setText("Welcome to Service O' Clock,");
+        jLabel1.setText("Welcome to Service O' Clock");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 6, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel2.setText("Select Your Services.....");
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel2.setText("Select Your Services");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 84, 221, 69));
 
         accName.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
+        add(accName, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 92, 221, 43));
 
+        salonBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         salonBtn.setText("Salon Services");
         salonBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salonBtnActionPerformed(evt);
             }
         });
+        add(salonBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 188, -1, -1));
 
+        pestBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         pestBtn.setText("Pest Control Services");
         pestBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pestBtnActionPerformed(evt);
             }
         });
+        add(pestBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 188, -1, -1));
 
+        paintBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         paintBtn.setText("Painting Services");
         paintBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 paintBtnActionPerformed(evt);
             }
         });
+        add(paintBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 188, 150, -1));
 
+        shopBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         shopBtn.setText("Shopping Services");
         shopBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 shopBtnActionPerformed(evt);
             }
         });
+        add(shopBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 271, -1, -1));
 
+        homeRepairBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         homeRepairBtn.setText("Home Repair Services");
         homeRepairBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeRepairBtnActionPerformed(evt);
             }
         });
+        add(homeRepairBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 271, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(accName, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(273, 273, 273)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addComponent(pestBtn)
-                        .addGap(229, 229, 229)
-                        .addComponent(shopBtn)))
-                .addGap(274, 315, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(salonBtn)
-                .addGap(225, 225, 225)
-                .addComponent(paintBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(homeRepairBtn)
-                .addGap(128, 128, 128))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(92, 92, 92)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(accName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addComponent(jLabel2)
-                .addGap(76, 76, 76)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(salonBtn)
-                    .addComponent(paintBtn)
-                    .addComponent(homeRepairBtn))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(shopBtn)
-                    .addComponent(pestBtn))
-                .addContainerGap(216, Short.MAX_VALUE))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Customer/supermarket-customers-cartoon-characters-men-women-shopping-carts-grocery-store-buyers-baskets-full-food-retail-146219013.jpeg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-190, 90, 2420, 1640));
     }// </editor-fold>//GEN-END:initComponents
 
     private void salonBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salonBtnActionPerformed
@@ -198,6 +167,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton homeRepairBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JButton paintBtn;
     private javax.swing.JButton pestBtn;
     private javax.swing.JButton salonBtn;

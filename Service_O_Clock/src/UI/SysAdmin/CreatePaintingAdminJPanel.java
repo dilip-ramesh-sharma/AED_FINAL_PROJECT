@@ -63,57 +63,65 @@ public class CreatePaintingAdminJPanel extends javax.swing.JPanel {
         saveBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         orgTable = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
         jLabel1.setText("PAINTING ORGANIZATION ADMIN");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
 
+        viewBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         viewBtn.setText("View");
         viewBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewBtnActionPerformed(evt);
             }
         });
-        add(viewBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, -1, -1));
+        add(viewBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, -1, -1));
 
+        updateBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         updateBtn.setText("Update");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateBtnActionPerformed(evt);
             }
         });
-        add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 390, -1, -1));
+        add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setText("Admin Name:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
 
+        deleteBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         deleteBtn.setText("Delete");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteBtnActionPerformed(evt);
             }
         });
-        add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 390, -1, -1));
-        add(fieldAdminName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 127, -1));
+        add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 390, -1, -1));
+        add(fieldAdminName, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 127, -1));
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel3.setText("Username:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
-        add(fieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 127, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
+        add(fieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 127, -1));
 
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel4.setText("Password:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, -1, -1));
-        add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 127, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
+        add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 127, -1));
 
+        saveBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveBtnActionPerformed(evt);
             }
         });
-        add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, -1, -1));
+        add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 140, -1));
 
         orgTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,6 +145,9 @@ public class CreatePaintingAdminJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(orgTable);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, 370, 230));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/SysAdmin/download.png"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, -50, 390, 410));
     }// </editor-fold>//GEN-END:initComponents
 
     private void populateTable() {
@@ -331,6 +342,7 @@ public class CreatePaintingAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable orgTable;
     private javax.swing.JButton saveBtn;

@@ -61,8 +61,10 @@ public class StoreCustomerJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         cartBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -70,9 +72,11 @@ public class StoreCustomerJPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe Script", 1, 18)); // NOI18N
         jLabel2.setText("Pick A Salon of your choice:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
 
         requestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,6 +99,8 @@ public class StoreCustomerJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(requestTable);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 580, 538, 155));
+
         orgTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -116,74 +122,28 @@ public class StoreCustomerJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(orgTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 405, 172));
+
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
         jLabel1.setText("STORE SHOPPING DASHBOARD");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 0, -1, -1));
 
+        cartBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         cartBtn.setText("View Services Offered");
         cartBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cartBtnActionPerformed(evt);
             }
         });
+        add(cartBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe Script", 1, 18)); // NOI18N
         jLabel3.setText("Your Service Requests:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 550, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(199, 199, 199)
-                        .addComponent(jLabel1)))
-                .addContainerGap(608, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(345, 345, 345))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(54, 54, 54)
-                            .addComponent(jLabel2))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(75, 75, 75)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(125, 125, 125)
-                            .addComponent(cartBtn)))
-                    .addContainerGap(178, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jButton1)
-                .addGap(104, 104, 104)
-                .addComponent(jLabel1)
-                .addGap(82, 82, 82)
-                .addComponent(jLabel3)
-                .addContainerGap(270, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap(293, Short.MAX_VALUE)
-                    .addComponent(jLabel2)
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGap(18, 18, 18)
-                    .addComponent(cartBtn)
-                    .addGap(48, 48, 48)))
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Customer/customer3.jpeg"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, -670, 2310, 1440));
     }// </editor-fold>//GEN-END:initComponents
 
     private void populateStoreTable() {
@@ -271,6 +231,7 @@ public class StoreCustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable orgTable;

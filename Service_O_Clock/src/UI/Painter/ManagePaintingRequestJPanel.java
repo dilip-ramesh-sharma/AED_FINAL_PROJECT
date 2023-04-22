@@ -4,6 +4,13 @@
  */
 package UI.Painter;
 
+import Business.Ecosystem;
+import UserAccounts.UserAccounts;
+import WorkQueue.HomePaintingWorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 91730
@@ -13,6 +20,21 @@ public class ManagePaintingRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManagePaintingRequestJPanel
      */
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    private HomePaintingWorkRequest request;
+    
+   
+    public ManagePaintingRequestJPanel(JPanel workAreaContainer, UserAccounts userAccount, HomePaintingWorkRequest request,Ecosystem ecosystem) {
+        initComponents();
+        
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+        this.request = request;
+       
+    }
     public ManagePaintingRequestJPanel() {
         initComponents();
     }
@@ -60,13 +82,13 @@ public class ManagePaintingRequestJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+       
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        //        userProcessContainer.remove(this);
-        //        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        //        layout.previous(userProcessContainer);
+               
     }//GEN-LAST:event_backButtonActionPerformed
 
 

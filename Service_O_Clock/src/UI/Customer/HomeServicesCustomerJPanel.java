@@ -59,6 +59,7 @@ public class HomeServicesCustomerJPanel extends javax.swing.JPanel {
         orgTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         cartBtn = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -69,15 +70,15 @@ public class HomeServicesCustomerJPanel extends javax.swing.JPanel {
                 backBtnActionPerformed(evt);
             }
         });
-        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 24, -1, -1));
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe Script", 1, 18)); // NOI18N
         jLabel3.setText("Your Service Requests:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(804, 225, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 420, 330, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe Script", 1, 18)); // NOI18N
         jLabel2.setText("Pick A Home Repair Organisation of your choice:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 225, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
 
         requestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,7 +101,7 @@ public class HomeServicesCustomerJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(requestTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(616, 273, 538, 155));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 460, 538, 155));
 
         orgTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -123,19 +124,23 @@ public class HomeServicesCustomerJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(orgTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 273, 542, 155));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 542, 155));
 
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
         jLabel1.setText("HOME REPAIR SERVICES DASHBOARD");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 114, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
 
+        cartBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         cartBtn.setText("View Services Offered");
         cartBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cartBtnActionPerformed(evt);
             }
         });
-        add(cartBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 446, -1, -1));
+        add(cartBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Customer/customer44.jpeg"))); // NOI18N
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void populateHomeServiceTable() {
@@ -202,6 +207,7 @@ public class HomeServicesCustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable orgTable;

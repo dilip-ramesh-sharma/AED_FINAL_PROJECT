@@ -62,33 +62,38 @@ public class CreateHomeServiceAdminJPanel extends javax.swing.JPanel {
         viewBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
         jLabel1.setText("HOME SERVICE ADMIN ORGANIZATION");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(241, 77, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setText("Admin Name:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 180, -1, -1));
         add(fieldAdminName, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 177, 127, -1));
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel3.setText("Username:");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 228, -1, -1));
         add(fieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 225, 127, -1));
 
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel4.setText("Password:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 283, -1, -1));
         add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 280, 127, -1));
 
+        saveBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveBtnActionPerformed(evt);
             }
         });
-        add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 346, -1, -1));
+        add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 130, -1));
 
         orgTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,14 +115,16 @@ public class CreateHomeServiceAdminJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(431, 168, 378, 203));
 
+        viewBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         viewBtn.setText("View");
         viewBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewBtnActionPerformed(evt);
             }
         });
-        add(viewBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(479, 389, -1, -1));
+        add(viewBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, -1, -1));
 
+        updateBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         updateBtn.setText("Update");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +133,7 @@ public class CreateHomeServiceAdminJPanel extends javax.swing.JPanel {
         });
         add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(594, 389, -1, -1));
 
+        deleteBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         deleteBtn.setText("Delete");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,6 +141,9 @@ public class CreateHomeServiceAdminJPanel extends javax.swing.JPanel {
             }
         });
         add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(714, 389, -1, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/SysAdmin/Admin56.png"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, -60, 420, 470));
     }// </editor-fold>//GEN-END:initComponents
 
     private void populateTable() {
@@ -325,6 +336,7 @@ public class CreateHomeServiceAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable orgTable;
     private javax.swing.JButton saveBtn;

@@ -53,6 +53,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         paintingBtn = new javax.swing.JButton();
         storeBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         customerBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -60,59 +61,68 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
         jLabel1.setText("System Admin Work Area");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, -1));
 
+        salonBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         salonBtn.setText("Salon Services");
         salonBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salonBtnActionPerformed(evt);
             }
         });
-        add(salonBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 227, 120, -1));
+        add(salonBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, 120, -1));
 
+        homeServicesBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         homeServicesBtn.setText("Home Repair Services");
         homeServicesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeServicesBtnActionPerformed(evt);
             }
         });
-        add(homeServicesBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 227, -1, -1));
+        add(homeServicesBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, -1, -1));
 
+        pestControlBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         pestControlBtn.setText("Pest Control Services");
         pestControlBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pestControlBtnActionPerformed(evt);
             }
         });
-        add(pestControlBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(522, 227, -1, -1));
+        add(pestControlBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 230, -1, -1));
 
+        paintingBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         paintingBtn.setText("Painting Services");
         paintingBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 paintingBtnActionPerformed(evt);
             }
         });
-        add(paintingBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, -1, -1));
+        add(paintingBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, -1, -1));
 
+        storeBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         storeBtn.setText("Shopping Services");
         storeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 storeBtnActionPerformed(evt);
             }
         });
-        add(storeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, 140, -1));
+        add(storeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, 180, -1));
 
-        jLabel2.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 18)); // NOI18N
         jLabel2.setText("Enterprises");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(358, 163, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 150, -1));
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/SysAdmin/enterprises.png"))); // NOI18N
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, 846, -1));
+
+        customerBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         customerBtn.setText("Customer");
         customerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 customerBtnActionPerformed(evt);
             }
         });
-        add(customerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, 150, -1));
+        add(customerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 310, 180, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void salonBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salonBtnActionPerformed
@@ -169,6 +179,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton homeServicesBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JButton paintingBtn;
     private javax.swing.JButton pestControlBtn;
     private javax.swing.JButton salonBtn;

@@ -61,35 +61,55 @@ public class CreatePestControlTechnicianJPanel extends javax.swing.JPanel {
         saveBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         orgTable = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
         jLabel1.setText("PEST CONTROL TECHNICIAN");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 6, 327, -1));
 
+        viewBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         viewBtn.setText("View");
         viewBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewBtnActionPerformed(evt);
             }
         });
+        add(viewBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, -1, -1));
 
+        updateBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         updateBtn.setText("Update");
+        add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 410, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setText(" Name:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 195, -1, -1));
 
+        deleteBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         deleteBtn.setText("Delete");
+        add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 410, -1, -1));
+        add(fieldAdminName, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 190, 127, -1));
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel3.setText("Username:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 243, 74, -1));
+        add(fieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 244, 127, -1));
 
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel4.setText("Password:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 293, 69, -1));
+        add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 298, 127, -1));
 
+        saveBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveBtnActionPerformed(evt);
             }
         });
+        add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 342, 127, -1));
 
         orgTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -112,78 +132,10 @@ public class CreatePestControlTechnicianJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(orgTable);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(75, 75, 75)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fieldAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(saveBtn)))
-                        .addGap(117, 117, 117)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(461, 461, 461)
-                        .addComponent(viewBtn)
-                        .addGap(63, 63, 63)
-                        .addComponent(updateBtn)
-                        .addGap(49, 49, 49)
-                        .addComponent(deleteBtn)))
-                .addContainerGap(43, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(245, 245, 245))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(jLabel1)
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(jLabel3)
-                                .addGap(34, 34, 34)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(fieldAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addGap(28, 28, 28)
-                                .addComponent(fieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(fieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
-                                .addComponent(saveBtn)))))
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(viewBtn)
-                    .addComponent(updateBtn)
-                    .addComponent(deleteBtn))
-                .addContainerGap(47, Short.MAX_VALUE))
-        );
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 370, 230));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/SysAdmin/pest-control-exterminator-spraying-circle-cartoon-aloysius-patrimonio.jpeg"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 790, 525));
     }// </editor-fold>//GEN-END:initComponents
 
     private void populateTable() {
@@ -276,6 +228,7 @@ public class CreatePestControlTechnicianJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable orgTable;
     private javax.swing.JButton saveBtn;

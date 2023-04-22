@@ -49,11 +49,16 @@ public class PaintingOrganisationJPanel extends javax.swing.JPanel {
         painter = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         createPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
+        selectPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("Painting Organisation");
 
+        paintAdmin.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         paintAdmin.setText("Create Painting Org Admin");
         paintAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +66,7 @@ public class PaintingOrganisationJPanel extends javax.swing.JPanel {
             }
         });
 
+        painter.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         painter.setText("Create Painter");
         painter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,14 +88,17 @@ public class PaintingOrganisationJPanel extends javax.swing.JPanel {
             .addGroup(selectPanelLayout.createSequentialGroup()
                 .addGroup(selectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(selectPanelLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(selectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(painter)
-                            .addComponent(paintAdmin)))
-                    .addGroup(selectPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1))
+                    .addGroup(selectPanelLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel1))
+                    .addGroup(selectPanelLayout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(painter))
+                    .addGroup(selectPanelLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(paintAdmin)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         selectPanelLayout.setVerticalGroup(
@@ -97,18 +106,24 @@ public class PaintingOrganisationJPanel extends javax.swing.JPanel {
             .addGroup(selectPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addGap(80, 80, 80)
-                .addComponent(jLabel1)
-                .addGap(34, 34, 34)
+                .addGap(32, 32, 32)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
                 .addComponent(paintAdmin)
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
                 .addComponent(painter)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(selectPanel);
 
+        createPanel.setBackground(new java.awt.Color(255, 255, 255));
         createPanel.setLayout(new java.awt.CardLayout());
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/SysAdmin/painting1.jpeg"))); // NOI18N
+        createPanel.add(jLabel2, "card2");
+
         jSplitPane1.setRightComponent(createPanel);
 
         add(jSplitPane1, java.awt.BorderLayout.CENTER);
@@ -145,6 +160,7 @@ public class PaintingOrganisationJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel createPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JButton paintAdmin;
     private javax.swing.JButton painter;

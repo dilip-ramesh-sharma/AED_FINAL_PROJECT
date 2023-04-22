@@ -62,42 +62,51 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
         saveBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         orgTable = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
         jLabel1.setText("CUSTOMER");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 85, 327, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 327, -1));
 
+        viewBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         viewBtn.setText("View");
         add(viewBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(465, 401, -1, -1));
 
+        updateBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         updateBtn.setText("Update");
         add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 401, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setText("Customer Name:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 191, -1, -1));
 
+        deleteBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         deleteBtn.setText("Delete");
         add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(705, 401, -1, -1));
         add(fieldAdminName, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 191, 127, -1));
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel3.setText("Username:");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 244, -1, -1));
         add(fieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 241, 127, -1));
 
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel4.setText("Password:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 294, 69, -1));
         add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 291, 127, -1));
 
+        saveBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveBtnActionPerformed(evt);
             }
         });
-        add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 361, -1, -1));
+        add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 120, -1));
 
         orgTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -121,6 +130,18 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(orgTable);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 370, 230));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/SysAdmin/customerlogin.jpeg"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, -90, 540, 500));
+
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     
@@ -199,16 +220,28 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        workAreaContainer.remove(this);
+        Component[] componentArray = workAreaContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        SystemAdminWorkAreaJPanel sysAdmin = (SystemAdminWorkAreaJPanel) component;
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteBtn;
     private javax.swing.JTextField fieldAdminName;
     private javax.swing.JTextField fieldPassword;
     private javax.swing.JTextField fieldUsername;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable orgTable;
     private javax.swing.JButton saveBtn;

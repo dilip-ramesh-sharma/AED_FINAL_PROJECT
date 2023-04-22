@@ -68,8 +68,10 @@ public class PaintingCartJPanel extends javax.swing.JPanel {
         removeBtn = new javax.swing.JButton();
         placebtn = new javax.swing.JButton();
         fieldComments = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -77,13 +79,16 @@ public class PaintingCartJPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 12, -1, -1));
 
+        addCartBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         addCartBtn.setText("Add to Cart");
         addCartBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addCartBtnActionPerformed(evt);
             }
         });
+        add(addCartBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 222, -1, -1));
 
         serviceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,15 +111,24 @@ public class PaintingCartJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(serviceTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 109, -1, 95));
+
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
         jLabel1.setText("YOUR PAINTING SERVICES CART");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 6, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel4.setText("Comments:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 562, -1, -1));
+        add(fieldAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 500, 178, -1));
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel3.setText("Service Address:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 505, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         jLabel2.setText("YOUR CART");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 350, -1, -1));
 
         cartTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,94 +151,29 @@ public class PaintingCartJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(cartTable);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(541, 381, 426, 91));
+
+        removeBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         removeBtn.setText("Remove from Cart");
         removeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeBtnActionPerformed(evt);
             }
         });
+        add(removeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(791, 626, -1, -1));
 
+        placebtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         placebtn.setText("Place Request");
         placebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 placebtnActionPerformed(evt);
             }
         });
+        add(placebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 626, -1, -1));
+        add(fieldComments, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 557, 178, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(169, 169, 169)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(172, 172, 172)
-                                .addComponent(addCartBtn)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 445, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(placebtn)
-                        .addGap(61, 61, 61)
-                        .addComponent(removeBtn)
-                        .addGap(66, 66, 66))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(169, 169, 169))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel3))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(fieldAddress)
-                                .addComponent(fieldComments, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(104, 104, 104))))
-                .addGap(184, 184, 184))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jButton1)
-                .addGap(52, 52, 52)
-                .addComponent(jLabel1)
-                .addGap(71, 71, 71)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(addCartBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(fieldAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(fieldComments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(placebtn)
-                    .addComponent(removeBtn))
-                .addGap(90, 90, 90))
-        );
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Customer/painiting1.jpeg"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, -220, 1750, 950));
     }// </editor-fold>//GEN-END:initComponents
 
     private void populatePaintTable() {
@@ -332,6 +281,7 @@ public class PaintingCartJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton placebtn;

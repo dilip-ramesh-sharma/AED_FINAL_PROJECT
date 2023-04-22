@@ -70,8 +70,10 @@ public class StoreCartJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         phoneNo = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -79,9 +81,11 @@ public class StoreCartJPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 12, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
         jLabel1.setText("YOUR SHOPPING CART");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 6, -1, -1));
 
         serviceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,12 +108,16 @@ public class StoreCartJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(serviceTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 109, 503, 92));
+
+        addBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         addBtn.setText("Add to Cart");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBtnActionPerformed(evt);
             }
         });
+        add(addBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(235, 219, 141, -1));
 
         cartTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -135,91 +143,37 @@ public class StoreCartJPanel extends javax.swing.JPanel {
             cartTable.getColumnModel().getColumn(4).setHeaderValue("Amount Paid");
         }
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 386, 426, 91));
+
+        removeBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         removeBtn.setText("Remove from Cart");
         removeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeBtnActionPerformed(evt);
             }
         });
+        add(removeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(847, 598, -1, -1));
 
+        placebtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         placebtn.setText("Place Order");
         placebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 placebtnActionPerformed(evt);
             }
         });
+        add(placebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(706, 598, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         jLabel2.setText("YOUR CART");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(795, 351, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel3.setText("Phone Number:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(651, 524, -1, -1));
+        add(phoneNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(787, 519, 200, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(238, 238, 238)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(203, 203, 203)
-                                        .addComponent(addBtn)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(169, 169, 169)))))))
-                .addGap(229, 229, 229))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(placebtn)
-                        .addGap(53, 53, 53)
-                        .addComponent(removeBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(32, 32, 32)
-                        .addComponent(phoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(269, 269, 269))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jButton1)
-                .addGap(45, 45, 45)
-                .addComponent(jLabel1)
-                .addGap(71, 71, 71)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(addBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(316, 316, 316)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(phoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(placebtn)
-                    .addComponent(removeBtn))
-                .addGap(101, 101, 101))
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Customer/store.jpeg"))); // NOI18N
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(579, -15, 930, 430));
     }// </editor-fold>//GEN-END:initComponents
 
     private void populateProductTable() {
@@ -339,6 +293,7 @@ public class StoreCartJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField phoneNo;

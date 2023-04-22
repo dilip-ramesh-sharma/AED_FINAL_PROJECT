@@ -50,30 +50,34 @@ public class SalonOrganisationJPanel extends javax.swing.JPanel {
         beauticianBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         createPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
         selectPanel.setBackground(new java.awt.Color(255, 255, 255));
         selectPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("SALON ORGANISATION");
-        selectPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+        selectPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
 
+        salonAdminBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         salonAdminBtn.setText("Create Salon Admin");
         salonAdminBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salonAdminBtnActionPerformed(evt);
             }
         });
-        selectPanel.add(salonAdminBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+        selectPanel.add(salonAdminBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
+        beauticianBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         beauticianBtn.setText("Create Beautician");
         beauticianBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 beauticianBtnActionPerformed(evt);
             }
         });
-        selectPanel.add(beauticianBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
+        selectPanel.add(beauticianBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +89,13 @@ public class SalonOrganisationJPanel extends javax.swing.JPanel {
 
         jSplitPane1.setTopComponent(selectPanel);
 
-        createPanel.setLayout(new java.awt.CardLayout());
+        createPanel.setBackground(new java.awt.Color(255, 255, 255));
+        createPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/SysAdmin/360_F_291376220_4vAflyBidF8fl0JesmL26rTExhZHd72Y.jpeg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        createPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 646, 485));
+
         jSplitPane1.setRightComponent(createPanel);
 
         add(jSplitPane1, java.awt.BorderLayout.CENTER);
@@ -123,6 +133,7 @@ public class SalonOrganisationJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel createPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JButton salonAdminBtn;
     private javax.swing.JPanel selectPanel;

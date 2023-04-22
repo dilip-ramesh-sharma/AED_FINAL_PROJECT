@@ -37,8 +37,11 @@ public class CustomerDirectory {
     }
     
     public Customer createCustomer(String username){
-        customer = new Customer(username);
-        customerList.add(customer);
+        Customer customer = new Customer(username);
+        if(customerList!=null){
+          customerList.add(customer);  
+        }
+        
         return customer;
     }
     

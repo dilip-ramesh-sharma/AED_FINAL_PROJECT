@@ -49,11 +49,16 @@ public class HomeServicesOrganisationJPanel extends javax.swing.JPanel {
         homeTechBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         createPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
+        selectPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("Home Services Organisation");
 
+        homeAdminBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         homeAdminBtn.setText("Create Home Service Admin");
         homeAdminBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +66,7 @@ public class HomeServicesOrganisationJPanel extends javax.swing.JPanel {
             }
         });
 
+        homeTechBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         homeTechBtn.setText("Create Home Service Technician");
         homeTechBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,14 +88,16 @@ public class HomeServicesOrganisationJPanel extends javax.swing.JPanel {
             .addGroup(selectPanelLayout.createSequentialGroup()
                 .addGroup(selectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(selectPanelLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
+                        .addContainerGap()
+                        .addComponent(jButton1))
+                    .addGroup(selectPanelLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(homeTechBtn))
+                    .addGroup(selectPanelLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
                         .addGroup(selectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(homeTechBtn)
-                            .addComponent(homeAdminBtn)))
-                    .addGroup(selectPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)))
+                            .addComponent(homeAdminBtn))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         selectPanelLayout.setVerticalGroup(
@@ -97,18 +105,23 @@ public class HomeServicesOrganisationJPanel extends javax.swing.JPanel {
             .addGroup(selectPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addGap(89, 89, 89)
-                .addComponent(jLabel1)
-                .addGap(29, 29, 29)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
                 .addComponent(homeAdminBtn)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(homeTechBtn)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addContainerGap(307, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(selectPanel);
 
+        createPanel.setBackground(new java.awt.Color(255, 255, 255));
         createPanel.setLayout(new java.awt.CardLayout());
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/SysAdmin/homeservice.jpeg"))); // NOI18N
+        createPanel.add(jLabel2, "card2");
+
         jSplitPane1.setRightComponent(createPanel);
 
         add(jSplitPane1, java.awt.BorderLayout.CENTER);
@@ -147,6 +160,7 @@ public class HomeServicesOrganisationJPanel extends javax.swing.JPanel {
     private javax.swing.JButton homeTechBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel selectPanel;
     // End of variables declaration//GEN-END:variables

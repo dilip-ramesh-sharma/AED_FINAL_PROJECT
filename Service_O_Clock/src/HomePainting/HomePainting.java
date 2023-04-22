@@ -16,6 +16,7 @@ public class HomePainting {
     int requestId = 1;
     private ArrayList<PaintingPackages> paintingPackageList;
     private ArrayList<HomePaintingWorkRequest> homePaintingRequestList;
+    private String paintName;
     private String paintType;
     private String paintArea;
     private String paintContact;
@@ -24,6 +25,14 @@ public class HomePainting {
         this.username = username;
         paintingPackageList = new ArrayList<PaintingPackages>();
         homePaintingRequestList = new ArrayList<HomePaintingWorkRequest>();
+    }
+
+    public String getPaintName() {
+        return paintName;
+    }
+
+    public void setPaintName(String paintName) {
+        this.paintName = paintName;
     }
 
     public String getUsername() {
@@ -90,7 +99,7 @@ public class HomePainting {
         paintingPackageList.remove(paintPackage);
     }
     
-    public void newPaintingRequest(String paintPackageName, String custName, String painter, ArrayList<PaintingPackages> paintingRequest, String serviceAddress, String person, String instructions) {
+    public void newPaintingRequest(String paintPackageName, String custName, String painter, ArrayList<PaintingPackages> paintingRequest, String serviceAddress,String instructions) {
         HomePaintingWorkRequest paintReq = new HomePaintingWorkRequest();
         paintReq.setPaintingRequestId(String.valueOf(requestId));
         paintReq.setCustName(custName);
@@ -98,7 +107,6 @@ public class HomePainting {
         paintReq.setPainterName(painter);
         paintReq.setPaintingRequest(paintingRequest);
         paintReq.setServiceAddress(serviceAddress);
-        paintReq.setPersonName(person);
         paintReq.setInstructions(instructions);
         paintReq.setStatus("New Painting Request");
         homePaintingRequestList.add(paintReq);

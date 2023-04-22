@@ -18,6 +18,32 @@ public class StoreDirectory {
     public StoreDirectory(){
         this.storeList = new ArrayList<Store>();
     }
+
+    public ArrayList<Store> getStoreList() {
+        return storeList;
+    }
+
+    public void setStoreList(ArrayList<Store> storeList) {
+        this.storeList = storeList;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
+
+    public Products getProducts() {
+        return products;
+    }
+
+    public void setProducts(Products products) {
+        this.products = products;
+    }
+    
+    
     
     public Store createStore(String storeName){
         store = new Store(storeName);

@@ -66,7 +66,15 @@ public class Technician {
     public void setAvailability(Boolean availability) {
         this.availability = availability;
     }
-    
+
+    public ArrayList<HomeServicesWorkRequest> getHomeServiceRequestList() {
+        return homeServiceRequestList;
+    }
+
+    public void setHomeServiceRequestList(ArrayList<HomeServicesWorkRequest> homeServiceRequestList) {
+        this.homeServiceRequestList = homeServiceRequestList;
+    }
+
     public void newRequest(String homeServiceCompanyName, String custName, String homeServiceTech, ArrayList<Service> request, String cost, String technicianAddress) {
        HomeServicesWorkRequest homeWork = new HomeServicesWorkRequest();
      

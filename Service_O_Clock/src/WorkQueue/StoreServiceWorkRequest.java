@@ -12,17 +12,35 @@ import java.util.ArrayList;
  * @author hi
  */
 public class StoreServiceWorkRequest {
-   private String storeId;
+    private String storeId;
     private String storeName;
+    private String storeAddress;
+    private String status;
     private String custName;
     private String custContact;
     private ArrayList<Products> products;
     private int totalPurchase = 0;
     
     public StoreServiceWorkRequest(){
-        
+        this.products = new ArrayList<Products>();
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStoreAddress() {
+        return storeAddress;
+    }
+
+    public void setStoreAddress(String storeAddress) {
+        this.storeAddress = storeAddress;
+    }
+    
     public String getStoreId() {
         return storeId;
     }

@@ -5,7 +5,10 @@
 package UI.Customer;
 
 import Business.Ecosystem;
+import UI.SysAdmin.SystemAdminWorkAreaJPanel;
 import UserAccounts.UserAccounts;
+import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JPanel;
 
 /**
@@ -32,6 +35,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         this.workAreaContainer = workAreaContainer;
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
+        accName.setText(userAccount.getName());
     }
 
     /**
@@ -44,31 +48,159 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        accName = new javax.swing.JLabel();
+        salonBtn = new javax.swing.JButton();
+        pestBtn = new javax.swing.JButton();
+        paintBtn = new javax.swing.JButton();
+        shopBtn = new javax.swing.JButton();
+        homeRepairBtn = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 0));
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Customer");
+        jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
+        jLabel1.setText("Welcome to Service O' Clock,");
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel2.setText("Select Your Services.....");
+
+        accName.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
+
+        salonBtn.setText("Salon Services");
+        salonBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salonBtnActionPerformed(evt);
+            }
+        });
+
+        pestBtn.setText("Pest Control Services");
+        pestBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pestBtnActionPerformed(evt);
+            }
+        });
+
+        paintBtn.setText("Painting Services");
+        paintBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paintBtnActionPerformed(evt);
+            }
+        });
+
+        shopBtn.setText("Shopping Services");
+        shopBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shopBtnActionPerformed(evt);
+            }
+        });
+
+        homeRepairBtn.setText("Home Repair Services");
+        homeRepairBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeRepairBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(349, 349, 349)
-                .addComponent(jLabel1)
-                .addContainerGap(413, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(accName, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(273, 273, 273)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(218, 218, 218)
+                        .addComponent(pestBtn)
+                        .addGap(229, 229, 229)
+                        .addComponent(shopBtn)))
+                .addGap(274, 315, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(salonBtn)
+                .addGap(225, 225, 225)
+                .addComponent(paintBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(homeRepairBtn)
+                .addGap(128, 128, 128))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(jLabel1)
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addGap(92, 92, 92)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(accName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addComponent(jLabel2)
+                .addGap(76, 76, 76)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(salonBtn)
+                    .addComponent(paintBtn)
+                    .addComponent(homeRepairBtn))
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(shopBtn)
+                    .addComponent(pestBtn))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void salonBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salonBtnActionPerformed
+        // TODO add your handling code here:
+        SalonCustomerJPanel salonJPanel = new SalonCustomerJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Salon Organization Service", salonJPanel);
+        CardLayout layout=(CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
+    }//GEN-LAST:event_salonBtnActionPerformed
+
+    private void pestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pestBtnActionPerformed
+        // TODO add your handling code here:
+        PestControlCustomerJPanel pestJPanel = new PestControlCustomerJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Pest Control Organization Service", pestJPanel);
+        CardLayout layout=(CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
+    }//GEN-LAST:event_pestBtnActionPerformed
+
+    private void homeRepairBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeRepairBtnActionPerformed
+        // TODO add your handling code here:
+        HomeServicesCustomerJPanel homeServiceJPanel = new HomeServicesCustomerJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Home Repair Organization Service", homeServiceJPanel);
+        CardLayout layout=(CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
+    }//GEN-LAST:event_homeRepairBtnActionPerformed
+
+    private void shopBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shopBtnActionPerformed
+        // TODO add your handling code here:
+        StoreCustomerJPanel storeServiceJPanel = new StoreCustomerJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Store Organization Service", storeServiceJPanel);
+        CardLayout layout=(CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
+    }//GEN-LAST:event_shopBtnActionPerformed
+
+    private void paintBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paintBtnActionPerformed
+        // TODO add your handling code here:
+        PaintingCustomerJPanel paintServiceJPanel = new PaintingCustomerJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Painting Organization Service", paintServiceJPanel);
+        CardLayout layout=(CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
+    }//GEN-LAST:event_paintBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel accName;
+    private javax.swing.JButton homeRepairBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton paintBtn;
+    private javax.swing.JButton pestBtn;
+    private javax.swing.JButton salonBtn;
+    private javax.swing.JButton shopBtn;
     // End of variables declaration//GEN-END:variables
 }

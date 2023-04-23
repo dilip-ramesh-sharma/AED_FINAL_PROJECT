@@ -4,10 +4,17 @@
  */
 package UI.HomeServiceTechnicianPanels;
 
+import Beautician.BeauticianWorker;
 import Business.Ecosystem;
+import HomeServiceTechnician.Technician;
+import UI.BeauticianPanels.BeauticianWorkRequestJPanel;
 import UserAccounts.UserAccounts;
+import WorkQueue.HomeServicesWorkRequest;
+import WorkQueue.SalonWorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -32,6 +39,7 @@ public class HomeServiceTechnicianWorkAreaJPanel extends javax.swing.JPanel {
         this.workAreaContainer = workAreaContainer;
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
+        populateTable();
     }
 
     /**
@@ -46,9 +54,9 @@ public class HomeServiceTechnicianWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        backButton = new javax.swing.JButton();
+        serviceRequest = new javax.swing.JTable();
+        prcoess = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -60,8 +68,8 @@ public class HomeServiceTechnicianWorkAreaJPanel extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/HomeServiceTechnicianPanels/services1.jpeg"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, 160));
 
-        jTable1.setBackground(new java.awt.Color(255, 204, 204));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        serviceRequest.setBackground(new java.awt.Color(255, 204, 204));
+        serviceRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -77,48 +85,90 @@ public class HomeServiceTechnicianWorkAreaJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(serviceRequest);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 130, 597, 135));
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton1.setText("Process");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        prcoess.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        prcoess.setText("Process");
+        prcoess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                prcoessActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(582, 283, -1, -1));
+        add(prcoess, new org.netbeans.lib.awtextra.AbsoluteConstraints(582, 283, -1, -1));
 
-        backButton.setBackground(new java.awt.Color(133, 211, 255));
-        backButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
+        back.setBackground(new java.awt.Color(133, 211, 255));
+        back.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        back.setText("Back");
+        back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
+                backActionPerformed(evt);
             }
         });
-        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, 30));
+        add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
-               workAreaContainer.remove(this);
+                workAreaContainer.remove(this);
                 CardLayout layout = (CardLayout) workAreaContainer.getLayout();
                 layout.previous(workAreaContainer);
-    }//GEN-LAST:event_backButtonActionPerformed
+    }//GEN-LAST:event_backActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void prcoessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prcoessActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+        int selectedRow = serviceRequest.getSelectedRow();
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null,"Select a Row");
+            return;
+        }
+        HomeServicesWorkRequest request = (HomeServicesWorkRequest)serviceRequest.getValueAt(selectedRow, 0);
 
+        if(request.getStatus().equals("Completed")){
+            JOptionPane.showMessageDialog(null,"Request already Completed", "Warning", JOptionPane.WARNING_MESSAGE);
+        }else if(request.getStatus().equals("New Request") || request.getStatus().equals("In Progress")){
+            JOptionPane.showMessageDialog(null,"Request is not yet Assigned", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            HomeServiceTechnicianWorkRequestJPanel workService = new HomeServiceTechnicianWorkRequestJPanel(workAreaContainer, request,ecosystem, userAccount);
+            workAreaContainer.add("processWorkRequestJPanel", workService);
+            CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+            layout.next(workAreaContainer);
+        }
+    }//GEN-LAST:event_prcoessActionPerformed
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) serviceRequest.getModel();
+        model.setRowCount(0);
+        
+        for(Technician technician : ecosystem.getHomeServiceTechnicianDirectory().getTechnicianList()){
+            if(technician.getTechnicianUsrnme().equals(userAccount.getUsername())){
+                System.out.println("Hello1");    
+                for(HomeServicesWorkRequest request : technician.getHomeServiceRequestList()){
+                System.out.println("Hello2");    
+                    
+                Object[] row = new Object[6];
+                
+                row[0] = request;
+                row[1] = request.getHomeServiceCompanyName();
+                row[2] = request.getCustName();
+                row[3] = request.getServiceAddress();
+                row[4] = request.getStatus();
+                row[5] = request.getMessage();
+                model.addRow(row);     
+                }
+            } 
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backButton;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton prcoess;
+    private javax.swing.JTable serviceRequest;
     // End of variables declaration//GEN-END:variables
 }

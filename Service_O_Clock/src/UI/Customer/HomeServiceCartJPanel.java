@@ -38,6 +38,7 @@ public class HomeServiceCartJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
         this.homeService = homeService;
+        populateService();
     }
 
     
@@ -124,10 +125,7 @@ public class HomeServiceCartJPanel extends javax.swing.JPanel {
 
         cartTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Service Type", "Service Description", "Service Type"
@@ -147,10 +145,7 @@ public class HomeServiceCartJPanel extends javax.swing.JPanel {
 
         serviceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Service Name", "Service Description", "Service Type"

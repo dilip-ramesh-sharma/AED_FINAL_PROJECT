@@ -58,25 +58,25 @@ public class HomeServiceWorkRequestJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        workerjTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        workerTable = new javax.swing.JTable();
+        assign = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("Assign Worker");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(417, 0, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/HomeServiceAdmin/homeservices8.jpeg"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 654, 421));
 
-        workerjTable.setModel(new javax.swing.table.DefaultTableModel(
+        workerTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
-                "Field Worker Name"
+                "Home Service Worker Name"
             }
         ) {
             Class[] types = new Class [] {
@@ -87,56 +87,22 @@ public class HomeServiceWorkRequestJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(workerjTable);
+        jScrollPane1.setViewportView(workerTable);
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton1.setText("Assign Request To The Selected FieldWorker");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(682, 190, 438, 214));
+
+        assign.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        assign.setText("Assign Request To The Selected Worker");
+        assign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                assignActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(417, 417, 417)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(190, 190, 190)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
-                .addContainerGap(195, Short.MAX_VALUE))
-        );
+        add(assign, new org.netbeans.lib.awtextra.AbsoluteConstraints(712, 422, 396, -1));
     }// </editor-fold>//GEN-END:initComponents
         
 private void populate() {
-        DefaultTableModel model = (DefaultTableModel) workerjTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) workerTable.getModel();
         model.setRowCount(0);
         
         for(Technician hometech:ecosystem.getHomeServiceTechnicianDirectory().getTechnicianList()){
@@ -147,25 +113,25 @@ private void populate() {
             }
             }
 }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void assignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignActionPerformed
         // TODO add your handling code here:
-        int selectedRow = workerjTable.getSelectedRow();
+        int selectedRow = workerTable.getSelectedRow();
         if(selectedRow<0){
             JOptionPane.showMessageDialog(null,"Please select a row from the table to view details","Warning",JOptionPane.WARNING_MESSAGE);
         }
         else
         {
 
-            Technician Hometech  = (Technician)workerjTable.getValueAt(selectedRow, 0);
+            Technician Hometech  = (Technician)workerTable.getValueAt(selectedRow, 0);
            Hometech.getHomeServiceRequestList().add(request);
             Hometech.setAvailability(false);
-            request.setStatus("Assigned Painter");
+            request.setStatus("Assigned ServiceMan");
 
             for(Customer customer:ecosystem.getCustomerDirectory().getCustomerList()){
                 if(request.getCustName().equals(customer.getUsername())){
                     for(HomeServicesWorkRequest request : customer.getHomeServiceWorkRequestList()){
                         if(request.getStatus().equals("In Progress")){
-                            request.setStatus("Assigned Painter");
+                            request.setStatus("Assigned ServiceMan");
                         }
                     }
                 }
@@ -174,7 +140,7 @@ private void populate() {
             CardLayout layout = (CardLayout) workAreaContainer.getLayout();
             layout.previous(workAreaContainer);
             
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_assignActionPerformed
     
     
     }
@@ -183,10 +149,10 @@ private void populate() {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton assign;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable workerjTable;
+    private javax.swing.JTable workerTable;
     // End of variables declaration//GEN-END:variables
 }

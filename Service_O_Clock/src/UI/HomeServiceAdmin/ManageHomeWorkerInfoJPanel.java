@@ -6,6 +6,7 @@ package UI.HomeServiceAdmin;
 
 import Business.Ecosystem;
 import HomeService.HomeService;
+import SalonServices.Salon;
 import UserAccounts.UserAccounts;
 import java.awt.CardLayout;
 import java.util.regex.Pattern;
@@ -35,6 +36,16 @@ public class ManageHomeWorkerInfoJPanel extends javax.swing.JPanel {
         this.workAreaContainer = workAreaContainer;
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
+        
+        entName.setEnabled(false);
+        entAddress.setEnabled(false);
+        entContact.setEnabled(false);
+        entEmail.setEnabled(false);
+        saveBtn.setEnabled(false);
+        updateBtn.setEnabled(true);
+        
+        
+        populateFields();
     }
 
     /**
@@ -61,23 +72,34 @@ public class ManageHomeWorkerInfoJPanel extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("Manage HomeWorker Organisation Information");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 0, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/HomeServiceAdmin/worker3.jpeg"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 123, 323, 341));
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel3.setText("HomeWorker Enterprize Name:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 165, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel4.setText("HomeWorker Enterprize Address:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 223, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel5.setText("HomeWorker PhoneNumber:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 282, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel6.setText("Email:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 339, -1, -1));
+        add(entName, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 166, 167, -1));
+        add(entAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 224, 163, -1));
+        add(entContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 283, 163, -1));
+        add(entEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 340, 163, -1));
 
         updateBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         updateBtn.setText("Update");
@@ -86,6 +108,7 @@ public class ManageHomeWorkerInfoJPanel extends javax.swing.JPanel {
                 updateBtnActionPerformed(evt);
             }
         });
+        add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(529, 437, -1, -1));
 
         saveBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         saveBtn.setText("Save");
@@ -94,6 +117,7 @@ public class ManageHomeWorkerInfoJPanel extends javax.swing.JPanel {
                 saveBtnActionPerformed(evt);
             }
         });
+        add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(653, 437, -1, -1));
 
         jButton3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jButton3.setText("Back");
@@ -102,80 +126,7 @@ public class ManageHomeWorkerInfoJPanel extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(entAddress)
-                                    .addComponent(entContact)
-                                    .addComponent(entEmail))
-                                .addGap(6, 6, 6))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                                .addComponent(entName, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(updateBtn)
-                        .addGap(47, 47, 47)
-                        .addComponent(saveBtn)
-                        .addGap(15, 15, 15))))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(entName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(entAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(entContact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(entEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(updateBtn)
-                            .addComponent(saveBtn))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(32, 32, 32))
-        );
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 546, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -187,6 +138,12 @@ public class ManageHomeWorkerInfoJPanel extends javax.swing.JPanel {
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         // TODO add your handling code here:
+        entName.setEnabled(true);
+        entAddress.setEnabled(true);
+        entContact.setEnabled(true);
+        entEmail.setEnabled(true);
+        saveBtn.setEnabled(true);
+        updateBtn.setEnabled(false);
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
@@ -255,6 +212,16 @@ public class ManageHomeWorkerInfoJPanel extends javax.swing.JPanel {
                                 
     }//GEN-LAST:event_saveBtnActionPerformed
 
+    private void populateFields() {
+        for(HomeService hserivce:ecosystem.getHomeServiceDirectory().getHomeServiceList()){
+           if(hserivce.getUserName().equals(userAccount.getUsername())){
+                entName.setText(hserivce.getHomeServiceName());
+                entAddress.setText(hserivce.getHomeServiceAddress());
+                entContact.setText(hserivce.getHomeServicePhNum());
+                entEmail.setText(hserivce.getHomeServiceEmail());
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField entAddress;

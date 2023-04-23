@@ -35,6 +35,7 @@ public class HomeServicesCustomerJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
         populateHomeServiceTable();
+        populateRequestTable();
        
     }
     public HomeServicesCustomerJPanel() {
@@ -82,10 +83,7 @@ public class HomeServicesCustomerJPanel extends javax.swing.JPanel {
 
         requestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Request ID", "Home Service Name", "Address", "Request Status"
@@ -105,10 +103,7 @@ public class HomeServicesCustomerJPanel extends javax.swing.JPanel {
 
         orgTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Home Service Name", "Home Service Address", "Home Service Contact", "Home Service Email"

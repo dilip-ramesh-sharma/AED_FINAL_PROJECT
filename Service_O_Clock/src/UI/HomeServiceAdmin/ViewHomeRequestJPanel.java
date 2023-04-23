@@ -5,10 +5,16 @@
 package UI.HomeServiceAdmin;
 
 import Business.Ecosystem;
+import Customer.Customer;
+import HomeService.Service;
+import PestControlOrganization.PestControlServices;
 import UserAccounts.UserAccounts;
 import WorkQueue.HomeServicesWorkRequest;
+import WorkQueue.PestControlWorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -35,6 +41,9 @@ public class ViewHomeRequestJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
         this.request = request;
+        
+        populateTable();
+        specialText.setEnabled(false);
     }
     
    
@@ -50,45 +59,52 @@ public class ViewHomeRequestJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        homeTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        specialText = new javax.swing.JTextField();
+        accept = new javax.swing.JButton();
+        cancel = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("View HomeService Request");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        homeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Service Name", "Description", "Type"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(homeTable);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setText("Special Instructions:");
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton1.setText("Accept Request");
-
-        jButton2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton2.setText("Cancel Request");
-
-        jButton3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton3.setText("Back");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        accept.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        accept.setText("Accept Request");
+        accept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                acceptActionPerformed(evt);
+            }
+        });
+
+        cancel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        cancel.setText("Cancel Request");
+        cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelActionPerformed(evt);
+            }
+        });
+
+        back.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        back.setText("Back");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
             }
         });
 
@@ -107,16 +123,16 @@ public class ViewHomeRequestJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(specialText, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(188, 188, 188)
-                        .addComponent(jButton1)
+                        .addComponent(accept)
                         .addGap(50, 50, 50)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton3)))
+                        .addComponent(back)))
                 .addContainerGap(121, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -128,33 +144,98 @@ public class ViewHomeRequestJPanel extends javax.swing.JPanel {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(specialText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(accept)
+                    .addComponent(cancel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(back)
                 .addGap(0, 26, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
         workAreaContainer.remove(this);
         CardLayout layout = (CardLayout) workAreaContainer.getLayout();
         layout.previous(workAreaContainer);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_backActionPerformed
 
+    private void acceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptActionPerformed
+        // TODO add your handling code here:
+        if(request.getStatus().equals("In Progress")) {
+            JOptionPane.showMessageDialog(null, "Already Accepted", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else if(request.getStatus().equals("Assigned SeriveMan")) {
+            JOptionPane.showMessageDialog(null, "Already Accepted", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else if(request.getStatus().equals("Request Cancelled")) {
+            JOptionPane.showMessageDialog(null, "Request Cancelled Already", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            request.setStatus("In Progress");
+            for(Customer cust:ecosystem.getCustomerDirectory().getCustomerList()){
+                if(request.getCustName().equals(cust.getCustomerName())){
+                    for(HomeServicesWorkRequest request : cust.getHomeServiceWorkRequestList()){
+                        if(request.getStatus().equals("New Request")) {
+                            request.setStatus("In Progress");
+                        }
+
+                    }
+                }
+            }
+            workAreaContainer.remove(this);
+            CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+            layout.previous(workAreaContainer);
+        }
+    }//GEN-LAST:event_acceptActionPerformed
+
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        // TODO add your handling code here:
+        if(request.getStatus().equals("New Request")) {
+            request.setStatus("Request Cancelled");
+            for(Customer cust:ecosystem.getCustomerDirectory().getCustomerList()){
+                if(request.getCustName().equals(cust.getUsername())){
+                    for(HomeServicesWorkRequest request : cust.getHomeServiceWorkRequestList()){
+                        if(request.getStatus().equals("New Request")) {
+                            request.setStatus("Request Cancelled");
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Request is Accepted already. Cannot cancel Request !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
+    }//GEN-LAST:event_cancelActionPerformed
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) homeTable.getModel();
+        model.setRowCount(0);
+
+        Object[] row = new Object[3];
+                for(Service ser:request.getHomeServiceRequest()){
+                     row[0] = ser;
+                     row[1] = ser.getServiceDescription();
+                     row[2] = ser.getServiceType();
+                     model.addRow(row);
+                }
+        specialText.setText(request.getMessage());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton accept;
+    private javax.swing.JButton back;
+    private javax.swing.JButton cancel;
+    private javax.swing.JTable homeTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField specialText;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,11 +5,15 @@
 package UI.HomeServiceAdmin;
 
 import Business.Ecosystem;
+import HomeService.HomeService;
+import SalonServices.Salon;
 import UserAccounts.UserAccounts;
 import WorkQueue.HomeServicesWorkRequest;
+import WorkQueue.SalonWorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -35,6 +39,8 @@ public class ManageHomeWorkerRequestJPanel extends javax.swing.JPanel {
         this.workAreaContainer = workAreaContainer;
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
+        
+        populateRequestsTable();
     }
 
     /**
@@ -49,10 +55,10 @@ public class ManageHomeWorkerRequestJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         HomeworkerTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        viewBtn = new javax.swing.JButton();
+        assignBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -73,64 +79,62 @@ public class ManageHomeWorkerRequestJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 239, -1, 230));
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton1.setText("View Request ");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        viewBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        viewBtn.setText("View Request ");
+        viewBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                viewBtnActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 487, -1, -1));
+        add(viewBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 487, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton2.setText("Assign for Request ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        assignBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        assignBtn.setText("Assign for Request ");
+        assignBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                assignBtnActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 487, -1, -1));
+        add(assignBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 487, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/HomeServiceAdmin/Homeworker88.png"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 42, 200, -1));
 
-        jButton3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton3.setText("Back");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                backBtnActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, -1, -1));
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
         // TODO add your handling code here:
-          int selectedRow = HomeworkerTable.getSelectedRow();
-        
-        if(selectedRow < 0) {
+        int selectedRow = HomeworkerTable.getSelectedRow();
+        if(selectedRow<0){
             JOptionPane.showMessageDialog(null,"Please select a row from the table to view details", "Warning",JOptionPane.WARNING_MESSAGE);
-        } else {
-            HomeServicesWorkRequest request  = (HomeServicesWorkRequest)HomeworkerTable.getValueAt(selectedRow, 0);
-            if(request.getStatus().equals("In Progress")){
-                JOptionPane.showMessageDialog(null, "Home services Request Accepted Already !!!", "Warning", JOptionPane.WARNING_MESSAGE);
-            }
-            else if(request.getStatus().equals("Request Cancelled")){
+        }
+        else{
+            HomeServicesWorkRequest request  = (HomeServicesWorkRequest)HomeworkerTable.getValueAt(selectedRow, 0);  
+            if(request.getStatus().equals("Request Cancelled")){
                 JOptionPane.showMessageDialog(null,"Request Cancelled !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
             }
-            else if(request.getStatus().equals("Completed Service")){
-                JOptionPane.showMessageDialog(null,"Service Completed Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
+            else if(request.getStatus().equals("Completed")){
+                JOptionPane.showMessageDialog(null,"Request Completed Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
             }
             else{
-                ViewHomeRequestJPanel viewRequest=new ViewHomeRequestJPanel(workAreaContainer, userAccount, request, ecosystem);
+                
+                ViewHomeRequestJPanel viewRequest = new ViewHomeRequestJPanel(workAreaContainer, userAccount, request, ecosystem);
                 workAreaContainer.add("View Home Services Request", viewRequest);
                 CardLayout layout=(CardLayout)workAreaContainer.getLayout();
                 layout.next(workAreaContainer);
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_viewBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void assignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBtnActionPerformed
         // TODO add your handling code here:
            int selectedRow = HomeworkerTable.getSelectedRow();
         if(selectedRow<0){
@@ -144,36 +148,52 @@ public class ManageHomeWorkerRequestJPanel extends javax.swing.JPanel {
             else if(request.getStatus().equals("Request Cancelled")){
                 JOptionPane.showMessageDialog(null,"Request Cancelled !!! Cannot Assign.", "Warning", JOptionPane.WARNING_MESSAGE);
             }
-            else if(request.getStatus().equals("Service Completed")){
+            else if(request.getStatus().equals("Completed")){
                 JOptionPane.showMessageDialog(null,"Request COmpleted Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
             }
-            else if(request.getStatus().equals("Assigned Painter")){
+            else if(request.getStatus().equals("Assigned ServiceMan")){
                 JOptionPane.showMessageDialog(null,"Already Assigned Painter !!!", "Warning", JOptionPane.WARNING_MESSAGE);
             }
             else{
                  HomeServiceWorkRequestJPanel assignPainter = new  HomeServiceWorkRequestJPanel(workAreaContainer, userAccount, request, ecosystem);
-                workAreaContainer.add("Assign Painter", assignPainter);
+                workAreaContainer.add("Assign ServiceMan", assignPainter);
                 CardLayout layout=(CardLayout)workAreaContainer.getLayout();
                 layout.next(workAreaContainer);
             }
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_assignBtnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         workAreaContainer.remove(this);
         CardLayout layout = (CardLayout) workAreaContainer.getLayout();
         layout.previous(workAreaContainer);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_backBtnActionPerformed
 
+    private void populateRequestsTable() {
+        DefaultTableModel model = (DefaultTableModel) HomeworkerTable.getModel();        
+        model.setRowCount(0);               
+        for (HomeService service:ecosystem.getHomeServiceDirectory().getHomeServiceList()) {          
+            if (service.getUserName().equals(userAccount.getUsername())) {
+               for(HomeServicesWorkRequest ser:service.getHomeServiceRequestList()){
+                Object[] row = new Object[4];
+                row[0] = ser;
+                row[1] = ser.getCustName();
+                row[2] = ser.getServiceAddress();
+                row[3] = ser.getStatus();
+                model.addRow(row);
+               }                
+            }            
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable HomeworkerTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton assignBtn;
+    private javax.swing.JButton backBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
 }

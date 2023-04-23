@@ -4,6 +4,16 @@
  */
 package UI.HomeServiceTechnicianPanels;
 
+import Beautician.BeauticianWorker;
+import Business.Ecosystem;
+import Customer.Customer;
+import HomeServiceTechnician.Technician;
+import UserAccounts.UserAccounts;
+import WorkQueue.HomeServicesWorkRequest;
+import WorkQueue.SalonWorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 91730
@@ -13,9 +23,24 @@ public class HomeServiceTechnicianWorkRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form HomeServiceTechnicianWorkRequestJPanel
      */
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    HomeServicesWorkRequest request;
+    
     public HomeServiceTechnicianWorkRequestJPanel() {
         initComponents();
     }
+
+    HomeServiceTechnicianWorkRequestJPanel(JPanel workAreaContainer, HomeServicesWorkRequest request, Ecosystem ecosystem, UserAccounts userAccount) {
+        initComponents();
+        this.workAreaContainer = workAreaContainer;
+        this.request=request;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+    }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,15 +52,23 @@ public class HomeServiceTechnicianWorkRequestJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        completed = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/HomeServiceTechnicianPanels/homeservices.jpeg"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 74, -1, 225));
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton1.setText("Completed");
+        completed.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        completed.setText("Completed");
+        completed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                completedActionPerformed(evt);
+            }
+        });
+        add(completed, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 332, 174, -1));
 
         backButton.setBackground(new java.awt.Color(133, 211, 255));
         backButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
@@ -45,44 +78,42 @@ public class HomeServiceTechnicianWorkRequestJPanel extends javax.swing.JPanel {
                 backButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(176, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(192, 192, 192))
-            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(backButton)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 437, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        //        userProcessContainer.remove(this);
-        //        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        //        layout.previous(userProcessContainer);
+                workAreaContainer.remove(this);
+                CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+                layout.previous(workAreaContainer);
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void completedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_completedActionPerformed
+        // TODO add your handling code here:
+        request.setStatus("Completed");
+        for(Customer cust:ecosystem.getCustomerDirectory().getCustomerList()){
+            if(request.getCustName().equals(cust.getCustomerName())){
+                for(HomeServicesWorkRequest request : cust.getHomeServiceWorkRequestList()){
+                    if(request.getStatus().equals("Assigned ServiceMan")) {
+                        request.setStatus("Completed");
+                    }
+                }
+            }
+        }
+        for(Technician technician : ecosystem.getHomeServiceTechnicianDirectory().getTechnicianList()){
+            if(technician.getTechnicianUsrnme().equals(userAccount.getUsername())){
+                technician.setAvailability(true);
+            }
+        }
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
+    }//GEN-LAST:event_completedActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton completed;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -40,6 +40,7 @@ public class ManageHomeWorkerServicesJPanel extends javax.swing.JPanel {
         this.workAreaContainer = workAreaContainer;
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
+        populateTable();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,7 +60,7 @@ public class ManageHomeWorkerServicesJPanel extends javax.swing.JPanel {
         fieldServiceName = new javax.swing.JTextField();
         fieldDesc = new javax.swing.JTextField();
         fieldType = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        addServices = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
 
@@ -105,14 +106,14 @@ public class ManageHomeWorkerServicesJPanel extends javax.swing.JPanel {
         add(fieldDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 374, 103, -1));
         add(fieldType, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 427, 103, -1));
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton1.setText("Add Services");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addServices.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        addServices.setText("Add Services");
+        addServices.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addServicesActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 471, -1, -1));
+        add(addServices, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 471, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/HomeServiceAdmin/service23.jpeg"))); // NOI18N
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 42, 189, 250));
@@ -151,7 +152,7 @@ public class ManageHomeWorkerServicesJPanel extends javax.swing.JPanel {
         layout.previous(workAreaContainer);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addServicesActionPerformed
         // TODO add your handling code here:
         String name = fieldServiceName.getText();
         String desc = fieldDesc.getText();
@@ -197,14 +198,14 @@ public class ManageHomeWorkerServicesJPanel extends javax.swing.JPanel {
         fieldDesc.setText("");
         fieldType.setText("");
         populateTable();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_addServicesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addServices;
     private javax.swing.JTextField fieldDesc;
     private javax.swing.JTextField fieldServiceName;
     private javax.swing.JTextField fieldType;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

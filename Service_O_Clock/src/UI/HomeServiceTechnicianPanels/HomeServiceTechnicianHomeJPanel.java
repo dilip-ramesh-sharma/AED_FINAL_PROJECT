@@ -4,6 +4,12 @@
  */
 package UI.HomeServiceTechnicianPanels;
 
+import Business.Ecosystem;
+import UI.BeauticianPanels.BeauticianWorkAreaJPanel;
+import UserAccounts.UserAccounts;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 91730
@@ -13,8 +19,20 @@ public class HomeServiceTechnicianHomeJPanel extends javax.swing.JPanel {
     /**
      * Creates new form HomeServiceTechnicianJPanel
      */
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+    
     public HomeServiceTechnicianHomeJPanel() {
         initComponents();
+    }
+
+    public HomeServiceTechnicianHomeJPanel(JPanel workAreaContainer, UserAccounts userAccounts, Ecosystem ecosystem) {
+        initComponents();
+        
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccounts;
+        this.ecosystem = ecosystem;
     }
 
     /**
@@ -28,58 +46,39 @@ public class HomeServiceTechnicianHomeJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        home = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("Home Service's");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 10, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/HomeServiceTechnicianPanels/homeservices.jpeg"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 90, 290, 279));
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton1.setText("Home Services");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        home.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        home.setText("Home Services");
+        home.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                homeActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(204, 204, 204)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(109, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(187, 187, 187))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(48, 48, 48)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(84, Short.MAX_VALUE))
-        );
+        add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 375, 197, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        HomeServiceTechnicianWorkAreaJPanel wr = new HomeServiceTechnicianWorkAreaJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Manage Requests", wr);
+        CardLayout layout = (CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
+    }//GEN-LAST:event_homeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton home;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

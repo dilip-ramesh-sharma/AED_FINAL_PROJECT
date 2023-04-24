@@ -211,7 +211,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void chatBotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chatBotActionPerformed
         // TODO add your handling code here:
-         ArrayList<String> user_input = new ArrayList<String>();
+        ArrayList<String> user_input = new ArrayList<String>();
         JTextArea chatarea = new JTextArea();
         JTextField chatbox = new JTextField();
         JFrame jframe = new JFrame();
@@ -251,62 +251,22 @@ public class MainJFrame extends javax.swing.JFrame {
                 
                 if(gtext.contains("service") && gtext.contains("provider")){
                     
-                    bot("We have two types of organizations in Shelter: \t Meal Organization and Shelter Organization \n Please give the organization you want to explore",chatarea);
+                    bot("We have two types of organizations in painting : \t painting Admin Organization and Painter Organization \n Please give the organization you want to explore",chatarea);
                 }
-                if(gtext.contains("meal organization")){
+                if(gtext.contains("painting")){
                     
-                    bot("Service Provider Admin can add an employee that serves the meal for the victims \n \t Employee can login and accept food requests ",chatarea);
+                    bot("The painting Organisation Admin can edit his profile. He can add the painting packages provided by the painting enterprise. When a customer raises a request for painting services, he can accept/reject them. If accepted, he can then assign the customer to a painter.",chatarea);
                 }
-                if(gtext.contains("shelter organization")){
+                if(gtext.contains("painter")){
                     
-                    bot("Service Provider Admin can add an employee that provides the shelter for the victims \n \t Employee can login and accept shelter requests" ,chatarea);
+                    bot("View the orders assigned to him. Process and then complete the order." ,chatarea);
                 }
-                if(gtext.contains("emergency")){
-                    
-                    bot(" Opps! Is it an Incident or do you need Police assistance.",chatarea);
-                }
-                if(gtext.contains("police") || gtext.contains("incident")){
-                    
-                    bot("Please inform the Locality admin to login and raise a request",chatarea);
-                }
-              
-                if(gtext.contains("hospital")){
-                    
-                    bot("We have two types of organizations in Hospital: \t  Clinic Organization and Blood Organization \n Please give the organization you want to explore",chatarea);
-                }
-                
-                if(gtext.contains("donation") || gtext.contains("ngo")){
-                    bot("Please login as Donation Admin and Accept or Reject the NGO Request",chatarea);
-                    
-                }
-                
-                if(gtext.contains("ngo")){
-                    bot("You can add a request for donation and manage the requests",chatarea);
-                    
-                }
-                
-                if(gtext.contains("blood") || gtext.contains("clinic")){
-                    bot("Please login as Hospital Admin to see Blood requests.",chatarea);
-                    
-                }
-                
-                else if(gtext.contains("locality") ){
-                    bot("Please login as locality admin to create requests for any requirements",chatarea);
-                    
-                }
-                
-                else if(gtext.contains("fsdistributor") ){
-                    bot("You can create meal requests and manage these requests",chatarea);
-                    
-                }
-                
-                else if(gtext.contains("clinic") && gtext.contains("hospital")){
-                    bot("Please login as Hospital Admin to see clinic requests.",chatarea);
-                    
-                } 
+               
+            
             }
    
         });
+      
         
     }//GEN-LAST:event_chatBotActionPerformed
 

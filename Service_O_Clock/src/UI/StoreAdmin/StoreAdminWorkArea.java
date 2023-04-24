@@ -52,6 +52,7 @@ public class StoreAdminWorkArea extends javax.swing.JPanel {
         viewSalesBtn = new javax.swing.JButton();
         createProducts = new javax.swing.JButton();
         editProfileBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(153, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -86,6 +87,14 @@ public class StoreAdminWorkArea extends javax.swing.JPanel {
             }
         });
         add(editProfileBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 174, 164, -1));
+
+        jButton1.setText("View Metrics");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void viewSalesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSalesBtnActionPerformed
@@ -112,10 +121,19 @@ public class StoreAdminWorkArea extends javax.swing.JPanel {
         layout.next(workAreaContainer);
     }//GEN-LAST:event_editProfileBtnActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        MetricsJPanel edit = new MetricsJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Metrics Panel",edit);
+        CardLayout layout = (CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createProducts;
     private javax.swing.JButton editProfileBtn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton viewSalesBtn;
     // End of variables declaration//GEN-END:variables

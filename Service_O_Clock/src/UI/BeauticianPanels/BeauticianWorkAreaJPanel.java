@@ -4,12 +4,14 @@
  */
 package UI.BeauticianPanels;
 
+import Beautician.BeauticianWorker;
 import Business.Ecosystem;
 import UserAccounts.UserAccounts;
 import WorkQueue.SalonWorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -34,6 +36,7 @@ public class BeauticianWorkAreaJPanel extends javax.swing.JPanel {
         this.workAreaContainer = workAreaContainer;
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
+        populateTable();
     }
 
     /**
@@ -51,13 +54,14 @@ public class BeauticianWorkAreaJPanel extends javax.swing.JPanel {
         salonTable = new javax.swing.JTable();
         process = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        refresh = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("Salon Request");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, -1, 24));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, -1, 24));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/BeauticianPanels/salonReq.jpeg"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 100, 255, 279));
@@ -81,7 +85,7 @@ public class BeauticianWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(salonTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 50, -1, 182));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 130, 590, 182));
 
         process.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         process.setText("Process");
@@ -90,7 +94,7 @@ public class BeauticianWorkAreaJPanel extends javax.swing.JPanel {
                 processActionPerformed(evt);
             }
         });
-        add(process, new org.netbeans.lib.awtextra.AbsoluteConstraints(424, 250, -1, -1));
+        add(process, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 330, -1, -1));
 
         backButton.setBackground(new java.awt.Color(133, 211, 255));
         backButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
@@ -100,7 +104,15 @@ public class BeauticianWorkAreaJPanel extends javax.swing.JPanel {
                 backButtonActionPerformed(evt);
             }
         });
-        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 360, -1, 30));
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 410, -1, 30));
+
+        refresh.setText("Refresh");
+        refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionPerformed(evt);
+            }
+        });
+        add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 100, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -132,6 +144,32 @@ public class BeauticianWorkAreaJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_processActionPerformed
 
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+        // TODO add your handling code here:
+        populateTable();
+    }//GEN-LAST:event_refreshActionPerformed
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) salonTable.getModel();
+        model.setRowCount(0);
+        
+        for(BeauticianWorker beautician : ecosystem.getBeauticianDirectory().getBeauticianList()){
+            if(beautician.getBeauticianUsrnme().equals(userAccount.getUsername())){
+                    
+                for(SalonWorkRequest request : beautician.getBeauticianRequestList()){
+                Object[] row = new Object[6];
+                
+                row[0] = request;
+                row[1] = request.getSalonName();
+                row[2] = request.getCustomerName();
+                row[3] = request.getServiceAddress();
+                row[4] = request.getStatus();
+                row[5] = request.getMessage();
+                model.addRow(row);     
+                }
+            } 
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
@@ -139,6 +177,7 @@ public class BeauticianWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton process;
+    private javax.swing.JButton refresh;
     private javax.swing.JTable salonTable;
     // End of variables declaration//GEN-END:variables
 }

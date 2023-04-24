@@ -31,7 +31,7 @@ public class BeauticianHomeJPanel extends javax.swing.JPanel {
         initComponents();
         
         this.workAreaContainer = workAreaContainer;
-        this.userAccount = userAccount;
+        this.userAccount = userAccounts;
         this.ecosystem = ecosystem;
     }
 
@@ -47,25 +47,35 @@ public class BeauticianHomeJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         beauticianBtn = new javax.swing.JButton();
+        purchaseBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("Beautician");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/BeauticianPanels/salon2.jpeg"))); // NOI18N
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, 178));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, -1, 178));
 
         beauticianBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        beauticianBtn.setText("Salon");
+        beauticianBtn.setText("Manage Salon Requests");
         beauticianBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 beauticianBtnActionPerformed(evt);
             }
         });
-        add(beauticianBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 200, -1));
+        add(beauticianBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 200, -1));
+
+        purchaseBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        purchaseBtn.setText("Purchase Products ");
+        purchaseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                purchaseBtnActionPerformed(evt);
+            }
+        });
+        add(purchaseBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, 200, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void beauticianBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beauticianBtnActionPerformed
@@ -76,10 +86,19 @@ public class BeauticianHomeJPanel extends javax.swing.JPanel {
         layout.next(workAreaContainer);
     }//GEN-LAST:event_beauticianBtnActionPerformed
 
+    private void purchaseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseBtnActionPerformed
+        // TODO add your handling code here:
+        PurchaseJPanel pur = new PurchaseJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Purchase", pur);
+        CardLayout layout = (CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
+    }//GEN-LAST:event_purchaseBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton beauticianBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton purchaseBtn;
     // End of variables declaration//GEN-END:variables
 }

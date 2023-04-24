@@ -61,6 +61,7 @@ public class PestControlCustomerJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         requestTable = new javax.swing.JTable();
+        refresh = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -80,10 +81,7 @@ public class PestControlCustomerJPanel extends javax.swing.JPanel {
 
         orgTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Organisation Name", "Organisation Address", "Organisation Contact", "Organisation Email"
@@ -120,10 +118,7 @@ public class PestControlCustomerJPanel extends javax.swing.JPanel {
 
         requestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Request ID", "Organisation Name", "Address", "Request Status"
@@ -140,6 +135,14 @@ public class PestControlCustomerJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(requestTable);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 451, 538, 155));
+
+        refresh.setText("Refresh");
+        refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionPerformed(evt);
+            }
+        });
+        add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 390, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Customer/pests22.jpeg"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, -100, 1490, 1140));
@@ -206,6 +209,11 @@ public class PestControlCustomerJPanel extends javax.swing.JPanel {
         layout.previous(workAreaContainer);
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+        // TODO add your handling code here:
+        populateRequestTable();
+    }//GEN-LAST:event_refreshActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
@@ -217,6 +225,7 @@ public class PestControlCustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable orgTable;
+    private javax.swing.JButton refresh;
     private javax.swing.JTable requestTable;
     // End of variables declaration//GEN-END:variables
 }

@@ -75,4 +75,8 @@ public class Painter {
         this.availability = availability;
     }
     
+    @Override
+    public String toString() {
+        return painterName;
+    }
 }

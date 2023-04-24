@@ -7,8 +7,10 @@ package UI.Painter;
 import Business.Ecosystem;
 import Customer.Customer;
 import Painter.Painter;
+import UI.PestControlTechnician.TechnicianRequestJPanel;
 import UserAccounts.UserAccounts;
 import WorkQueue.HomePaintingWorkRequest;
+import WorkQueue.PestControlWorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -38,6 +40,7 @@ public class PainterAreaJPanel extends javax.swing.JPanel {
         this.workAreaContainer = workAreaContainer;
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
+        populateTable();
     }
 
     /**
@@ -55,6 +58,7 @@ public class PainterAreaJPanel extends javax.swing.JPanel {
         painterJTable = new javax.swing.JTable();
         backButton = new javax.swing.JButton();
         Completed = new javax.swing.JButton();
+        refresh = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -70,13 +74,7 @@ public class PainterAreaJPanel extends javax.swing.JPanel {
 
         painterJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Order ID", "Painter Name", "Customer Name", "PersonName", "Service Address", "Status"
@@ -105,13 +103,21 @@ public class PainterAreaJPanel extends javax.swing.JPanel {
         add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, -1, 30));
 
         Completed.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        Completed.setText("Service Completed");
+        Completed.setText("In Progress");
         Completed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CompletedActionPerformed(evt);
             }
         });
         add(Completed, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, -1, -1));
+
+        refresh.setText("Refresh");
+        refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionPerformed(evt);
+            }
+        });
+        add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 80, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -124,35 +130,80 @@ public class PainterAreaJPanel extends javax.swing.JPanel {
     private void CompletedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompletedActionPerformed
         // TODO add your handling code here:
         
+//        int selectedRow = painterJTable.getSelectedRow();
+//        if (selectedRow < 0){
+//            return;
+//        }
+//      HomePaintingWorkRequest order = (HomePaintingWorkRequest)painterJTable.getValueAt(selectedRow, 0);
+//
+//        if(order.getStatus().equals("Delivered")){
+//            JOptionPane.showMessageDialog(null,"Order Already Delivered", "Warning", JOptionPane.WARNING_MESSAGE);
+//        }else if(order.getStatus().equals("New Order") || order.getStatus().equals("In Progress")){
+//            JOptionPane.showMessageDialog(null,"Request is not yet Assigned", "Warning", JOptionPane.WARNING_MESSAGE);
+//        }
+//        else{
+//          
+//            order.setStatus("Pickup Completed");
+//        for(Customer cust:ecosystem.getCustomerDirectory().getCustomerList()){
+//            if(cust.getCustomerName().equals(cust.getUsername())){
+//                for(HomePaintingWorkRequest request : cust.getHomePaintingWorkRequestList()){
+//                    if(request.getStatus().equals("Assigned Painter")) {
+//                        request.setStatus("Service Completed");
+//                        JOptionPane.showMessageDialog(null,"Request is not yet Assigned", "Warning", JOptionPane.WARNING_MESSAGE);
+//                    }
+//                }
+//            }
+//        
+//        }
+//        }
+        
         int selectedRow = painterJTable.getSelectedRow();
         if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row!!!");
             return;
         }
-      HomePaintingWorkRequest order = (HomePaintingWorkRequest)painterJTable.getValueAt(selectedRow, 0);
+        HomePaintingWorkRequest pestControl = (HomePaintingWorkRequest)painterJTable.getValueAt(selectedRow, 0);
 
-        if(order.getStatus().equals("Delivered")){
-            JOptionPane.showMessageDialog(null,"Order Already Delivered", "Warning", JOptionPane.WARNING_MESSAGE);
-        }else if(order.getStatus().equals("New Order") || order.getStatus().equals("In Progress")){
+        if(pestControl.getStatus().equals("Completed")){
+            JOptionPane.showMessageDialog(null,"Already Completed", "Warning", JOptionPane.WARNING_MESSAGE);
+        }else if(pestControl.getStatus().equals("New Request") || pestControl.getStatus().equals("In Progress")){
             JOptionPane.showMessageDialog(null,"Request is not yet Assigned", "Warning", JOptionPane.WARNING_MESSAGE);
         }
         else{
-          
-            order.setStatus("Pickup Completed");
-        for(Customer cust:ecosystem.getCustomerDirectory().getCustomerList()){
-            if(cust.getCustomerName().equals(cust.getUsername())){
-                for(HomePaintingWorkRequest request : cust.getHomePaintingWorkRequestList()){
-                    if(request.getStatus().equals("Assigned Painter")) {
-                        request.setStatus("Service Completed");
-                        JOptionPane.showMessageDialog(null,"Request is not yet Assigned", "Warning", JOptionPane.WARNING_MESSAGE);
-                    }
-                }
-            }
-        
+            ManagePaintingRequestJPanel processOrderJPanel = new ManagePaintingRequestJPanel(workAreaContainer, paintReq,ecosystem, userAccount);
+            workAreaContainer.add("processWorkRequestJPanel", processOrderJPanel);
+            CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+            layout.next(workAreaContainer);
         }
-        }
-        
     }//GEN-LAST:event_CompletedActionPerformed
 
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+        // TODO add your handling code here:
+        populateTable();
+    }//GEN-LAST:event_refreshActionPerformed
+
+    
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) painterJTable.getModel();
+        model.setRowCount(0);
+        
+        for(Painter painter : ecosystem.getPainterDirectory().getPainterList()){
+            if(painter.getPainterUsername().equals(userAccount.getUsername())){
+                    
+                for(HomePaintingWorkRequest request : painter.getHomePaintingRequestList()){
+                Object[] row = new Object[6];
+                
+                row[0] = request;
+                row[1] = request.getPaintingCompanyName();
+                row[2] = request.getCustName();
+                row[3] = request.getServiceAddress();
+                row[4] = request.getStatus();
+                row[5] = request.getInstructions();
+                model.addRow(row);     
+                }
+            } 
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Completed;
@@ -161,6 +212,7 @@ public class PainterAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable painterJTable;
+    private javax.swing.JButton refresh;
     // End of variables declaration//GEN-END:variables
 
 }

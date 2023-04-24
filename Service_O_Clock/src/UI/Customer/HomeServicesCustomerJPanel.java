@@ -61,6 +61,7 @@ public class HomeServicesCustomerJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         cartBtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        refresh = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -136,6 +137,14 @@ public class HomeServicesCustomerJPanel extends javax.swing.JPanel {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Customer/customer44.jpeg"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 0, -1, -1));
+
+        refresh.setText("Refresh");
+        refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionPerformed(evt);
+            }
+        });
+        add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 430, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void populateHomeServiceTable() {
@@ -195,6 +204,11 @@ public class HomeServicesCustomerJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_cartBtnActionPerformed
 
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+        // TODO add your handling code here:
+        populateRequestTable();
+    }//GEN-LAST:event_refreshActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
@@ -206,6 +220,7 @@ public class HomeServicesCustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable orgTable;
+    private javax.swing.JButton refresh;
     private javax.swing.JTable requestTable;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,11 +5,13 @@
 package UI.SalonServiceAdmin;
 
 import Business.Ecosystem;
+import SalonServices.Salon;
 import UserAccounts.UserAccounts;
 import WorkQueue.SalonWorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -34,6 +36,8 @@ public class ManageRequestsJPanel extends javax.swing.JPanel {
         this.workAreaContainer = workAreaContainer;
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
+        
+        populateRequestsTable();
     
     }
 
@@ -53,6 +57,7 @@ public class ManageRequestsJPanel extends javax.swing.JPanel {
         assignRequest = new javax.swing.JButton();
         viewRequest = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        refreshBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -112,6 +117,14 @@ public class ManageRequestsJPanel extends javax.swing.JPanel {
             }
         });
         add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 500, -1, 30));
+
+        refreshBtn.setText("Refresh Table");
+        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtnActionPerformed(evt);
+            }
+        });
+        add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 120, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -124,19 +137,22 @@ public class ManageRequestsJPanel extends javax.swing.JPanel {
     private void assignRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignRequestActionPerformed
         // TODO add your handling code here:
         int selectedRow = salonTable.getSelectedRow();
-
-        if(selectedRow < 0) {
-            JOptionPane.showMessageDialog(null,"Please select a row from the table to view details", "Warning",JOptionPane.WARNING_MESSAGE);
-        } else {
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select a row from the table to view details", "Warning",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
             SalonWorkRequest request  = (SalonWorkRequest)salonTable.getValueAt(selectedRow, 0);
-            if(request.getStatus().equals("In Progress")){
-                JOptionPane.showMessageDialog(null, "Beautician Request Accepted Already !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            if(request.getStatus().equals("New Salon Service Request")){
+                JOptionPane.showMessageDialog(null,"Accept the Request First", "Warning", JOptionPane.WARNING_MESSAGE);
             }
             else if(request.getStatus().equals("Request Cancelled")){
-                JOptionPane.showMessageDialog(null,"Request Cancelled !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Request Cancelled !!! Cannot Assign.", "Warning", JOptionPane.WARNING_MESSAGE);
             }
-            else if(request.getStatus().equals("Completed Service")){
-                JOptionPane.showMessageDialog(null,"Service Completed Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
+            else if(request.getStatus().equals("Completed")){
+                JOptionPane.showMessageDialog(null,"Request Completed Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else if(request.getStatus().equals("Assigned Beautician")){
+                JOptionPane.showMessageDialog(null,"Already Assigned Field Worker !!!", "Warning", JOptionPane.WARNING_MESSAGE);
             }
             else{
                 AssignBeauticianJPanel assignBeautician=new AssignBeauticianJPanel(workAreaContainer, userAccount, request, ecosystem);
@@ -151,23 +167,18 @@ public class ManageRequestsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRow = salonTable.getSelectedRow();
         if(selectedRow<0){
-            JOptionPane.showMessageDialog(null, "Please select a row from the table to view details", "Warning",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Please select a row from the table to view details", "Warning",JOptionPane.WARNING_MESSAGE);
         }
         else{
-            SalonWorkRequest request  = (SalonWorkRequest)salonTable.getValueAt(selectedRow, 0);
-            if(request.getStatus().equals("New Request")){
-                JOptionPane.showMessageDialog(null,"Accept the Request First", "Warning", JOptionPane.WARNING_MESSAGE);
+            SalonWorkRequest request  = (SalonWorkRequest)salonTable.getValueAt(selectedRow, 0);  
+            if(request.getStatus().equals("Request Cancelled")){
+                JOptionPane.showMessageDialog(null,"Request Cancelled !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
             }
-            else if(request.getStatus().equals("Request Cancelled")){
-                JOptionPane.showMessageDialog(null,"Request Cancelled !!! Cannot Assign.", "Warning", JOptionPane.WARNING_MESSAGE);
-            }
-            else if(request.getStatus().equals("Service Completed")){
-                JOptionPane.showMessageDialog(null,"Request COmpleted Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
-            }
-            else if(request.getStatus().equals("Assigned Beautician")){
-                JOptionPane.showMessageDialog(null,"Already Assigned Beautician !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            else if(request.getStatus().equals("Completed")){
+                JOptionPane.showMessageDialog(null,"Request Completed Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
             }
             else{
+                
                 RequestDetailsJPanel rd = new RequestDetailsJPanel(workAreaContainer, userAccount, request, ecosystem);
                 workAreaContainer.add("View Beautician Request", rd);
                 CardLayout layout=(CardLayout)workAreaContainer.getLayout();
@@ -176,6 +187,27 @@ public class ManageRequestsJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_viewRequestActionPerformed
 
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        // TODO add your handling code here:
+        populateRequestsTable();
+    }//GEN-LAST:event_refreshBtnActionPerformed
+
+    private void populateRequestsTable() {
+        DefaultTableModel model = (DefaultTableModel) salonTable.getModel();        
+        model.setRowCount(0);               
+        for (Salon salon:ecosystem.getSalonDirectory().getSalonsList()) {          
+            if (salon.getUsername().equals(userAccount.getUsername())) {
+               for(SalonWorkRequest service:salon.getSalonWorkRequestList()){
+                Object[] row = new Object[4];
+                row[0] = service;
+                row[1] = service.getCustomerName();
+                row[2] = service.getServiceAddress();
+                row[3] = service.getStatus();
+                model.addRow(row);
+               }                
+            }            
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignRequest;
@@ -183,6 +215,7 @@ public class ManageRequestsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton refreshBtn;
     private javax.swing.JTable salonTable;
     private javax.swing.JButton viewRequest;
     // End of variables declaration//GEN-END:variables

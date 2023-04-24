@@ -73,6 +73,10 @@ public class PestControlTechnician {
         this.technicianRequestList = technicianRequestList;
     }
     
+    @Override
+    public String toString() {
+        return TechnicianName;
+    }
     
 
 }

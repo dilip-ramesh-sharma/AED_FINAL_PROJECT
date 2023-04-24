@@ -12,6 +12,7 @@ import WorkQueue.SalonWorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -37,6 +38,8 @@ public class RequestDetailsJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
         this.request = request;
+        populateTable();
+        specialInstruction.setEnabled(false);
     }
 
     /**
@@ -182,6 +185,19 @@ public class RequestDetailsJPanel extends javax.swing.JPanel {
         layout.previous(workAreaContainer);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) serviceTable.getModel();
+        model.setRowCount(0);
+
+        Object[] row = new Object[3];
+                for(SalonServices.SalonServicesOffered serv:request.getSalonServicerequest()){
+                     row[0] = serv;
+                     row[1] = serv.getServiceDescription();
+                     row[2] = serv.getServiceType();
+                     model.addRow(row);
+                }
+        specialInstruction.setText(request.getMessage());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptButton;

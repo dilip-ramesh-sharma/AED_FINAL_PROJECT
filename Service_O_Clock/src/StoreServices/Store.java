@@ -99,7 +99,7 @@ public class Store {
         productList.remove(products);
     }
     
-    public void buyNewProduct(String storeName, String custName, ArrayList<Products> product, String custContact, int total) {
+    public void buyNewProduct(String storeName, String address,String custName, ArrayList<Products> product, String custContact, int total) {
         StoreServiceWorkRequest buy = new StoreServiceWorkRequest();
         buy.setStoreId(String.valueOf(storeId));
         buy.setCustName(custName);
@@ -107,6 +107,7 @@ public class Store {
         buy.setProducts(product);
         buy.setCustContact(custContact);
         buy.setTotalPurchase(total);
+        buy.setStoreAddress(address);
         storeServiceRequestList.add(buy);
         storeId++;
     }

@@ -117,5 +117,11 @@ public class SalonWorkRequest {
         this.resolveDate = resolveDate;
     }
     
+    @Override
+    public String toString() {
+        return requestId;
+    }
+    
+    
     
 }

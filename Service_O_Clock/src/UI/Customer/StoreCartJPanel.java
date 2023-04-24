@@ -89,10 +89,7 @@ public class StoreCartJPanel extends javax.swing.JPanel {
 
         serviceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Product", "Product Description", "Product Price", "Product Category"
@@ -121,10 +118,7 @@ public class StoreCartJPanel extends javax.swing.JPanel {
 
         cartTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Product", "Product Description", "Product Price", "Product Category", "Amount Paid"
@@ -139,11 +133,8 @@ public class StoreCartJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane2.setViewportView(cartTable);
-        if (cartTable.getColumnModel().getColumnCount() > 0) {
-            cartTable.getColumnModel().getColumn(4).setHeaderValue("Amount Paid");
-        }
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 386, 426, 91));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 386, 560, 91));
 
         removeBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         removeBtn.setText("Remove from Cart");
@@ -252,7 +243,7 @@ public class StoreCartJPanel extends javax.swing.JPanel {
         }
         
 
-        store.buyNewProduct(store.getStoreName(), userAccount.getUsername(), products, phone, total);
+        store.buyNewProduct(store.getStoreName(), store.getStoreAddress(), userAccount.getUsername(), products, phone, total);
         for(Customer cust:ecosystem.getCustomerDirectory().getCustomerList()){
             if(userAccount.getUsername().equals(cust.getCustomerName())){
                 cust.createStoreServiceRequest(store.getStoreName(), userAccount.getUsername(), products, phone, total);

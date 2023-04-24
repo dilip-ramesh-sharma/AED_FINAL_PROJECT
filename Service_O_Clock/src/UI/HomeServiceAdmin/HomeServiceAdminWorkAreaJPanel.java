@@ -64,7 +64,7 @@ public class HomeServiceAdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnRequestsActionPerformed(evt);
             }
         });
-        add(btnRequests, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 550, 180, -1));
+        add(btnRequests, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 180, 180, -1));
 
         btnServices.setText("Manage Services");
         btnServices.addActionListener(new java.awt.event.ActionListener() {
@@ -72,7 +72,7 @@ public class HomeServiceAdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnServicesActionPerformed(evt);
             }
         });
-        add(btnServices, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 550, 156, -1));
+        add(btnServices, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 250, 156, -1));
 
         btnServiceOrganisation.setText("Manage Home services Organisation");
         btnServiceOrganisation.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +80,7 @@ public class HomeServiceAdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnServiceOrganisationActionPerformed(evt);
             }
         });
-        add(btnServiceOrganisation, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 550, 260, -1));
+        add(btnServiceOrganisation, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 320, 260, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/HomeServiceAdmin/homeservices6.jpeg"))); // NOI18N
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 840, 460));

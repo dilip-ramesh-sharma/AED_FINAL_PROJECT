@@ -50,18 +50,13 @@ public class CreateHomeServiceTechnicianJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        updateBtn = new javax.swing.JButton();
-        viewBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        orgTable = new javax.swing.JTable();
         saveBtn = new javax.swing.JButton();
         fieldPassword = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         fieldUsername = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         fieldAdminName = new javax.swing.JTextField();
-        deleteBtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -71,40 +66,9 @@ public class CreateHomeServiceTechnicianJPanel extends javax.swing.JPanel {
         jLabel2.setText("Name:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
 
-        updateBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        updateBtn.setText("Update");
-        add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 430, -1, -1));
-
-        viewBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        viewBtn.setText("View");
-        add(viewBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, -1, -1));
-
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
         jLabel1.setText("HOME REPAIR SERVICE TECHNICIAN");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 370, -1));
-
-        orgTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Name", "Username", "Password"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(orgTable);
-
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 370, 210));
 
         saveBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         saveBtn.setText("Save");
@@ -126,30 +90,26 @@ public class CreateHomeServiceTechnicianJPanel extends javax.swing.JPanel {
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 244, -1, -1));
         add(fieldAdminName, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 191, 127, -1));
 
-        deleteBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        deleteBtn.setText("Delete");
-        add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 430, -1, -1));
-
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/SysAdmin/repair.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, -20, 440, 350));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 440, 350));
     }// </editor-fold>//GEN-END:initComponents
 
     private void populateTable() {
-        DefaultTableModel orgTableModel = (DefaultTableModel) orgTable.getModel();
-        orgTableModel.setRowCount(0);
-
-        for (UserAccounts user : system.getUserAccountDirectory().getUserAccountDirectory()) {
-
-            if ("Role.HomeServicesTechnicianRole".equals(user.getRole().getClass().getName())) {
-                Object[] row = new Object[3]; 
-                row[0] = user.getName();
-                row[1] = user.getUsername();
-                row[2] = user.getPassword();
-                
-                orgTableModel.addRow(row);
-            }
-            
-        }
+//        DefaultTableModel orgTableModel = (DefaultTableModel) orgTable.getModel();
+//        orgTableModel.setRowCount(0);
+//
+//        for (UserAccounts user : system.getUserAccountDirectory().getUserAccountDirectory()) {
+//
+//            if ("Role.HomeServicesTechnicianRole".equals(user.getRole().getClass().getName())) {
+//                Object[] row = new Object[3]; 
+//                row[0] = user.getName();
+//                row[1] = user.getUsername();
+//                row[2] = user.getPassword();
+//                
+//                orgTableModel.addRow(row);
+//            }
+//            
+//        }
     }
     
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
@@ -202,6 +162,7 @@ public class CreateHomeServiceTechnicianJPanel extends javax.swing.JPanel {
             UserAccounts userAccounts = system.getUserAccountDirectory().createUser(adminName, username, password, null, new HomeServiceTechnicianRole());
             Technician tech = system.getHomeServiceTechnicianDirectory().createTechnician(adminName,username);
 
+            JOptionPane.showMessageDialog(null,"Created Successfully");
             populateTable();
 
             fieldAdminName.setText("");
@@ -212,7 +173,6 @@ public class CreateHomeServiceTechnicianJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton deleteBtn;
     private javax.swing.JTextField fieldAdminName;
     private javax.swing.JTextField fieldPassword;
     private javax.swing.JTextField fieldUsername;
@@ -221,10 +181,6 @@ public class CreateHomeServiceTechnicianJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable orgTable;
     private javax.swing.JButton saveBtn;
-    private javax.swing.JButton updateBtn;
-    private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
 }

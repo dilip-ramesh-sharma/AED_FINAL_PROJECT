@@ -80,10 +80,7 @@ public class StoreCustomerJPanel extends javax.swing.JPanel {
 
         requestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Request ID", "Salon Name", "Address", "Request Status"
@@ -99,14 +96,11 @@ public class StoreCustomerJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(requestTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 580, 538, 155));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 230, 538, 155));
 
         orgTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Salon Name", "Salon Address", "Salon Contact", "Salon Email"
@@ -139,11 +133,11 @@ public class StoreCustomerJPanel extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Segoe Script", 1, 18)); // NOI18N
         jLabel3.setText("Your Service Requests:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 550, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 90, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Customer/customer3.jpeg"))); // NOI18N
         jLabel4.setText("jLabel4");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, -670, 2310, 1440));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -500, 2280, 1440));
     }// </editor-fold>//GEN-END:initComponents
 
     private void populateStoreTable() {

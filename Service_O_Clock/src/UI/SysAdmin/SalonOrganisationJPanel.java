@@ -93,7 +93,6 @@ public class SalonOrganisationJPanel extends javax.swing.JPanel {
         createPanel.setLayout(new java.awt.CardLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/SysAdmin/360_F_291376220_4vAflyBidF8fl0JesmL26rTExhZHd72Y.jpeg"))); // NOI18N
-        jLabel2.setText("jLabel2");
         createPanel.add(jLabel2, "card2");
 
         jSplitPane1.setRightComponent(createPanel);

@@ -81,14 +81,11 @@ public class PestControlCartJPanel extends javax.swing.JPanel {
                 backBtnActionPerformed(evt);
             }
         });
-        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 32, -1, -1));
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
         serviceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Service Name", "Service Description", "Service Type"
@@ -126,7 +123,7 @@ public class PestControlCartJPanel extends javax.swing.JPanel {
                 placebtnActionPerformed(evt);
             }
         });
-        add(placebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(497, 677, -1, -1));
+        add(placebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 550, -1, -1));
 
         removeBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         removeBtn.setText("Remove from Cart");
@@ -135,14 +132,11 @@ public class PestControlCartJPanel extends javax.swing.JPanel {
                 removeBtnActionPerformed(evt);
             }
         });
-        add(removeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(694, 677, -1, -1));
+        add(removeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 550, -1, -1));
 
         cartTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Service Type", "Service Description", "Service Type"
@@ -158,24 +152,24 @@ public class PestControlCartJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(cartTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 434, 426, 91));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, 426, 91));
 
         jLabel2.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         jLabel2.setText("YOUR CART");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(604, 399, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 270, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel3.setText("Service Address:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 560, -1, -1));
-        add(fieldAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(578, 553, 178, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 440, -1, -1));
+        add(fieldAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 430, 178, -1));
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel4.setText("Comments:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(449, 615, -1, -1));
-        add(fieldComments, new org.netbeans.lib.awtextra.AbsoluteConstraints(578, 610, 178, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 490, -1, -1));
+        add(fieldComments, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 490, 178, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Customer/cartoon-pest-control-service-business-vector-17191623.jpeg"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-42, -87, 1750, 1200));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-110, -90, 1750, 1200));
     }// </editor-fold>//GEN-END:initComponents
 
     private void populateCart(PestControlServices pest) {

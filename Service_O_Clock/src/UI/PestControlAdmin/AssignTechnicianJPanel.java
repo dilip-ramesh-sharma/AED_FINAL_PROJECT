@@ -14,6 +14,7 @@ import WorkQueue.PestControlWorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -40,6 +41,7 @@ public class AssignTechnicianJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
         this.request = request;
+        populate();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -116,6 +118,7 @@ public class AssignTechnicianJPanel extends javax.swing.JPanel {
     private void assignButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignButtonActionPerformed
         // TODO add your handling code here:
         int selectedRow = technicianTable.getSelectedRow();
+        try{
         if(selectedRow<0){
             JOptionPane.showMessageDialog(null,"Please select a row from the table to view details","Warning",JOptionPane.WARNING_MESSAGE);
         }
@@ -123,6 +126,9 @@ public class AssignTechnicianJPanel extends javax.swing.JPanel {
         {
 
             PestControlTechnician technician  = (PestControlTechnician)technicianTable.getValueAt(selectedRow, 0);
+            System.out.println(technician.getTechnicianName());
+            System.out.println(technician.getTechnicianRequestList());
+            System.out.println("1");
             technician.getTechnicianRequestList().add(request);
             technician.setAvailability(false);
             request.setStatus("Assigned Technician");
@@ -139,10 +145,36 @@ public class AssignTechnicianJPanel extends javax.swing.JPanel {
             workAreaContainer.remove(this);
             CardLayout layout = (CardLayout) workAreaContainer.getLayout();
             layout.previous(workAreaContainer);
-
         }
+        }
+        catch(Exception e){
+                JOptionPane.showMessageDialog(null,"Assigned");
+                for(Customer customer:ecosystem.getCustomerDirectory().getCustomerList()){
+                if(request.getCustName().equals(customer.getUsername())){
+                    for(PestControlWorkRequest request : customer.getPestControlWorkRequestList()){
+                        if(request.getStatus().equals("In Progress")){
+                            request.setStatus("Assigned Technician");
+                        }
+                    }
+                }
+            }
+                }
+
     }//GEN-LAST:event_assignButtonActionPerformed
 
+    
+        private void populate() {
+        DefaultTableModel model = (DefaultTableModel) technicianTable.getModel();
+        model.setRowCount(0);
+        
+        for(PestControlTechnician tech:ecosystem.getPestControlTechnicianDirectory().getPestControlTechnicianList()){
+            if(tech.getAvailability()==true){
+               Object[] row = new Object[1];           
+                row[0] = tech;
+                model.addRow(row);
+            }
+            }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignButton;

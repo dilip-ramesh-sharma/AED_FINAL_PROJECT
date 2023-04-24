@@ -4,7 +4,9 @@
  */
 package Beautician;
 
+import StoreServices.Products;
 import WorkQueue.SalonWorkRequest;
+import WorkQueue.StoreServiceWorkRequest;
 import java.util.ArrayList;
 
 /**
@@ -16,14 +18,17 @@ public class BeauticianWorker {
     private String beauticianName;
     private String beauticianUsrnme;
     private ArrayList<SalonWorkRequest> beauticianRequestList;
+    private ArrayList<StoreServiceWorkRequest> storeServicesRequestList;
     private String beauticianAddress;
     private String beauticianPhoneNumber;
     private Boolean availability = true;
+    private int storeId = 1;
 
     public BeauticianWorker(String beauticianName, String beauticianUsrnme) {
         this.beauticianName = beauticianName;
         this.beauticianUsrnme = beauticianUsrnme;
         beauticianRequestList = new ArrayList<SalonWorkRequest>();
+        storeServicesRequestList = new ArrayList<StoreServiceWorkRequest>();
     }
 
     public ArrayList<SalonWorkRequest> getBeauticianRequestList() {
@@ -73,19 +78,36 @@ public class BeauticianWorker {
     public void setAvailability(Boolean availability) {
         this.availability = availability;
     }
+
+    public int getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(int storeId) {
+        this.storeId = storeId;
+    }
+
+    public ArrayList<StoreServiceWorkRequest> getStoreServicesRequestList() {
+        return storeServicesRequestList;
+    }
+
+    public void setStoreServicesRequestList(ArrayList<StoreServiceWorkRequest> storeServicesRequestList) {
+        this.storeServicesRequestList = storeServicesRequestList;
+    }
     
-//    public void addBeauticianRequest(String beauticianOrgName, String memName, String beauticianWorkerName, ArrayList<Service> request, String cost, String fieldWorkerAddress) {
-//       WorkRequest requirement = new WorkRequest();
-//     
-//       requirement.setFieldWorkerName(fieldWorkerName);
-//       requirement.setSnowOrgName(snowOrgName);
-//       requirement.setMemName(memName);
-//       requirement.setRequest(request);
-//       requirement.setType(cost);
-//       requirement.setServiceAddress(fieldWorkerAddress);
-//       requirement.setStatus("New Request");
-//       beauticianWorkRequestList.add(requirement);
-//    }
+    public void createStoreServiceRequest(String storeName, String address, String custName, ArrayList<Products> products, String buyerContact, int amountPaid) {
+        StoreServiceWorkRequest shop = new StoreServiceWorkRequest();
+        shop.setStoreId(String.valueOf(storeId));
+        shop.setCustName(custName);
+        shop.setStoreName(storeName);
+        shop.setProducts(products);
+        shop.setCustContact(buyerContact);
+        shop.setTotalPurchase(amountPaid);
+        shop.setStoreAddress(address);
+        shop.setStatus("Purchased");
+        storeServicesRequestList.add(shop);
+        storeId++;
+    }
     
     
     @Override

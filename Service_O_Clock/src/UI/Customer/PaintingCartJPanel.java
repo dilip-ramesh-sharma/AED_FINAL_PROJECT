@@ -79,7 +79,7 @@ public class PaintingCartJPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 12, -1, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
 
         addCartBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         addCartBtn.setText("Add to Cart");
@@ -88,14 +88,11 @@ public class PaintingCartJPanel extends javax.swing.JPanel {
                 addCartBtnActionPerformed(evt);
             }
         });
-        add(addCartBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 222, -1, -1));
+        add(addCartBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
 
         serviceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Paint Name", "Paint Description", "Paint Color"
@@ -111,31 +108,28 @@ public class PaintingCartJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(serviceTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 109, -1, 95));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, 95));
 
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
         jLabel1.setText("YOUR PAINTING SERVICES CART");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 6, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel4.setText("Comments:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 562, -1, -1));
-        add(fieldAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 500, 178, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 520, -1, -1));
+        add(fieldAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, 178, -1));
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel3.setText("Service Address:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 505, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 460, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         jLabel2.setText("YOUR CART");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 350, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 300, -1, -1));
 
         cartTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Paint Name", "Paint Description", "Paint Color"
@@ -151,7 +145,7 @@ public class PaintingCartJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(cartTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(541, 381, 426, 91));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, 426, 91));
 
         removeBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         removeBtn.setText("Remove from Cart");
@@ -160,7 +154,7 @@ public class PaintingCartJPanel extends javax.swing.JPanel {
                 removeBtnActionPerformed(evt);
             }
         });
-        add(removeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(791, 626, -1, -1));
+        add(removeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 580, -1, -1));
 
         placebtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         placebtn.setText("Place Request");
@@ -169,8 +163,8 @@ public class PaintingCartJPanel extends javax.swing.JPanel {
                 placebtnActionPerformed(evt);
             }
         });
-        add(placebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 626, -1, -1));
-        add(fieldComments, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 557, 178, -1));
+        add(placebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 580, -1, -1));
+        add(fieldComments, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 510, 178, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Customer/painiting1.jpeg"))); // NOI18N
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, -220, 1750, 950));

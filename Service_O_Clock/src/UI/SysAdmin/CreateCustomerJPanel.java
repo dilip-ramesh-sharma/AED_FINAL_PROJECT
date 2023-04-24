@@ -110,10 +110,7 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
 
         orgTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Name", "Username", "Password"

@@ -57,6 +57,7 @@ public class HomeServiceTechnicianWorkAreaJPanel extends javax.swing.JPanel {
         serviceRequest = new javax.swing.JTable();
         prcoess = new javax.swing.JButton();
         back = new javax.swing.JButton();
+        refresh = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -87,7 +88,7 @@ public class HomeServiceTechnicianWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(serviceRequest);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 130, 597, 135));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 597, 135));
 
         prcoess.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         prcoess.setText("Process");
@@ -107,6 +108,14 @@ public class HomeServiceTechnicianWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, 30));
+
+        refresh.setText("Refresh");
+        refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionPerformed(evt);
+            }
+        });
+        add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 90, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
@@ -139,6 +148,11 @@ public class HomeServiceTechnicianWorkAreaJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_prcoessActionPerformed
 
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+        // TODO add your handling code here:
+        populateTable();
+    }//GEN-LAST:event_refreshActionPerformed
+
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) serviceRequest.getModel();
         model.setRowCount(0);
@@ -169,6 +183,7 @@ public class HomeServiceTechnicianWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton prcoess;
+    private javax.swing.JButton refresh;
     private javax.swing.JTable serviceRequest;
     // End of variables declaration//GEN-END:variables
 }

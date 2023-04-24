@@ -6,6 +6,7 @@ package UI.StoreAdmin;
 
 import Business.Ecosystem;
 import UserAccounts.UserAccounts;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -48,60 +49,74 @@ public class StoreAdminWorkArea extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        viewSalesBtn = new javax.swing.JButton();
+        createProducts = new javax.swing.JButton();
+        editProfileBtn = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(153, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("                                      Store Admin");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 645, -1));
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton1.setText("View Products");
+        viewSalesBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        viewSalesBtn.setText("View Products");
+        viewSalesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewSalesBtnActionPerformed(evt);
+            }
+        });
+        add(viewSalesBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 174, 165, -1));
 
-        jButton2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton2.setText("Create Products");
+        createProducts.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        createProducts.setText("Create Products");
+        createProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createProductsActionPerformed(evt);
+            }
+        });
+        add(createProducts, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 174, 182, -1));
 
-        jButton3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jButton3.setText("Edit Profile");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(32, 32, 32))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addGap(189, 189, 189))
-        );
+        editProfileBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        editProfileBtn.setText("Edit Profile");
+        editProfileBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editProfileBtnActionPerformed(evt);
+            }
+        });
+        add(editProfileBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 174, 164, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void viewSalesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSalesBtnActionPerformed
+        // TODO add your handling code here:
+        ViewProductBoughtJPanel view = new ViewProductBoughtJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Sales",view);
+        CardLayout layout = (CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
+    }//GEN-LAST:event_viewSalesBtnActionPerformed
+
+    private void createProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProductsActionPerformed
+        // TODO add your handling code here:
+        CretaeProductsPanel create = new CretaeProductsPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Create Products",create);
+        CardLayout layout = (CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
+    }//GEN-LAST:event_createProductsActionPerformed
+
+    private void editProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProfileBtnActionPerformed
+        // TODO add your handling code here:
+        EditProfileJPanel edit = new EditProfileJPanel(workAreaContainer, userAccount, ecosystem);
+        workAreaContainer.add("Edit Profile",edit);
+        CardLayout layout = (CardLayout)workAreaContainer.getLayout();
+        layout.next(workAreaContainer);
+    }//GEN-LAST:event_editProfileBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton createProducts;
+    private javax.swing.JButton editProfileBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton viewSalesBtn;
     // End of variables declaration//GEN-END:variables
 }

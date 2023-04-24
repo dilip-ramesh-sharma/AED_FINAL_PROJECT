@@ -88,10 +88,7 @@ public class SalonCartJPanel extends javax.swing.JPanel {
 
         serviceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Service Name", "Service Description", "Service Type"
@@ -107,14 +104,11 @@ public class SalonCartJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(serviceTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 100, -1, 95));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 95));
 
         cartTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Service Type", "Service Description", "Service Type"
@@ -130,7 +124,7 @@ public class SalonCartJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(cartTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(455, 416, 426, 91));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 180, 426, 100));
 
         addCartBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         addCartBtn.setText("Add to Cart");
@@ -139,21 +133,21 @@ public class SalonCartJPanel extends javax.swing.JPanel {
                 addCartBtnActionPerformed(evt);
             }
         });
-        add(addCartBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 213, -1, -1));
+        add(addCartBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         jLabel2.setText("YOUR CART");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(634, 387, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 150, -1, 30));
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel3.setText("Service Address:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 540, -1, -1));
-        add(fieldAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(599, 535, 178, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 310, -1, 20));
+        add(fieldAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 310, 178, 30));
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel4.setText("Comments:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 597, -1, -1));
-        add(fieldComments, new org.netbeans.lib.awtextra.AbsoluteConstraints(599, 592, 178, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 360, -1, 20));
+        add(fieldComments, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 360, 178, 30));
 
         placebtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         placebtn.setText("Place Request");
@@ -162,7 +156,7 @@ public class SalonCartJPanel extends javax.swing.JPanel {
                 placebtnActionPerformed(evt);
             }
         });
-        add(placebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 661, -1, -1));
+        add(placebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 430, -1, 30));
 
         removeBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         removeBtn.setText("Remove from Cart");
@@ -171,10 +165,10 @@ public class SalonCartJPanel extends javax.swing.JPanel {
                 removeBtnActionPerformed(evt);
             }
         });
-        add(removeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(704, 661, -1, -1));
+        add(removeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 430, -1, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Customer/salon11.jpeg"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 14, 850, 420));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 850, 420));
     }// </editor-fold>//GEN-END:initComponents
 
     private void populateCart(SalonServicesOffered serv) {

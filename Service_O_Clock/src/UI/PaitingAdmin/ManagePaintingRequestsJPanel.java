@@ -5,11 +5,13 @@
 package UI.PaitingAdmin;
 
 import Business.Ecosystem;
+import HomePainting.HomePainting;
 import UserAccounts.UserAccounts;
 import WorkQueue.HomePaintingWorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -35,6 +37,7 @@ public class ManagePaintingRequestsJPanel extends javax.swing.JPanel {
         this.workAreaContainer = workAreaContainer;
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
+        populateRequestsTable();
     }
 
     /**
@@ -53,6 +56,7 @@ public class ManagePaintingRequestsJPanel extends javax.swing.JPanel {
         viewRequestButton = new javax.swing.JButton();
         assignPainterButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        refresh = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -96,7 +100,7 @@ public class ManagePaintingRequestsJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(paintRequestTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 580, 90));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 580, 90));
 
         viewRequestButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
         viewRequestButton.setText("Accept/Reject Request");
@@ -118,6 +122,14 @@ public class ManagePaintingRequestsJPanel extends javax.swing.JPanel {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/PaitingAdmin/painter3.jpeg"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 6, 270, 220));
+
+        refresh.setText("Refresh");
+        refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionPerformed(evt);
+            }
+        });
+        add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 200, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -182,6 +194,27 @@ public class ManagePaintingRequestsJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_assignPainterButtonActionPerformed
 
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+        // TODO add your handling code here:
+        populateRequestsTable();
+    }//GEN-LAST:event_refreshActionPerformed
+
+    private void populateRequestsTable() {
+        DefaultTableModel model = (DefaultTableModel) paintRequestTable.getModel();        
+        model.setRowCount(0);               
+        for (HomePainting paint:ecosystem.getHomePaintingDirectory().getHomePaintingList()) {          
+            if (paint.getUsername().equals(userAccount.getUsername())) {
+               for(HomePaintingWorkRequest service:paint.getHomePaintingRequestList()){
+                Object[] row = new Object[4];
+                row[0] = service;
+                row[1] = service.getCustName();
+                row[2] = service.getServiceAddress();
+                row[3] = service.getStatus();
+                model.addRow(row);
+               }                
+            }            
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignPainterButton;
@@ -190,6 +223,7 @@ public class ManagePaintingRequestsJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable paintRequestTable;
     private javax.swing.JLabel paintingRequestTitle;
+    private javax.swing.JButton refresh;
     private javax.swing.JButton viewRequestButton;
     // End of variables declaration//GEN-END:variables
 }

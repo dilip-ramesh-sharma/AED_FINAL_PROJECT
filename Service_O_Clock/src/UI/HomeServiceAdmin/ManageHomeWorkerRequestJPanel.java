@@ -59,6 +59,7 @@ public class ManageHomeWorkerRequestJPanel extends javax.swing.JPanel {
         assignBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
+        refresh = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -108,6 +109,14 @@ public class ManageHomeWorkerRequestJPanel extends javax.swing.JPanel {
             }
         });
         add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, -1, -1));
+
+        refresh.setText("Refresh");
+        refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionPerformed(evt);
+            }
+        });
+        add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 190, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
@@ -170,6 +179,11 @@ public class ManageHomeWorkerRequestJPanel extends javax.swing.JPanel {
         layout.previous(workAreaContainer);
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+        // TODO add your handling code here:
+        populateRequestsTable();
+    }//GEN-LAST:event_refreshActionPerformed
+
     private void populateRequestsTable() {
         DefaultTableModel model = (DefaultTableModel) HomeworkerTable.getModel();        
         model.setRowCount(0);               
@@ -194,6 +208,7 @@ public class ManageHomeWorkerRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton refresh;
     private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
 }

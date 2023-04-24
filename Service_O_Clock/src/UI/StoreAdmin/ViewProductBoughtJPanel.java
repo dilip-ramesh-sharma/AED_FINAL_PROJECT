@@ -4,6 +4,14 @@
  */
 package UI.StoreAdmin;
 
+import Business.Ecosystem;
+import StoreServices.Products;
+import StoreServices.Store;
+import UserAccounts.UserAccounts;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author tanujkodali
@@ -13,6 +21,22 @@ public class ViewProductBoughtJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewProductBoughtJPanel
      */
+    private JPanel workAreaContainer;
+    private Ecosystem ecosystem;
+    private UserAccounts userAccount;
+
+    
+   
+    public ViewProductBoughtJPanel(JPanel workAreaContainer, UserAccounts userAccount,Ecosystem ecosystem) {
+        initComponents();
+        
+        this.workAreaContainer = workAreaContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+        
+        populateTable();
+        
+    }
     public ViewProductBoughtJPanel() {
         initComponents();
     }
@@ -28,8 +52,9 @@ public class ViewProductBoughtJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        orgTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -41,33 +66,66 @@ public class ViewProductBoughtJPanel extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/StoreAdmin/storeadmin.jpeg"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 68, 339, 226));
 
-        jTable1.setBackground(new java.awt.Color(255, 204, 204));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+
+        orgTable.setBackground(new java.awt.Color(255, 204, 204));
+        orgTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Product Name", "Product Category", "Amount Collected", "Status"
+                "Product Name", "Product Category", "Product Price"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(orgTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 338, -1, 164));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+         workAreaContainer.remove(this);
+
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void populateTable() {
+       DefaultTableModel model = (DefaultTableModel) orgTable.getModel();
+        model.setRowCount(0);
+        
+          for(Store store:ecosystem.getStoreDirectory().getStoreList()){
+            if(store.getUsername().equals(userAccount.getUsername())){
+               for(Products prod: store.getProductList()){
+                Object[] row = new Object[3];
+                row[0] = prod.getProductName();
+                row[1] = prod.getProductCategory();
+                row[2] = prod.getProductAmount();
+                model.addRow(row);
+               } 
+            } 
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable orgTable;
     // End of variables declaration//GEN-END:variables
 }

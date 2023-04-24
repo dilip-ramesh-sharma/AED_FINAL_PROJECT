@@ -6,12 +6,14 @@ package UI.PestControlAdmin;
 
 import Business.Ecosystem;
 import Customer.Customer;
+import PestControlOrganization.PestControlServices;
 import UserAccounts.UserAccounts;
 import WorkQueue.PestControlWorkRequest;
 import WorkQueue.SalonWorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -37,6 +39,8 @@ public class ViewPestControlRequestJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
         this.request = request;
+        populateTable();
+        issue.setEnabled(false);
     }
 
     /**
@@ -54,9 +58,7 @@ public class ViewPestControlRequestJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         pestRequestTable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        emergency = new javax.swing.JTextField();
-        Address = new javax.swing.JTextField();
+        issue = new javax.swing.JTextField();
         acceptRequest = new javax.swing.JButton();
         rejectRequest = new javax.swing.JButton();
 
@@ -81,11 +83,7 @@ public class ViewPestControlRequestJPanel extends javax.swing.JPanel {
 
         pestRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Service Name", "Description", "Type"
@@ -104,20 +102,15 @@ public class ViewPestControlRequestJPanel extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 54, -1, 244));
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel3.setText("Emergency:");
+        jLabel3.setText("Instructions");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 327, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel4.setText("Customer Address:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 384, -1, -1));
-
-        emergency.addActionListener(new java.awt.event.ActionListener() {
+        issue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emergencyActionPerformed(evt);
+                issueActionPerformed(evt);
             }
         });
-        add(emergency, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 322, 208, -1));
-        add(Address, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 379, 208, -1));
+        add(issue, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 322, 208, -1));
 
         acceptRequest.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         acceptRequest.setText("Accept Request");
@@ -126,7 +119,7 @@ public class ViewPestControlRequestJPanel extends javax.swing.JPanel {
                 acceptRequestActionPerformed(evt);
             }
         });
-        add(acceptRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 451, -1, -1));
+        add(acceptRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 390, -1, -1));
 
         rejectRequest.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         rejectRequest.setText("Reject Request");
@@ -135,7 +128,7 @@ public class ViewPestControlRequestJPanel extends javax.swing.JPanel {
                 rejectRequestActionPerformed(evt);
             }
         });
-        add(rejectRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(588, 451, -1, -1));
+        add(rejectRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -145,9 +138,9 @@ public class ViewPestControlRequestJPanel extends javax.swing.JPanel {
         layout.previous(workAreaContainer);
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void emergencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emergencyActionPerformed
+    private void issueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issueActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emergencyActionPerformed
+    }//GEN-LAST:event_issueActionPerformed
 
     private void acceptRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptRequestActionPerformed
         // TODO add your handling code here:
@@ -201,16 +194,27 @@ public class ViewPestControlRequestJPanel extends javax.swing.JPanel {
         layout.previous(workAreaContainer);
     }//GEN-LAST:event_rejectRequestActionPerformed
 
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) pestRequestTable.getModel();
+        model.setRowCount(0);
+
+        Object[] row = new Object[3];
+                for(PestControlServices pest:request.getPestControlService()){
+                     row[0] = pest;
+                     row[1] = pest.getServiceDescription();
+                     row[2] = pest.getServiceType();
+                     model.addRow(row);
+                }
+        issue.setText(request.getIssue());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Address;
     private javax.swing.JButton acceptRequest;
     private javax.swing.JButton backButton;
-    private javax.swing.JTextField emergency;
+    private javax.swing.JTextField issue;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable pestRequestTable;
     private javax.swing.JButton rejectRequest;

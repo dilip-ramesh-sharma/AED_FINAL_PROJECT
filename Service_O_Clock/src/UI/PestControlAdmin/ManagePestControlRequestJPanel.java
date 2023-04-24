@@ -5,6 +5,7 @@
 package UI.PestControlAdmin;
 
 import Business.Ecosystem;
+import PestControlOrganization.PestControl;
 import UI.SalonServiceAdmin.AssignBeauticianJPanel;
 import UI.SalonServiceAdmin.RequestDetailsJPanel;
 import UserAccounts.UserAccounts;
@@ -13,6 +14,7 @@ import WorkQueue.SalonWorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -40,6 +42,7 @@ public class ManagePestControlRequestJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
         
+        populateRequestsTable();
         
     }
 
@@ -59,6 +62,7 @@ public class ManagePestControlRequestJPanel extends javax.swing.JPanel {
         pestTable = new javax.swing.JTable();
         viewRequest = new javax.swing.JButton();
         assignRequest = new javax.swing.JButton();
+        refresh = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -98,7 +102,7 @@ public class ManagePestControlRequestJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(pestTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 77, -1, 200));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, -1, 200));
 
         viewRequest.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         viewRequest.setText("View Request");
@@ -117,6 +121,14 @@ public class ManagePestControlRequestJPanel extends javax.swing.JPanel {
             }
         });
         add(assignRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(709, 309, -1, -1));
+
+        refresh.setText("Refresh");
+        refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionPerformed(evt);
+            }
+        });
+        add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 50, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -130,6 +142,30 @@ public class ManagePestControlRequestJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRow = pestTable.getSelectedRow();
         if(selectedRow<0){
+            JOptionPane.showMessageDialog(null,"Please select a row from the table to view details", "Warning",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            PestControlWorkRequest request  = (PestControlWorkRequest)pestTable.getValueAt(selectedRow, 0);  
+            if(request.getStatus().equals("Request Cancelled")){
+                JOptionPane.showMessageDialog(null,"Request Cancelled !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else if(request.getStatus().equals("Completed")){
+                JOptionPane.showMessageDialog(null,"Request Completed Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                
+                ViewPestControlRequestJPanel rd = new ViewPestControlRequestJPanel(workAreaContainer, userAccount, request, ecosystem);
+                workAreaContainer.add("View Pest Control Request", rd);
+                CardLayout layout=(CardLayout)workAreaContainer.getLayout();
+                layout.next(workAreaContainer);
+            }
+        }
+    }//GEN-LAST:event_viewRequestActionPerformed
+
+    private void assignRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignRequestActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = pestTable.getSelectedRow();
+        if(selectedRow<0){
             JOptionPane.showMessageDialog(null, "Please select a row from the table to view details", "Warning",JOptionPane.WARNING_MESSAGE);
         }
         else{
@@ -140,47 +176,42 @@ public class ManagePestControlRequestJPanel extends javax.swing.JPanel {
             else if(request.getStatus().equals("Request Cancelled")){
                 JOptionPane.showMessageDialog(null,"Request Cancelled !!! Cannot Assign.", "Warning", JOptionPane.WARNING_MESSAGE);
             }
-            else if(request.getStatus().equals("Service Completed")){
-                JOptionPane.showMessageDialog(null,"Request COmpleted Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
+            else if(request.getStatus().equals("Completed")){
+                JOptionPane.showMessageDialog(null,"Request Completed Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
             }
             else if(request.getStatus().equals("Assigned Technician")){
-                JOptionPane.showMessageDialog(null,"Already Assigned Technician !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Already Assigned Pest Control Technician !!!", "Warning", JOptionPane.WARNING_MESSAGE);
             }
             else{
-                ViewPestControlRequestJPanel pcr = new ViewPestControlRequestJPanel(workAreaContainer, userAccount, request, ecosystem);
-                workAreaContainer.add("View Beautician Request", pcr);
-                CardLayout layout=(CardLayout)workAreaContainer.getLayout();
-                layout.next(workAreaContainer);
-            }
-        }
-    }//GEN-LAST:event_viewRequestActionPerformed
-
-    private void assignRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignRequestActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = pestTable.getSelectedRow();
-
-        if(selectedRow < 0) {
-            JOptionPane.showMessageDialog(null,"Please select a row from the table to view details", "Warning",JOptionPane.WARNING_MESSAGE);
-        } else {
-            PestControlWorkRequest request  = (PestControlWorkRequest)pestTable.getValueAt(selectedRow, 0);
-            if(request.getStatus().equals("In Progress")){
-                JOptionPane.showMessageDialog(null, "Technician Request Accepted Already !!!", "Warning", JOptionPane.WARNING_MESSAGE);
-            }
-            else if(request.getStatus().equals("Request Cancelled")){
-                JOptionPane.showMessageDialog(null,"Request Cancelled !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
-            }
-            else if(request.getStatus().equals("Completed Service")){
-                JOptionPane.showMessageDialog(null,"Service Completed Already !!! ", "Warning", JOptionPane.WARNING_MESSAGE);
-            }
-            else{
-                AssignTechnicianJPanel assignTechnician=new AssignTechnicianJPanel(workAreaContainer, userAccount, request, ecosystem);
-                workAreaContainer.add("Assign Beautician", assignTechnician);
+                AssignTechnicianJPanel assignTech=new AssignTechnicianJPanel(workAreaContainer, userAccount, request, ecosystem);
+                workAreaContainer.add("Assign Technician", assignTech);
                 CardLayout layout=(CardLayout)workAreaContainer.getLayout();
                 layout.next(workAreaContainer);
             }
         }
     }//GEN-LAST:event_assignRequestActionPerformed
 
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+        // TODO add your handling code here:
+        populateRequestsTable();
+    }//GEN-LAST:event_refreshActionPerformed
+
+    private void populateRequestsTable() {
+        DefaultTableModel model = (DefaultTableModel) pestTable.getModel();        
+        model.setRowCount(0);               
+        for (PestControl pest:ecosystem.getPestControlDirectory().getPestControlOrgList()) {          
+            if (pest.getUsername().equals(userAccount.getUsername())) {
+               for(PestControlWorkRequest pestreq:pest.getPestControlRequestList()){
+                Object[] row = new Object[4];
+                row[0] = pestreq;
+                row[1] = pestreq.getCustName();
+                row[2] = pestreq.getServiceAddress();
+                row[3] = pestreq.getStatus();
+                model.addRow(row);
+               }                
+            }            
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignRequest;
@@ -188,6 +219,7 @@ public class ManagePestControlRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable pestTable;
+    private javax.swing.JButton refresh;
     private javax.swing.JLabel title;
     private javax.swing.JButton viewRequest;
     // End of variables declaration//GEN-END:variables

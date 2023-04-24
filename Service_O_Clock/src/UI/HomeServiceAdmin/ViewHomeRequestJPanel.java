@@ -133,7 +133,7 @@ public class ViewHomeRequestJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(back)))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,7 +151,7 @@ public class ViewHomeRequestJPanel extends javax.swing.JPanel {
                     .addComponent(cancel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(back)
-                .addGap(0, 26, Short.MAX_VALUE))
+                .addGap(0, 23, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

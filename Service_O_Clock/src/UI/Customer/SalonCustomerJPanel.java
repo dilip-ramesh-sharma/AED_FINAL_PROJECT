@@ -60,7 +60,8 @@ public class SalonCustomerJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         cartBtn = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        refreshBtn = new javax.swing.JButton();
+        refresh = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -79,10 +80,7 @@ public class SalonCustomerJPanel extends javax.swing.JPanel {
 
         orgTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Salon Name", "Salon Address", "Salon Contact", "Salon Email"
@@ -102,10 +100,7 @@ public class SalonCustomerJPanel extends javax.swing.JPanel {
 
         requestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Request ID", "Salon Name", "Address", "Request Status"
@@ -121,7 +116,7 @@ public class SalonCustomerJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(requestTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 550, 538, 155));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 270, 538, 155));
 
         jLabel2.setFont(new java.awt.Font("Segoe Script", 1, 18)); // NOI18N
         jLabel2.setText("Pick A Salon of your choice:");
@@ -129,7 +124,7 @@ public class SalonCustomerJPanel extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Segoe Script", 1, 18)); // NOI18N
         jLabel3.setText("Your Service Requests:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 510, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 230, -1, -1));
 
         cartBtn.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         cartBtn.setText("View Services Offered");
@@ -140,9 +135,16 @@ public class SalonCustomerJPanel extends javax.swing.JPanel {
         });
         add(cartBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, -1, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Customer/salon07.jpeg"))); // NOI18N
-        jLabel4.setText("jLabel4");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, -180, 2140, 1210));
+        refreshBtn.setText("Refresh Table");
+        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtnActionPerformed(evt);
+            }
+        });
+        add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 440, -1, -1));
+
+        refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Customer/salon07.jpeg"))); // NOI18N
+        add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(-100, -210, 2140, 1210));
     }// </editor-fold>//GEN-END:initComponents
 
     private void populateSalonTable() {
@@ -162,24 +164,6 @@ public class SalonCustomerJPanel extends javax.swing.JPanel {
     }
 
     public void populateRequestTable() {
-        /*
-        DefaultTableModel requestTableModel = (DefaultTableModel) requestTable.getModel();
-        requestTableModel.setRowCount(0);
-
-          for (Customer cust:ecosystem.getCustomerDirectory().getCustomerList()) {   
-            if (cust.getUsername().equals(userAccount.getUsername())) {
-               for(SalonWorkRequest salon:cust.getSalonWorkRequestList()){
-                Object[] row = new Object[4];
-                row[0] = salon;
-                row[1] = salon.getSalonName();
-                row[2] = salon.getServiceAddress();
-                row[3] = salon.getStatus();
-                requestTableModel.addRow(row);
-               }            
-            }  
-        }*/
-        
-       
         
         DefaultTableModel requestTableModel = (DefaultTableModel) requestTable.getModel();
         requestTableModel.setRowCount(0);
@@ -224,6 +208,11 @@ public class SalonCustomerJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_cartBtnActionPerformed
 
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        // TODO add your handling code here:
+        populateRequestTable();
+    }//GEN-LAST:event_refreshBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
@@ -231,10 +220,11 @@ public class SalonCustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable orgTable;
+    private javax.swing.JLabel refresh;
+    private javax.swing.JButton refreshBtn;
     private javax.swing.JTable requestTable;
     // End of variables declaration//GEN-END:variables
 }

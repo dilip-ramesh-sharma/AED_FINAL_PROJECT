@@ -60,6 +60,7 @@ public class PaintingCustomerJPanel extends javax.swing.JPanel {
         orgTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         cartBtn = new javax.swing.JButton();
+        refreshBtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -75,7 +76,7 @@ public class PaintingCustomerJPanel extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Segoe Script", 1, 18)); // NOI18N
         jLabel3.setText("Your Service Requests:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 440, 216, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 390, 216, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe Script", 1, 18)); // NOI18N
         jLabel2.setText("Pick A Painting Organisation of your choice:");
@@ -83,10 +84,7 @@ public class PaintingCustomerJPanel extends javax.swing.JPanel {
 
         requestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Request ID", "Organisation Name", "Address", "Request Status"
@@ -102,14 +100,11 @@ public class PaintingCustomerJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(requestTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 480, 538, 155));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 440, 538, 155));
 
         orgTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Organisation Name", "Organisation Address", "Organisation Contact"
@@ -139,6 +134,14 @@ public class PaintingCustomerJPanel extends javax.swing.JPanel {
             }
         });
         add(cartBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 276, -1, -1));
+
+        refreshBtn.setText("Refresh Table");
+        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtnActionPerformed(evt);
+            }
+        });
+        add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 410, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Customer/painting7777.jpeg"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, -120, 950, 630));
@@ -201,6 +204,11 @@ public class PaintingCustomerJPanel extends javax.swing.JPanel {
         layout.previous(workAreaContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        // TODO add your handling code here:
+        populateRequestTable();
+    }//GEN-LAST:event_refreshBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cartBtn;
@@ -212,6 +220,7 @@ public class PaintingCustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable orgTable;
+    private javax.swing.JButton refreshBtn;
     private javax.swing.JTable requestTable;
     // End of variables declaration//GEN-END:variables
 }

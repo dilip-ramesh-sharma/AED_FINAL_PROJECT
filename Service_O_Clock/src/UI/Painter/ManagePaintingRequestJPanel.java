@@ -5,8 +5,12 @@
 package UI.Painter;
 
 import Business.Ecosystem;
+import Customer.Customer;
+import Painter.Painter;
+import PestControlTechnician.PestControlTechnician;
 import UserAccounts.UserAccounts;
 import WorkQueue.HomePaintingWorkRequest;
+import WorkQueue.PestControlWorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -26,17 +30,26 @@ public class ManagePaintingRequestJPanel extends javax.swing.JPanel {
     private HomePaintingWorkRequest request;
     
    
-    public ManagePaintingRequestJPanel(JPanel workAreaContainer, UserAccounts userAccount, HomePaintingWorkRequest request,Ecosystem ecosystem) {
+//    public ManagePaintingRequestJPanel(JPanel workAreaContainer, UserAccounts userAccount, HomePaintingWorkRequest request,Ecosystem ecosystem) {
+//        initComponents();
+//        
+//        this.workAreaContainer = workAreaContainer;
+//        this.userAccount = userAccount;
+//        this.ecosystem = ecosystem;
+//        this.request = request;
+//       
+//    }
+    public ManagePaintingRequestJPanel() {
+        initComponents();
+    }
+
+    ManagePaintingRequestJPanel(JPanel workAreaContainer, HomePaintingWorkRequest paintReq, Ecosystem ecosystem, UserAccounts userAccount) {
         initComponents();
         
         this.workAreaContainer = workAreaContainer;
+        this.request=paintReq;
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
-        this.request = request;
-       
-    }
-    public ManagePaintingRequestJPanel() {
-        initComponents();
     }
 
     /**
@@ -50,7 +63,6 @@ public class ManagePaintingRequestJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        backButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -68,32 +80,60 @@ public class ManagePaintingRequestJPanel extends javax.swing.JPanel {
             }
         });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(386, 241, 337, -1));
-
-        backButton.setBackground(new java.awt.Color(133, 211, 255));
-        backButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
-        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       
+//        int selectedRow = painterJTable.getSelectedRow();
+//        if (selectedRow < 0){
+//            return;
+//        }
+//      HomePaintingWorkRequest order = (HomePaintingWorkRequest)painterJTable.getValueAt(selectedRow, 0);
+//
+//        if(order.getStatus().equals("Delivered")){
+//            JOptionPane.showMessageDialog(null,"Order Already Delivered", "Warning", JOptionPane.WARNING_MESSAGE);
+//        }else if(order.getStatus().equals("New Order") || order.getStatus().equals("In Progress")){
+//            JOptionPane.showMessageDialog(null,"Request is not yet Assigned", "Warning", JOptionPane.WARNING_MESSAGE);
+//        }
+//        else{
+//          
+//            order.setStatus("Pickup Completed");
+//        for(Customer cust:ecosystem.getCustomerDirectory().getCustomerList()){
+//            if(cust.getCustomerName().equals(cust.getUsername())){
+//                for(HomePaintingWorkRequest request : cust.getHomePaintingWorkRequestList()){
+//                    if(request.getStatus().equals("Assigned Painter")) {
+//                        request.setStatus("Service Completed");
+//                        JOptionPane.showMessageDialog(null,"Request is not yet Assigned", "Warning", JOptionPane.WARNING_MESSAGE);
+//                    }
+//                }
+//            }
+//        
+//        }
+//        }
+        request.setStatus("Completed");
+        for(Customer customer:ecosystem.getCustomerDirectory().getCustomerList()){
+            if(request.getCustName().equals(customer.getUsername())){
+                for(HomePaintingWorkRequest request : customer.getHomePaintingWorkRequestList()){
+                    if(request.getStatus().equals("Assigned Painter")){
+                        request.setStatus("Completed");
+                    }
+                }
+            }
+        }
+                     
+        for(Painter painter : ecosystem.getPainterDirectory().getPainterList()){
+            if(painter.getPainterUsername().equals(userAccount.getUsername())){
+                painter.setAvailability(true);
+            }
+        }
         
+        workAreaContainer.remove(this);
+        CardLayout layout = (CardLayout) workAreaContainer.getLayout();
+        layout.previous(workAreaContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
-               
-    }//GEN-LAST:event_backButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
